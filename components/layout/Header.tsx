@@ -19,7 +19,8 @@ export default function Header() {
       <div className="border-b border-line bg-cream/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-3">
           <Link href="/" aria-label={clinic.name}>
-            <Image src="/images/logo.png" alt={clinic.name} width={2953} height={1135} priority className="h-11 w-auto" />
+            {/* logo-trimmed.png = logo.png without its empty margin, so the mark itself shows larger */}
+            <Image src="/images/logo-trimmed.png" alt={clinic.name} width={2636} height={774} priority sizes="200px" className="h-12 w-auto md:h-14" />
           </Link>
           <nav aria-label="Main" className="order-3 flex w-full flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-brown-dark lg:order-none lg:w-auto">
             {nav.map((item) => (
