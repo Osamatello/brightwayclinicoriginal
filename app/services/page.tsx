@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Dental implants, veneers, orthodontics, teeth whitening and more — all 11 treatments at Bright Way Dental Clinic in Al Garhoud, Dubai, with digital dentistry and DHA-licensed dentists.",
   alternates: { canonical: "/services/" },
-  openGraph: { title: "Dental Services in Dubai | Bright Way Dental Clinic", url: "/services/", images: ["/images/services/dental-implants.webp"] },
+  openGraph: { title: "Dental Services in Dubai | Bright Way Dental Clinic", url: "/services/", images: ["/images/services/approved/dental-implants.webp"] },
 };
 
 export default function ServicesPage() {

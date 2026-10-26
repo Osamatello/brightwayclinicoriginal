@@ -16,6 +16,9 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brightway.clinic"),
+  // Search Console ownership (brightwayclinic2021@gmail.com, HTML-tag method, added to the old site 2026-10-26) —
+  // must stay on the new site or the property loses verification after launch
+  verification: { google: "0sqU7n0kCs14QnVNRL9Dzqzcz-JGZmFSA461wxluc5U" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
