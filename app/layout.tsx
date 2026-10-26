@@ -21,6 +21,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${cormorant.variable}`}>
+      <head>
+        {/* here, not in metadata: each page's own `alternates` (canonical) would replace it */}
+        <link rel="alternate" type="application/rss+xml" title="Bright Way Dental Clinic Blog" href="/feed/" />
+      </head>
       <body className="antialiased">
         <Header />
         <main>{children}</main>

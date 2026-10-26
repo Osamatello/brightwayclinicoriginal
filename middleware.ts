@@ -22,8 +22,10 @@ function normalize(pathname: string) {
 
 function moved(req: NextRequest, to: string) {
   const url = req.nextUrl.clone();
-  url.pathname = to;
+  const [pathname, hash = ""] = to.split("#");
+  url.pathname = pathname;
   url.search = "";
+  url.hash = hash;
   return NextResponse.redirect(url, 301);
 }
 
