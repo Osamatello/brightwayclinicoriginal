@@ -21,12 +21,8 @@ function normalize(pathname: string) {
 }
 
 function moved(req: NextRequest, to: string) {
-  const url = req.nextUrl.clone();
-  const [pathname, hash = ""] = to.split("#");
-  url.pathname = pathname;
-  url.search = "";
-  url.hash = hash;
-  return NextResponse.redirect(url, 301);
+  // plain URL, not nextUrl.clone(): on Vercel the clone drops the trailing slash when the request was "/?p=ID"
+  return NextResponse.redirect(new URL(to, req.nextUrl.origin), 301);
 }
 
 function removed() {
