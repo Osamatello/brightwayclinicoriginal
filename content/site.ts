@@ -23,7 +23,7 @@ export const clinic = {
 export const nav = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about/" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services/" },
   { label: "Blog", href: "/blog/" },
   { label: "Smile Gallery", href: "/smile-gallery/" },
   { label: "Career", href: "/career/" },

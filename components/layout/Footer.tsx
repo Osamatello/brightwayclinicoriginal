@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { clinic, nav } from "@/content/site";
-import { WhatsAppIcon } from "@/components/ui";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 
 export default function Footer() {
   return (
@@ -42,13 +42,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-white/10 py-6 text-center text-xs text-white/50">© {new Date().getFullYear()} {clinic.name}, Dubai</div>
       </footer>
-      <a
-        href={clinic.whatsapp}
-        aria-label="Chat on WhatsApp"
-        className="fixed bottom-5 right-5 z-30 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-bold text-white shadow-xl transition hover:scale-105"
-      >
-        <WhatsAppIcon /> WhatsApp
-      </a>
+      <FloatingWhatsApp />
     </>
   );
 }

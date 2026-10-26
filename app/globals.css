@@ -53,11 +53,20 @@ body {
   animation: marquee 40s linear infinite;
 }
 
+/* hero photo (until the clinic video exists): slow zoom so the stage feels alive */
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.animate-hero-zoom {
+  animation: hero-zoom 24s ease-out infinite alternate;
+}
+
 details summary::-webkit-details-marker {
   display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none; }
+  .animate-marquee, .animate-hero-zoom { animation: none; }
   html { scroll-behavior: auto; }
 }

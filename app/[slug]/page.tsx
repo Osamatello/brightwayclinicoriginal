@@ -44,12 +44,12 @@ function ServicePage({ entry }: { entry: Entry }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <BreadcrumbSchema items={[{ name: "Services", path: "/#services" }, { name: entry.title, path: entry.path }]} />
+      <BreadcrumbSchema items={[{ name: "Services", path: "/services/" }, { name: entry.title, path: entry.path }]} />
       <PageHero
         eyebrow="Our services"
         title={entry.title}
         intro={card?.text}
-        crumbs={[{ label: "Services", href: "/#services" }, { label: entry.title }]}
+        crumbs={[{ label: "Services", href: "/services/" }, { label: entry.title }]}
         image={card?.img || entry.featured}
         imageAlt={entry.title}
       />

@@ -8,18 +8,22 @@ export const homeSeo = {
 };
 
 export const services = [
-  { title: "Dental Implants", text: "A long-lasting replacement for lost teeth, planned digitally and placed with computer guidance.", img: "/images/svc-implants.jpg", href: "/dentalimplants-en/" },
+  { title: "Dental Implants", text: "A long-lasting replacement for lost teeth, planned digitally and placed with computer guidance.", img: "/images/services/dental-implants.webp", href: "/dentalimplants-en/" },
   { title: "Teeth Cleaning and Gum Treatment", text: "Maintain optimal oral health with our deep cleaning services that prevent gum disease and enhance overall dental hygiene.", img: "/images/svc-cleaning.jpg", href: "/teeth-cleaning-and-gum-treatment/" },
-  { title: "Teeth Whitening", text: "Brighten your smile with our professional whitening treatments, tailored to safely achieve a radiant and lasting shine.", img: "/images/svc-whitening.jpg", href: "/teeth-whitening/" },
+  { title: "Teeth Whitening", text: "Brighten your smile with our professional whitening treatments, tailored to safely achieve a radiant and lasting shine.", img: "/images/services/teeth-whitening.webp", href: "/teeth-whitening/" },
   { title: "Tooth Extraction", text: "Expert, gentle removal of problematic teeth to alleviate pain and prevent further dental issues.", img: "/images/svc-extraction.webp", href: "/tooth-extraction/" },
   { title: "Oral Surgery", text: "Specialized procedures, including wisdom tooth removal and corrective surgery, performed with cutting-edge technology.", img: "/images/svc-surgery.webp", href: "/oral-surgery/" },
   { title: "Root Canal Treatment", text: "Save and restore infected teeth with our efficient and comfortable root canal therapies.", img: "/images/svc-rootcanal.webp", href: "/root-canal-treatment/" },
-  { title: "Veneers", text: "Transform your smile with custom-made veneers designed to cover imperfections and enhance aesthetics.", img: "/images/svc-veneers.webp", href: "/veneer-en/" },
+  { title: "Veneers", text: "Transform your smile with custom-made veneers designed to cover imperfections and enhance aesthetics.", img: "/images/services/veneers.webp", href: "/veneer-en/" },
   { title: "Cosmetic Dentistry", text: "Comprehensive cosmetic services to improve your smile's appearance, from simple enhancements to complete makeovers.", img: "/images/svc-cosmetic.jpg", href: "/cosmetic-dentistry/" },
   { title: "Pediatric Dentistry", text: "Friendly, compassionate care for our youngest patients, focusing on preventive measures and dental education.", img: "/images/svc-pediatric.jpg", href: "/pediatric-dentistry/" },
-  { title: "Orthodontics", text: "Tailored orthodontic solutions, including braces and aligners, to straighten teeth and correct bites.", img: "/images/svc-ortho.jpg", href: "/orthodontics-en/" },
+  { title: "Orthodontics", text: "Tailored orthodontic solutions, including braces and aligners, to straighten teeth and correct bites.", img: "/images/services/orthodontics.webp", href: "/orthodontics-en/" },
   { title: "Prosthodontics", text: "Expert restoration of teeth with implants, bridges, and dentures, aiming for functional, natural-looking results.", img: "/images/svc-prosth.jpeg", href: "/prosthodontics/" },
 ];
+
+// Most requested treatments (what the clinic advertises most: implant offer, landing pages, Dr. Hasan's videos) —
+// shown first on the homepage and at the top of /services/
+export const topServiceHrefs = ["/dentalimplants-en/", "/veneer-en/", "/orthodontics-en/", "/teeth-whitening/"];
 
 export const whyPoints = [
   "Smart and advanced digital dentistry solutions.",
