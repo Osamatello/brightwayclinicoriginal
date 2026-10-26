@@ -45,7 +45,7 @@ export default function Footer() {
       <a
         href={clinic.whatsapp}
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-5 right-5 z-50 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-bold text-white shadow-xl transition hover:scale-105"
+        className="fixed bottom-5 right-5 z-30 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-bold text-white shadow-xl transition hover:scale-105"
       >
         <WhatsAppIcon /> WhatsApp
       </a>
