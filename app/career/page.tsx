@@ -26,7 +26,7 @@ export default function CareerPage() {
       <BreadcrumbSchema items={[{ name: "Career", path: "/career/" }]} />
       <PageHero
         eyebrow="Careers at Bright Way"
-        title="Join Our Leading Dental Team in Dubai"
+        title="Join Our Team at Bright Way Dental Clinic"
         intro="At Bright Way Dental Clinic, we're always on the lookout for passionate and skilled professionals to join our best leading dental team in Dubai."
         crumbs={[{ label: "Career" }]}
         image="/images/digital-photo.jpg"

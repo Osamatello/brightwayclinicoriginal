@@ -29,7 +29,7 @@ export default function SmileGalleryPage() {
       <BreadcrumbSchema items={[{ name: "Smile Gallery", path: "/smile-gallery/" }]} />
       <PageHero
         eyebrow="Smile Gallery"
-        title="Our Latest Smile Makeovers"
+        title="Before and After Dental Transformations"
         intro="Real transformations from Bright Way Dental Clinic in Dubai — drag each photo to compare the smile before and after treatment."
         crumbs={[{ label: "Smile Gallery" }]}
       />

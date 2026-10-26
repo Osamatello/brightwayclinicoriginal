@@ -22,6 +22,7 @@ const entries = entriesJson as Entry[];
 export const getByPath = (path: string) => entries.find((e) => e.path === path);
 export const getById = (id: number) => entries.find((e) => e.id === id);
 
+export const entriesByLang = (lang: Entry["lang"]) => entries.filter((e) => e.lang === lang);
 export const servicesEn = () => entries.filter((e) => e.kind === "service" && e.lang === "en");
 export const postsEn = () => entries.filter((e) => e.kind === "post" && e.lang === "en");
 

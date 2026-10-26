@@ -18,8 +18,8 @@ export default function BlogPage() {
     <>
       <BreadcrumbSchema items={[{ name: "Blog", path: "/blog/" }]} />
       <PageHero
-        eyebrow="Bright Way blog"
-        title="Dental tips & digital dentistry insights"
+        eyebrow="Dental tips & digital dentistry insights"
+        title="Bright Way Clinic Blog"
         intro="Advice from Dr. Hasan Mahdy and the Bright Way team — implants, veneers, aligners, children's dental care and the latest in digital dentistry."
         crumbs={[{ label: "Blog" }]}
       />

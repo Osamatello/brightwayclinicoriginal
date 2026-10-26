@@ -38,8 +38,8 @@ export default function ImplantCostPage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Bright Way Dental Clinic</p>
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
-              Personalized <span className="font-display italic text-gold-light">Dental Implant Cost</span>
+            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl">
+              Get Your Personalized <span className="font-display italic text-gold-light">Dental Implant Cost</span> Estimate – Instantly and for Free!
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-white/80">
               Wondering how much it will cost to restore your smile? Find out now by entering a few simple details – no commitments, just clarity.

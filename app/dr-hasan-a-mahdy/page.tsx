@@ -37,7 +37,7 @@ export default function DoctorPage() {
       <BreadcrumbSchema items={[{ name: "Dr. Hasan A. Mahdy", path: "/dr-hasan-a-mahdy/" }]} />
       <PageHero
         eyebrow="Founder · Bright Way Dental Clinic"
-        title="Dr. Hasan A. Mahdy"
+        title="Meet Dr. Hasan Abdullah Mahdy"
         intro="“Your smile is your signature; let us craft it to perfection.”"
         crumbs={[{ label: "Our doctors", href: "/#doctors" }, { label: "Dr. Hasan A. Mahdy" }]}
         image="/images/dr-hasan.jpg"

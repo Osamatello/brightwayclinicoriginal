@@ -22,7 +22,7 @@ export default function AboutPage() {
       <BreadcrumbSchema items={[{ name: "About", path: "/about/" }]} />
       <PageHero
         eyebrow="About us"
-        title="About Bright Way Dental Clinic: Dubai's Premier Dental Care Provider"
+        title="About Bright Way Dental Clinic: Dubai’s Premier Dental Care Provider"
         intro="Cutting-edge dental technology and expert care, together since 2013 — enhancing smiles with cosmetic dentistry, implants, teeth cleaning and whitening."
         crumbs={[{ label: "About" }]}
         image="/images/cta-dr.jpeg"
