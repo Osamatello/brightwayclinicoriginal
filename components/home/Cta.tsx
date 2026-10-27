@@ -4,7 +4,7 @@ import { GoldButton, OutlineButton } from "@/components/ui";
 
 export default function Cta() {
   return (
-    <section className="bg-white px-5 pb-24">
+    <section className="bg-white px-5 pb-24 pt-12">
       <div className="bg-gold-gradient relative mx-auto grid max-w-7xl overflow-hidden rounded-[2.5rem] md:grid-cols-[1.3fr_1fr]">
         <div aria-hidden="true" className="absolute -left-20 -top-20 h-80 w-80 rounded-full border border-white/20" />
         <div className="relative space-y-6 p-10 text-white md:p-16">

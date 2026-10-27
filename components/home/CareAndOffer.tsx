@@ -4,7 +4,7 @@ import { Check, Eyebrow, GoldButton, Heading } from "@/components/ui";
 
 export default function CareAndOffer() {
   return (
-    <section className="bg-cream px-5 pb-24">
+    <section className="bg-cream px-5 pb-24 pt-12">
       <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-2">
         <div className="space-y-7 rounded-[2.25rem] border border-line bg-white p-10 md:p-12">
           <Eyebrow>Patient-First Dental Care</Eyebrow>
