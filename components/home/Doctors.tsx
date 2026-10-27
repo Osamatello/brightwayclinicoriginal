@@ -1,32 +1,50 @@
 import Image from "next/image";
 import Link from "next/link";
 import { doctors } from "@/content/home";
-import { Arrow, Eyebrow, Heading } from "@/components/ui";
+import { Arrow } from "@/components/ui";
+import styles from "./Doctors.module.css";
 
 export default function Doctors() {
+  const [founder, ...team] = doctors;
+
   return (
-    <section id="doctors" className="bg-cream py-24">
-      <div className="mx-auto max-w-7xl space-y-14 px-5">
-        <div className="mx-auto max-w-3xl space-y-4 text-center [&>p]:justify-center">
-          <Eyebrow>Discover our best dentists in Dubai</Eyebrow>
-          <Heading lead="Our Specialized Doctors at" accent="Bright Way Dental Clinic" />
-        </div>
-        <div className="grid gap-8 md:grid-cols-3">
-          {doctors.map((d, i) => (
-            <article key={d.name} className={`group text-center ${i === 1 ? "md:translate-y-10" : ""}`}>
-              <div className="arch relative mx-auto aspect-[4/5] max-w-sm overflow-hidden bg-gold-soft">
-                <Image src={d.img} alt={d.name} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover object-top transition duration-700 group-hover:scale-105" />
-                <span className="bg-gold-gradient absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white">{d.tag}</span>
+    <section id="doctors" className={styles.section} aria-labelledby="doctors-heading">
+      <div className={styles.inner}>
+        <header className={styles.header}>
+          <h2 id="doctors-heading" className={styles.heading}>
+            Our Specialized Doctors{" "}
+            <span>at Bright Way Dental Clinic</span>
+          </h2>
+          <p className={styles.intro}>Discover Our Best Dentists In Dubai</p>
+        </header>
+        <div className={styles.gallery}>
+          <article className={styles.founder}>
+            <Link href={founder.href!} className={styles.portraitLink} aria-label={"Meet " + founder.name}>
+              <div className={styles.founderPortrait}>
+                <Image src={founder.img} alt={founder.name} fill sizes="(min-width: 1280px) 544px, (min-width: 760px) 45vw, 100vw" className={styles.photo} />
               </div>
-              <h3 className="mt-6 text-2xl font-extrabold text-brown-dark">{d.name}</h3>
-              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed">{d.role}</p>
-              {d.href && (
-                <Link href={d.href} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-gold-dark">
-                  Read more <Arrow />
-                </Link>
-              )}
-            </article>
-          ))}
+              <span className={styles.portraitCta} aria-hidden="true">Meet Dr. Hasan <Arrow /></span>
+            </Link>
+            <div className={styles.founderInfo}>
+              <p className={styles.specialty}>{founder.tag}</p>
+              <h3 className={styles.name}><Link href={founder.href!}>{founder.name}</Link></h3>
+              <p className={styles.description}>{founder.role}</p>
+            </div>
+          </article>
+          <div className={styles.team}>
+            {team.map((doctor) => (
+              <article key={doctor.name} className={styles.profile}>
+                <div className={styles.teamPortrait}>
+                  <Image src={doctor.img} alt={doctor.name} fill sizes="(min-width: 1280px) 270px, (min-width: 760px) 22vw, (min-width: 540px) 40vw, 100vw" className={styles.photo} />
+                </div>
+                <div className={styles.profileInfo}>
+                  <p className={styles.specialty}>{doctor.tag}</p>
+                  <h3 className={styles.name}>{doctor.name}</h3>
+                  <p className={styles.description}>{doctor.role}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

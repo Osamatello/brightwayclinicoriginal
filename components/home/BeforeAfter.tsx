@@ -1,80 +1,118 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { smileCases } from "@/content/home";
-import { Eyebrow, Heading } from "@/components/ui";
+import { useState, type PointerEvent } from "react";
+import { smileCases, type SmileCase } from "@/content/home";
+import { Arrow } from "@/components/ui";
+import styles from "./BeforeAfter.module.css";
 
-type Case = { label: string; before?: string; after?: string };
+function Comparison({ smile }: { smile: SmileCase }) {
+  const [position, setPosition] = useState(50);
+  const hasPhotos = Boolean(smile.before && smile.after);
 
-/** One comparison card: drag (or use arrow keys on) the slider to reveal before / after. */
-function CompareCard({ label, before, after, index }: Case & { index: number }) {
-  const [pos, setPos] = useState(50);
+  function moveDivider(event: PointerEvent<HTMLInputElement>) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    setPosition(Math.round(Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100))));
+  }
+
   return (
-    <figure className="space-y-4">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-gold-soft shadow-[0_20px_50px_-30px_rgba(110,82,25,0.5)]">
-        {/* AFTER layer */}
-        {after ? (
-          <Image src={after} alt={`${label} — after`} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+    <figure className={styles.comparison} aria-labelledby="gallery-case-title">
+      <div className={styles.stage}>
+        {hasPhotos ? (
+          <>
+            <Image src={smile.after!} alt={smile.label + " — after treatment"} fill sizes="(min-width: 1280px) 840px, (min-width: 900px) 65vw, 100vw" className={styles.patientPhoto} />
+            <div className={styles.beforeLayer} style={{ clipPath: "inset(0 " + (100 - position) + "% 0 0)" }}>
+              <Image src={smile.before!} alt={smile.label + " — before treatment"} fill sizes="(min-width: 1280px) 840px, (min-width: 900px) 65vw, 100vw" className={styles.patientPhoto} />
+            </div>
+            <div className={styles.photoLabels} aria-hidden="true"><span>Before</span><span>After</span></div>
+            <input
+              className={styles.range}
+              type="range"
+              min={0}
+              max={100}
+              value={position}
+              onChange={(event) => setPosition(Number(event.target.value))}
+              onPointerDown={(event) => {
+                event.preventDefault();
+                event.currentTarget.focus({ preventScroll: true });
+                event.currentTarget.setPointerCapture(event.pointerId);
+                moveDivider(event);
+              }}
+              onPointerMove={(event) => {
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) moveDivider(event);
+              }}
+              onPointerUp={(event) => {
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+              }}
+              aria-label={"Compare before and after: " + smile.label}
+              aria-valuetext={position + "% before, " + (100 - position) + "% after"}
+              aria-describedby="gallery-comparison-hint"
+            />
+            <div className={styles.divider} style={{ left: position + "%" }} aria-hidden="true">
+              <span className={styles.handle}>
+                <svg viewBox="0 0 28 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m9 5-5 5 5 5M19 5l5 5-5 5M14 3v14" />
+                </svg>
+              </span>
+            </div>
+          </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#fbf4e4] to-[#ecd9ae]" />
+          <div className={styles.placeholder}>
+            <span className={styles.illustrationLabel}>Treatment Illustration</span>
+            <div className={styles.orbit} aria-hidden="true" />
+            <div className={styles.artwork}>
+              <Image src={smile.illustration} alt={smile.label + " treatment illustration"} fill sizes="(min-width: 540px) 300px, 220px" className={styles.illustration} />
+            </div>
+            <p className={styles.pending}>Before &amp; after photographs coming soon</p>
+          </div>
         )}
-        <span className="absolute bottom-4 right-4 rounded-full bg-white px-3 py-1 text-[11px] font-extrabold tracking-[0.15em] text-gold-dark">AFTER</span>
-
-        {/* BEFORE layer, clipped to the slider position */}
-        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          {before ? (
-            <Image src={before} alt={`${label} — before`} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[#d8bf8a] to-[#a8864a]" />
-          )}
-          <span className="absolute bottom-4 left-4 rounded-full bg-brown px-3 py-1 text-[11px] font-extrabold tracking-[0.15em] text-gold-light">BEFORE</span>
-        </div>
-
-        {!before && !after && (
-          <span className="pointer-events-none absolute inset-x-0 top-4 text-center text-xs font-semibold text-brown-dark/60">Photo coming soon</span>
-        )}
-
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 w-0.5 bg-white" style={{ left: `${pos}%` }}>
-          <span className="bg-gold-gradient absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-lg ring-4 ring-white">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-              <path d="M9 6l-6 6 6 6M15 6l6 6-6 6" />
-            </svg>
-          </span>
-        </div>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          value={pos}
-          onChange={(e) => setPos(Number(e.target.value))}
-          aria-label={`Compare before and after: ${label}`}
-          className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
-        />
       </div>
-      <figcaption className="flex items-baseline justify-between px-1">
-        <span className="text-lg font-extrabold text-brown-dark">{label}</span>
-        <span className="font-display text-lg italic text-gold">{String(index + 1).padStart(2, "0")}</span>
+      <figcaption className={styles.caption}>
+        <h3 id="gallery-case-title">{smile.label}</h3>
+        <p id="gallery-comparison-hint">{hasPhotos ? "Slide to reveal the difference" : "A space for our patients’ smile stories"}</p>
       </figcaption>
     </figure>
   );
 }
 
 export default function BeforeAfter() {
+  const [selected, setSelected] = useState(0);
+  const smile = smileCases[selected];
+
   return (
-    <section id="gallery" className="bg-white py-24">
-      <div className="mx-auto max-w-7xl space-y-12 px-5">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-2xl space-y-4">
-            <Eyebrow>Smile Gallery</Eyebrow>
-            <Heading lead="Before and After" accent="Dental Transformations" />
+    <section id="gallery" className={styles.section} aria-labelledby="gallery-heading">
+      <div className={styles.inner}>
+        <header className={styles.header}>
+          <p className={styles.eyebrow}>Smile Gallery</p>
+          <h2 id="gallery-heading" className={styles.heading}>
+            Before and After{" "}
+            <span>Dental Transformations</span>
+          </h2>
+        </header>
+        <div className={styles.layout}>
+          <div className={styles.selection}>
+            <p className={styles.menuLabel}>Explore By Treatment</p>
+            <div className={styles.choices} role="group" aria-label="Choose a smile treatment">
+              {smileCases.map((item, index) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  className={styles.choice}
+                  aria-pressed={index === selected}
+                  aria-controls="gallery-comparison"
+                  onClick={() => setSelected(index)}
+                >
+                  <span>{item.label}</span>
+                  <Arrow className={styles.choiceArrow} />
+                </button>
+              ))}
+            </div>
+            <p className={styles.menuNote}>Every smile is personal.<br />Explore the possibilities.</p>
           </div>
-          <p className="max-w-sm leading-relaxed">Our latest smile makeovers at Bright Way Dental Clinic. Drag the line on each smile to compare.</p>
-        </div>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {smileCases.map((label, i) => (
-            <CompareCard key={label} label={label} index={i} />
-          ))}
+          <div id="gallery-comparison" className={styles.viewer}>
+            <Comparison key={smile.label} smile={smile} />
+            <span className={styles.srOnly} role="status">{smile.label + " selected"}</span>
+          </div>
         </div>
       </div>
     </section>

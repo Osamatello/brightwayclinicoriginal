@@ -51,8 +51,16 @@ export const doctors = [
   },
 ];
 
-// 6 drag cards; photos come from the client later
-export const smileCases = ["Immediate Implant", "Invisalign", "Veneers", "Teeth Whitening", "Crown and Bridges", "Hollywood Smile"];
+// Add approved patient photo pairs here when supplied by the clinic.
+export type SmileCase = { label: string; illustration: string; before?: string; after?: string };
+export const smileCases: SmileCase[] = [
+  { label: "Immediate Implant", illustration: "/images/smile-immediate-implant.jpg" },
+  { label: "Invisalign", illustration: "/images/smile-invisalign.jpg" },
+  { label: "Veneers", illustration: "/images/smile-veneers.jpg" },
+  { label: "Teeth Whitening", illustration: "/images/smile-whitening.jpg" },
+  { label: "Crown and Bridges", illustration: "/images/smile-crown-bridges.jpg" },
+  { label: "Hollywood Smile", illustration: "/images/smile-veneers.jpg" },
+];
 
 export const digitalFeatures = [
   "No Messy Impression: 3D Digital Scanners.",
