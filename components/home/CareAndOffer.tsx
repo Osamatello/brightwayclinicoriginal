@@ -1,46 +1,71 @@
 import Image from "next/image";
 import { careFocus, offerPoints } from "@/content/home";
-import { Check, Eyebrow, GoldButton, Heading } from "@/components/ui";
+import { Arrow, Check, GoldButton } from "@/components/ui";
+import styles from "./CareAndOffer.module.css";
+
+function ToothCheck({ className }: { className: string }) {
+  return (
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M8.6 9.5C7 5.6 9.2 2.5 12.6 2.5c1.7 0 2.3 1.3 3.4 1.3s1.7-1.3 3.4-1.3c3.4 0 5.6 3.1 4 7l-1.7 8.4-1 8.7c-.3 2.4-2.8 2.4-3.1 0L16.7 20h-1.4l-.9 6.6c-.3 2.4-2.8 2.4-3.1 0l-1-8.7Z" />
+      <path d="m12.6 10.2 2.4 2.4 4.4-4.6" />
+    </svg>
+  );
+}
 
 export default function CareAndOffer() {
   return (
-    <section className="bg-cream px-5 pb-24 pt-12">
-      <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-2">
-        <div className="space-y-7 rounded-[2.25rem] border border-line bg-white p-10 md:p-12">
-          <Eyebrow>Patient-First Dental Care</Eyebrow>
-          <Heading lead="You feel more than a patient at Bright Way," accent="you are family." className="!text-3xl md:!text-4xl" />
-          <p className="leading-relaxed">We know that when we go to the dentist this can be a stressor. That&apos;s why our team focuses on:</p>
-          <ul className="grid grid-cols-2 gap-3">
-            {careFocus.map((c) => (
-              <li key={c} className="flex items-center gap-3 rounded-2xl bg-cream p-4 text-sm font-bold text-brown-dark">
-                <span className="bg-gold-gradient flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white">
-                  <Check />
-                </span>
-                {c}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section aria-labelledby="care-heading" className={styles.section}>
+      <div className={styles.inner}>
+        <div className={styles.care}>
+          <div className={styles.patient}>
+            <Image
+              src="/images/lp-happy-client.jpg"
+              alt="Smiling patient checking his new smile in a tooth-shaped mirror at Bright Way Dental Clinic"
+              width={1400}
+              height={1128}
+              sizes="(min-width: 960px) 46vw, 100vw"
+              className={styles.patientPhoto}
+            />
+          </div>
 
-        <div className="relative overflow-hidden rounded-[2.25rem] bg-brown p-10 text-white md:p-12">
-          <Image src="/images/x-JfmX1BQ9THHMasc7tUkgybQK2k0.webp" alt="" aria-hidden="true" width={420} height={420} className="absolute -bottom-10 -right-10 w-64 opacity-90 md:w-80" />
-          <div className="relative max-w-sm space-y-6">
-            <span className="bg-gold-gradient inline-block rounded-full px-4 py-1.5 text-xs font-extrabold tracking-[0.2em]">SPECIAL OFFER</span>
-            <h2 className="text-3xl font-extrabold leading-tight md:text-4xl">
-              Exclusive Dental Implant Offer at <span className="font-display italic text-gold-light">Bright Way</span>
+          <div className={styles.careText}>
+            <h2 id="care-heading" className={styles.heading}>
+              You feel more than a patient at Bright Way, <span>you are family.</span>
             </h2>
-            <p className="font-display text-6xl font-semibold text-gold-light">Save 10%</p>
-            <ul className="space-y-3 text-sm text-white/80">
-              {offerPoints.map((p) => (
-                <li key={p} className="flex gap-3">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                  {p}
+            <p className={styles.lede}>We know that when we go to the dentist this can be a stressor. That&apos;s why our team focuses on:</p>
+            <ul className={styles.focus}>
+              {careFocus.map((item) => (
+                <li key={item}>
+                  <ToothCheck className={styles.tooth} />
+                  {item}
                 </li>
               ))}
             </ul>
-            <GoldButton href="/contact-us/">Get the offer</GoldButton>
           </div>
         </div>
+
+        <article aria-labelledby="offer-heading" className={styles.offer}>
+          <div className={styles.offerTitle}>
+            <p className={styles.label}>Special Offer</p>
+            <h2 id="offer-heading" className={styles.offerHeading}>
+              Exclusive Dental Implant Offer at <span>Bright Way</span>
+            </h2>
+            <p className={styles.save}>Save 10%</p>
+          </div>
+
+          <ul className={styles.points}>
+            {offerPoints.map((point) => (
+              <li key={point}>
+                <Check className={styles.check} />
+                {point}
+              </li>
+            ))}
+          </ul>
+
+          <GoldButton href="/contact-us/" className={styles.cta}>
+            Get the offer <Arrow />
+          </GoldButton>
+        </article>
       </div>
     </section>
   );

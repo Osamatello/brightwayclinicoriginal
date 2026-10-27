@@ -1,10 +1,11 @@
 import { Arrow, GoldButton } from "@/components/ui";
 import HeroMedia from "@/components/home/HeroMedia";
+import { googleReviews } from "@/content/home";
 
-// Google Business Profile figures, checked on Google Maps 2026-10-26 — update when they change
-const GOOGLE_RATING = "4.9";
-const GOOGLE_REVIEWS = 157;
-const GOOGLE_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=Bright+Way+Dental+Clinic+Ithra+Tower+Dubai";
+// Google Business Profile figures live in content/home.ts (shared with the Testimonials section)
+const GOOGLE_RATING = googleReviews.rating.toFixed(1);
+const GOOGLE_REVIEWS = googleReviews.count;
+const GOOGLE_MAPS_URL = googleReviews.url;
 
 /**
  * Hero (v3, 2026-10-26): the clinic video fills the full width of the first screen,

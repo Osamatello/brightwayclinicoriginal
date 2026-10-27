@@ -51,15 +51,14 @@ export const doctors = [
   },
 ];
 
-// Add approved patient photo pairs here when supplied by the clinic.
-export type SmileCase = { label: string; illustration: string; before?: string; after?: string };
+// Real Bright Way before/after pairs (from the old site's smile gallery). No treatment names on purpose.
+// To add a case: put both photos in /public and add one line (photos are shown whole, never cropped).
+export type SmileCase = { before: string; after: string };
 export const smileCases: SmileCase[] = [
-  { label: "Immediate Implant", illustration: "/images/smile-immediate-implant.jpg" },
-  { label: "Invisalign", illustration: "/images/smile-invisalign.jpg" },
-  { label: "Veneers", illustration: "/images/smile-veneers.jpg" },
-  { label: "Teeth Whitening", illustration: "/images/smile-whitening.jpg" },
-  { label: "Crown and Bridges", illustration: "/images/smile-crown-bridges.jpg" },
-  { label: "Hollywood Smile", illustration: "/images/smile-veneers.jpg" },
+  { before: "/wp-content/uploads/2024/05/1-1.jpg", after: "/wp-content/uploads/2024/05/1-2.jpg" },
+  { before: "/wp-content/uploads/2024/05/444.jpg", after: "/wp-content/uploads/2024/05/44.jpg" },
+  { before: "/wp-content/uploads/2024/05/33.jpg", after: "/wp-content/uploads/2024/05/333.jpg" },
+  { before: "/wp-content/uploads/2024/05/555.jpg", after: "/wp-content/uploads/2024/05/55.jpg" },
 ];
 
 export const digitalFeatures = [
@@ -69,6 +68,7 @@ export const digitalFeatures = [
   "Computer-guided implants",
   "Low radiation digital X-rays.",
   "Accurately planned treatment.",
+  "AI-assisted treatment planning",
 ];
 export const digitalBenefits = ["Less waiting", "More accuracy", "Fewer visits", "Better results"];
 
@@ -80,16 +80,50 @@ export const offerPoints = [
   "Enjoying the benefits of restored chewing and speech.",
 ];
 
-export const testimonials = [
-  { quote: "Dr. Hasan is not Only a dentist! He is a dentist with artistic touch. His work is perfectly done with real value for what you pay. I highly recommend him for friends and family.", name: "Dania M." },
-  { quote: "The one and only Dr. Hasan is one of the most experienced dentists in the field, highly recommended for all dental procedures and especially for the brightest ever Hollywood Smile.", name: "Ali D." },
+// Google Business Profile figures, checked on Google Maps 2026-10-27 (4.9 from 157 reviews, 154 of them 5-star) — update when they change.
+// Live reviews are pulled from the Google Places API when GOOGLE_PLACES_API_KEY is set (lib/googleReviews.ts); these numbers are the fallback.
+export const googleReviews = {
+  rating: 4.9,
+  count: 157,
+  fiveStar: 154,
+  url: "https://www.google.com/maps?cid=4456386569709899538",
+  topics: ["Dental implants", "Veneers", "Dr. Hasan", "Smile makeover", "Root canals"],
+};
+
+// Patient reviews shown as cards (max 6). `source: "google"` = review the patient posted on Google Maps (supplied by Osama, 2026-10-27);
+// long reviews are trimmed to complete sentences, with "…" where words were left out. Live Places API reviews (if a key is set) come first.
+export type Testimonial = { quote: string; name: string; source: "google" | "clinic"; photo?: string; lang?: "ar" };
+export const testimonials: Testimonial[] = [
+  {
+    quote: "I have been a patient of Dr. Hasan for 11 years, and I can confidently say that he is the best doctor I have ever met in my life. … My veneers are now 11 years old, and I have never had a single issue. No pain, no complications, no corrections…just outstanding, long-lasting work.",
+    name: "Mina Doryani",
+    source: "google",
+    photo: "/images/reviews/mina-doryani.png",
+  },
+  {
+    quote: "أتقدم بجزيل الشكر والتقدير للدكتور حسن على احترافيته وإتقانه في إجراء الزراعة الفورية. بفضل الله، كانت التجربة ناجحة جدًا، وتم الإجراء في الوقت المتوقع تمامًا، دون أي أعراض جانبية أو ألم يُذكر، مما يعكس دقته وخبرته وحرصه على راحة المريض.",
+    name: "Rola Dajani",
+    source: "google",
+    photo: "/images/reviews/rola-dajani.jpg",
+    lang: "ar",
+  },
+  {
+    quote: "I visited this clinic for composite dental work and a dental implant, and the experience was excellent. The doctor took time to explain each step of the procedure, which made me feel comfortable and confident. The treatment was smooth, with minimal pain, and the results look very natural.",
+    name: "Jonalyn Orbina",
+    source: "google",
+  },
+  { quote: "I highly recommend Bright Way Dental Clinic. I couldn’t be happier with my veneers! Dr. Hassan did an outstanding job from start to finish.", name: "Zeinab Hamad", source: "google" },
+  { quote: "I’ve been a patient of Dr. Hasan Mahdy for 16 years now, and my regard for him has only grown with time.", name: "Nassif Nas", source: "google" },
+  { quote: "I cannot recommend this dental clinic enough! Before starting my treatment, I was incredibly self-conscious about my smile.", name: "Serap Ayrenk", source: "google" },
+  { quote: "Dr. Hasan is not Only a dentist! He is a dentist with artistic touch. His work is perfectly done with real value for what you pay. I highly recommend him for friends and family.", name: "Dania M.", source: "clinic" },
+  { quote: "The one and only Dr. Hasan is one of the most experienced dentists in the field, highly recommended for all dental procedures and especially for the brightest ever Hollywood Smile.", name: "Ali D.", source: "clinic" },
 ];
 
 export const aboutCards = [
-  { title: "Our Mission", text: "Providing personalized, top-tier dental care with cutting-edge technology and globally recognized methods. We're dedicated to combating dental diseases and promoting total oral health." },
-  { title: "Our Vision", text: "As a contemporary dental clinic, we provide a full range of dental services, from advanced diagnostics to comprehensive treatments, all within a luxurious, patient-first environment." },
-  { title: "Our Approach", text: "Focusing on your comfort, with a skilled team committed to crafting aesthetically pleasing, functional prosthetics tailored for each patient." },
-];
+  { title: "Why We Care", text: "Providing personalized, top-tier dental care with cutting-edge technology and globally recognized methods. We're dedicated to combating dental diseases and promoting total oral health." },
+  { title: "Where We're Heading", text: "As a contemporary dental clinic, we provide a full range of dental services, from advanced diagnostics to comprehensive treatments, all within a luxurious, patient-first environment." },
+  { title: "How We Treat You", text: "Focusing on your comfort, with a skilled team committed to crafting aesthetically pleasing, functional prosthetics tailored for each patient." },
+]
 
 export const insurers = ["/images/ins-1.png", "/images/ins-2.png", "/images/ins-3.png", "/images/ins-4.png", "/images/ins-5.png", "/images/ins-6.png", "/images/ins-7.png"];
 
