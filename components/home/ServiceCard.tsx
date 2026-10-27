@@ -11,8 +11,8 @@ export default function ServiceCard({ service: s, number, sizes }: { service: Se
       href={s.href}
       className="group flex h-full flex-col rounded-[2rem] border border-line bg-white p-2.5 transition duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-[0_30px_60px_-30px_rgba(110,82,25,0.45)]"
     >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-gold-soft">
-        <Image src={s.img} alt={`${s.title} at Bright Way Dental Clinic, Dubai`} fill sizes={sizes} className="object-cover transition duration-700 group-hover:scale-105" />
+      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-[1.5rem] bg-gold-soft">
+        <Image src={s.img} alt={`${s.title} at Bright Way Dental Clinic, Dubai`} fill sizes={sizes} className="object-cover" />
         <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 font-display text-base italic text-gold-dark backdrop-blur">
           {String(number).padStart(2, "0")}
         </span>

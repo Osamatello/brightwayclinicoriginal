@@ -51,7 +51,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="mt-14 grid auto-rows-fr gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {ordered.map((s, i) => (
               <li key={s.href}>
                 <ServiceCard service={s} number={i + 1} sizes="(min-width: 1280px) 300px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
