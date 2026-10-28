@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { digitalBenefits, digitalFeatures } from "@/content/home";
 import styles from "./Digital.module.css";
 
@@ -11,11 +12,6 @@ const featureIcons = [
   <g key="ai"><rect x="8" y="8" width="16" height="16" rx="3" /><path d="M12 4v4M16 4v4M20 4v4M12 24v4M16 24v4M20 24v4M4 12h4M4 16h4M4 20h4M24 12h4M24 16h4M24 20h4" /><path d="M16 11.5l1.3 3.2 3.2 1.3-3.2 1.3-1.3 3.2-1.3-3.2-3.2-1.3 3.2-1.3z" /></g>,
 ];
 
-// Gold "scan" of a molar: contour + mesh lines clipped to the tooth outline
-const TOOTH =
-  "M95 150C80 90 120 55 160 70c20 8 30 18 40 18s20-10 40-18c40-15 80 20 65 80-7 35-15 60-20 90-7 50-13 100-23 155-6 33-34 35-38 3l-10-78c-3-24-25-24-28 0l-10 78c-4 32-32 30-38-3-10-55-16-105-23-155-5-30-13-55-20-90Z";
-const rows = Array.from({ length: 27 }, (_, i) => 48 + i * 15);
-const cols = Array.from({ length: 10 }, (_, i) => 101 + i * 22);
 
 export default function Digital() {
   return (
@@ -41,55 +37,25 @@ export default function Digital() {
           </ul>
         </div>
 
+        {/* Real digital dentistry: a smile designed on screen, in a gold frame, benefits on a glass panel */}
         <figure className={styles.stage}>
-          <div aria-hidden="true" className={styles.grid} />
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 400 480" className={styles.scan}>
-            <defs>
-              <clipPath id="digital-tooth">
-                <path d={TOOTH} />
-              </clipPath>
-              <linearGradient id="digital-beam" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#cc9933" stopOpacity="0" />
-                <stop offset="1" stopColor="#cc9933" stopOpacity=".28" />
-              </linearGradient>
-            </defs>
-
-            <g className={styles.brackets}>
-              <path d="M30 60V30h30M370 60V30h-30M30 420v30h30M370 420v30h-30" />
-            </g>
-
-            <g clipPath="url(#digital-tooth)">
-              <g className={styles.mesh}>
-                {rows.map((y) => (
-                  <path key={`r${y}`} d={`M60 ${y}Q200 ${y + 22} 340 ${y}`} />
-                ))}
-                {cols.map((x) => (
-                  <path key={`c${x}`} d={`M${x} 40Q${200 + (x - 200) * 1.18} 250 ${x} 460`} />
-                ))}
-              </g>
-              <g className={styles.beam}>
-                <rect x="40" y="-70" width="320" height="70" fill="url(#digital-beam)" />
-              </g>
-            </g>
-
-            <path d={TOOTH} className={styles.outline} />
-            <g className={styles.beam}>
-              <path d="M44 0H356" className={styles.beamLine} />
-            </g>
-
-            <g className={styles.marks}>
-              <circle cx="146" cy="74" r="4" />
-              <circle cx="256" cy="74" r="4" />
-              <circle cx="200" cy="309" r="4" />
-              <path d="M146 74 104 40H66M256 74l42-34h36M200 309v58" />
-            </g>
-          </svg>
-
+          <Image
+            src="/images/digital-smile-design.webp"
+            alt="Dentist designing a new smile on a computer with digital dentistry software"
+            fill
+            sizes="(min-width: 960px) 46vw, (min-width: 640px) 600px, 100vw"
+            className={styles.photo}
+          />
           <figcaption className={styles.benefits}>
             <p className={styles.benefitsLabel}>Benefits of digital dentistry in Dubai</p>
             <ul>
               {digitalBenefits.map((benefit) => (
-                <li key={benefit}>{benefit}</li>
+                <li key={benefit}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12.5l4.5 4.5L19 7.5" />
+                  </svg>
+                  {benefit}
+                </li>
               ))}
             </ul>
           </figcaption>
