@@ -1,0 +1,54 @@
+.hero { padding: 1.25rem 20px 0; background: #fff; }
+
+/* Wide framed photo, rounded, a soft warm fade on the left behind the card */
+.frame {
+  position: relative; isolation: isolate; display: flex; align-items: center;
+  max-width: 1480px; min-height: clamp(560px, 72vh, 720px); margin-inline: auto; overflow: hidden; border-radius: 18px;
+  padding: 3rem 0;
+  background: #e9dcc6;
+}
+.photo { z-index: -2; object-fit: cover; object-position: 70% 50%; animation: settle 1.6s cubic-bezier(.22,.7,.25,1) both; }
+.frame::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #3e2d0e59 0%, #3e2d0e1a 45%, #3e2d0e00 70%); }
+
+/* Frosted glass card with a gold top edge */
+.card {
+  position: relative; width: min(600px, 52%); margin-left: clamp(1.5rem, 5vw, 5rem); padding: 2.6rem 2.75rem 2.75rem;
+  border-radius: 16px; background: #fffffff0; backdrop-filter: blur(14px) saturate(1.2);
+  box-shadow: 0 40px 80px -40px #1f180fcc, inset 0 0 0 1px #ffffffb3;
+  animation: rise 900ms 150ms cubic-bezier(.22,.7,.25,1) both;
+}
+.card::before { content: ""; position: absolute; left: 2.75rem; right: 2.75rem; top: 0; height: 3px; border-radius: 0 0 3px 3px; background: linear-gradient(90deg, #f1d68e, #a77d2a 50%, #e8c77a); }
+
+.crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; color: #8a8174; font-size: .8rem; }
+.crumbs li + li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin-right: .5rem; border-top: 1px solid #c39433; border-right: 1px solid #c39433; rotate: 45deg; translate: 0 -1px; }
+.crumbs a { transition: color 250ms ease; }
+.crumbs a:hover { color: #a77d2a; }
+.crumbs [aria-current] { color: #a77d2a; font-weight: 600; }
+
+.title {
+  margin-top: 1.4rem; color: #3e2d0e; font-family: var(--font-display);
+  font-size: clamp(2.4rem, 3.6vw, 3.6rem); font-weight: 500; line-height: 1.05; letter-spacing: -.03em;
+}
+.title span { display: block; margin-top: .25rem; color: #a77d2a; font-style: italic; }
+.intro { margin: 1.25rem 0 2rem; color: #6f675b; font-size: 1.05rem; line-height: 1.75; }
+
+@keyframes settle { from { scale: 1.08; } }
+@keyframes rise { from { opacity: 0; translate: 0 24px; } }
+
+/* Tablet/phone: photo on top, card overlapping its lower edge */
+@media (max-width: 899px) {
+  .frame { flex-direction: column; align-items: stretch; min-height: 0; padding: 0; overflow: visible; background: none; border-radius: 0; }
+  .photo { position: relative !important; height: auto !important; aspect-ratio: 4 / 3; border-radius: 16px; z-index: 0; }
+  .frame::after { display: none; }
+  .card { width: auto; margin: -4rem 1rem 0; padding: 2rem 1.5rem 2.1rem; background: #fff; }
+  .card::before { left: 1.5rem; right: 1.5rem; }
+}
+@media (max-width: 539px) {
+  .hero { padding-inline: 12px; }
+  .card { margin-inline: .5rem; margin-top: -3rem; }
+  .title { font-size: clamp(2.1rem, 9vw, 2.8rem); }
+  .intro { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo, .card { animation: none; }
+}

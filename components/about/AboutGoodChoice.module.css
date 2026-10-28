@@ -1,0 +1,70 @@
+.section { scroll-margin-top: 7rem; padding: 6rem 0 6.5rem; background: radial-gradient(60% 70% at 50% 58%, #fbf4e4 0%, #fdfaf4 50%, #fff 100%); overflow: hidden; }
+.inner { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+
+.heading { max-width: 860px; margin: 0 auto; text-align: center; color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.5rem, 4.2vw, 4rem); font-weight: 500; line-height: 1.05; letter-spacing: -.03em; }
+.heading span { color: #a77d2a; font-style: italic; }
+
+/* Three points · tooth · three points */
+.orbit { display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 28vw, 380px) minmax(0, 1fr); align-items: center; gap: clamp(1.5rem, 3vw, 3rem); margin-top: 3.5rem; }
+.left { grid-column: 1; grid-row: 1; }
+.right { grid-column: 3; grid-row: 1; }
+.core { grid-column: 2; grid-row: 1; }
+
+.column { display: grid; gap: 1.1rem; }
+/* gentle arc: the middle card sits closer to the tooth */
+.left .point:nth-child(2) { translate: 1.75rem 0; }
+.right .point:nth-child(2) { translate: -1.75rem 0; }
+
+.point {
+  position: relative; display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.4rem;
+  border-radius: 999px; background: #fff; box-shadow: 0 22px 40px -30px #3e2d0e66, inset 0 0 0 1px #efe5d2;
+  color: #3e2d0e; font-size: 1rem; font-weight: 600; line-height: 1.4;
+  transition: box-shadow 350ms ease, scale 350ms ease;
+}
+.left .point { flex-direction: row-reverse; text-align: right; }
+/* thin gold line reaching toward the tooth */
+.point::after { content: ""; position: absolute; top: 50%; width: clamp(1.5rem, 3vw, 3rem); height: 1px; }
+.left .point::after { left: 100%; background: linear-gradient(90deg, #c39433, #c3943300); }
+.right .point::after { right: 100%; background: linear-gradient(270deg, #c39433, #c3943300); }
+.point:hover { scale: 1.03; box-shadow: 0 26px 46px -28px #3e2d0e80, inset 0 0 0 1px #d9c28c; }
+
+.icon {
+  display: grid; place-items: center; flex: none; width: 46px; height: 46px; border-radius: 50%;
+  background: #fbf4e4; box-shadow: inset 0 0 0 1px #e3cf9f; color: #a77d2a; transition: background 300ms ease, color 300ms ease;
+}
+.icon svg { width: 24px; height: 24px; }
+.point:hover .icon { background: #c39433; color: #fff; }
+
+/* Tooth with slowly turning gold rings */
+.core { position: relative; display: grid; place-items: center; aspect-ratio: 1; }
+.ringOuter, .ringInner { position: absolute; border-radius: 50%; pointer-events: none; }
+.ringOuter { inset: 0; border: 1px dashed #d9c28c; animation: spin 60s linear infinite; }
+.ringInner { inset: 12%; border: 1px solid #ecdcb6; background: radial-gradient(closest-side, #fff 60%, #fff0); box-shadow: 0 0 0 10px #fbf4e480; }
+.ringOuter::before { content: ""; position: absolute; top: -5px; left: 50%; width: 9px; height: 9px; translate: -50% 0; border-radius: 50%; background: #c39433; box-shadow: 0 0 0 4px #c3943326; }
+.tooth { position: relative; width: 78%; height: auto; mix-blend-mode: multiply; animation: float 6s ease-in-out infinite; }
+
+@keyframes spin { to { rotate: 360deg; } }
+@keyframes float { 50% { translate: 0 -8px; } }
+
+@media (max-width: 1023px) {
+  .orbit { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; }
+  .core { grid-column: 1 / -1; grid-row: 1; width: min(300px, 70%); justify-self: center; }
+  .left, .right { grid-row: 2; }
+  .left { grid-column: 1; }
+  .right { grid-column: 2; }
+  .left .point, .right .point { flex-direction: row; text-align: left; translate: none; }
+  .point::after { display: none; }
+}
+@media (max-width: 599px) {
+  .section { padding-block: 4rem 4.5rem; }
+  .heading { font-size: clamp(2.2rem, 9.5vw, 2.9rem); }
+  .orbit { grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+  .left, .right { grid-column: 1; }
+  .left { grid-row: 2; }
+  .right { grid-row: 3; }
+  .point { border-radius: 16px; padding: 1rem 1.1rem; font-size: .95rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ringOuter, .tooth { animation: none; }
+  .point, .icon { transition: none; }
+}

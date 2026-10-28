@@ -2,7 +2,7 @@ import Image from "next/image";
 import { whyPoints } from "@/content/home";
 import styles from "./WhyUs.module.css";
 
-const pointIcons = [
+export const pointIcons = [
   <g key="digital"><rect x="4" y="4" width="24" height="18" rx="2" /><path d="M11 28h10M16 22v6M9 14h4l3-5 3 9 2-4h3" /></g>,
   <g key="dentists"><circle cx="16" cy="9" r="5" /><path d="M6 28v-3a10 10 0 0 1 20 0v3M12 19l4 5 4-5" /></g>,
   <g key="care"><path d="M16 27S4 20 4 11a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 9-12 16-12 16Z" /><path d="M12 15h8M16 11v8" /></g>,

@@ -85,13 +85,13 @@ details summary::-webkit-details-marker {
   top: 0;
   inset-inline: 0;
   margin-inline: auto;
-  width: clamp(144px, 20vw, 240px);
-  height: 1px;
+  width: clamp(180px, 24vw, 300px);
+  height: 2px;
   border-radius: 50%;
 }
 
 :where(main > :is(section, article) ~ :is(section, article), main + footer)::before {
-  background: linear-gradient(90deg, transparent, #cc993366 18%, #b68a37 50%, #cc993366 82%, transparent);
+  background: linear-gradient(90deg, transparent, #c39433cc 16%, #a77d2a 50%, #c39433cc 84%, transparent);
   animation: section-line-unfold 1.6s cubic-bezier(.22, 1, .36, 1) both;
 }
 

@@ -5,7 +5,7 @@ import { Arrow } from "@/components/ui";
 import styles from "./About.module.css";
 import insuranceStyles from "./Insurance.module.css";
 
-const pillarIcons = [
+export const pillarIcons = [
   <g key="mission"><circle cx="16" cy="16" r="12.5" /><path d="m20.5 11.5-3 6.5-6.5 3 3-6.5Z" /><circle cx="16" cy="16" r="1" /></g>,
   <g key="vision"><path d="M3 16s4.8-8 13-8 13 8 13 8-4.8 8-13 8S3 16 3 16Z" /><circle cx="16" cy="16" r="4.2" /><path d="M16 4V2M8 6 7 4.5M24 6l1-1.5" /></g>,
   <g key="approach"><path d="M12.4 6.4c-.9-2.3.4-4.1 2.3-4.1 1 0 1.3.7 1.9.7s.9-.7 1.9-.7c1.9 0 3.2 1.8 2.3 4.1l-.9 4.4-.6 4.3c-.2 1.2-1.5 1.2-1.7 0l-.5-3.2h-.8l-.5 3.2c-.2 1.2-1.5 1.2-1.7 0l-.6-4.3Z" /><path d="M3 24.5h4.5c2.5 0 4-1.5 6.5-1.5h5a1.8 1.8 0 0 1 0 3.6h-5" /><path d="M3 29h10l11-4.6a2 2 0 0 0-1.6-3.6L19 22" /></g>,
