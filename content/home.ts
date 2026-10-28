@@ -125,7 +125,16 @@ export const aboutCards = [
   { title: "How We Treat You", text: "Focusing on your comfort, with a skilled team committed to crafting aesthetically pleasing, functional prosthetics tailored for each patient." },
 ]
 
-export const insurers = ["/images/ins-1.png", "/images/ins-2.png", "/images/ins-3.png", "/images/ins-4.png", "/images/ins-5.png", "/images/ins-6.png", "/images/ins-7.png"];
+// Insurance companies accepted (logos from the old site). ins-3.png was a second GlobeMed logo, so it is not listed twice.
+// *-clear.png = copies of the old logos with the baked-in white background made transparent (originals kept).
+export const insurers = [
+  { name: "GlobeMed", logo: "/images/ins-1.png" },
+  { name: "Orient Insurance", logo: "/images/ins-2-clear.png" },
+  { name: "NGI National General Insurance", logo: "/images/ins-4.png" },
+  { name: "Mednet", logo: "/images/ins-5-clear.png" },
+  { name: "Daman", logo: "/images/ins-6-clear.png" },
+  { name: "Bupa", logo: "/images/ins-7.png" },
+];
 
 // Drafted from existing site content — client to approve. [..] = waiting for the client.
 export const faqs = [
@@ -139,14 +148,33 @@ export const faqs = [
 ];
 
 // Photos used as Instagram tiles until the live feed is connected
-export const instagramTiles = ["/images/digital-photo.jpg", "/images/cta-dr.jpeg", "/images/svc-cosmetic.jpg", "/images/bg-woman.jpg", "/images/svc-whitening.jpg", "/images/bg-clinic.jpg"];
+// Real reels from @dr.hasanmahdy, picked so no two covers look alike (covers saved 28 Oct 2026 in /images/instagram/).
+// Order = left to right in the fan; the 4th one sits in the middle.
+export const instagramPosts = ["DabFJFLMatd", "DervZhiMwWM", "DadjQjdsKFN", "Dd4XMAfsBGV", "DcWhFKAMMBW", "DayFyVJsS5m", "DdE86giM3i5"].map((code) => ({
+  code,
+  src: `/images/instagram/${code}.webp`,
+  href: `https://www.instagram.com/reel/${code}/`,
+}));
 
 // Dr. Hasan's YouTube channel (latest videos)
+// The channel's designed-cover videos picked by Osama (28 Oct 2026); English titles translated from the Arabic originals.
+// Covers in /images/videos/<id>.webp (YouTube maxresdefault).
 export const videos = [
-  { id: "1YRcXOqboVk", title: "Immediate dental implants — same-day implant", lang: "Arabic" },
-  { id: "fx9X_Nbp-nQ", title: "Digital implants: modern implant dentistry", lang: "Arabic" },
-  { id: "M9V3F95SkN8", title: "Zirconia implants — biocompatible and cosmetic", lang: "English" },
-  { id: "a-fm5iY0Vac", title: "Veneers or crowns? When each one is right", lang: "Arabic" },
-  { id: "JEUB9kPquHQ", title: "How long implants need to bond with the bone", lang: "Arabic" },
-  { id: "vN4eQlytJH4", title: "Digital implant planning with 3D X-rays", lang: "Arabic" },
+  { id: "-P80zOLnWkM", title: "Modern technologies in dental implants", lang: "Arabic" },
+  { id: "eWeCsqX7Zy0", title: "Immediate implants, or implants in one day: what's the story?", lang: "Arabic" },
+  { id: "cWcGiow8v6M", title: "Dental implants: the most common questions and fears", lang: "Arabic" },
+  { id: "z6uIvneuLnM", title: "Why a single implant is harder than a group of implants", lang: "Arabic" },
+  { id: "Q2-QyJUd99U", title: "Why are the back teeth more important than the front ones?", lang: "Arabic" },
+  { id: "HwFRUiYHbNE", title: "Why do veneers look different from person to person?", lang: "Arabic" },
+  { id: "JCVq5eCbXmM", title: "Do veneers weaken the teeth?", lang: "Arabic" },
+  { id: "dz77ZtA_VVk", title: "The latest technologies in dentistry", lang: "Arabic" },
+  { id: "0F40ZeZyVMM", title: "What you need to know about clear aligners", lang: "Arabic" },
+  { id: "LNFVVj9SvNY", title: "Modern technology in dentistry: more precision, more comfort", lang: "Arabic" },
+  { id: "NHmtPwIPbuQ", title: "How to handle sudden tooth pain until you see your dentist", lang: "Arabic" },
+  { id: "kLIYTDdBUrc", title: "Neglect makes dental treatment more expensive", lang: "Arabic" },
+  { id: "Kcb-vneVNlA", title: "Why are some dental treatments expensive? The reasons behind it", lang: "Arabic" },
+  { id: "AUsl3ZwFiEQ", title: "Lost a tooth? Your best options to replace it", lang: "Arabic" },
+  { id: "s8IXF_Gk0vQ", title: "Jaw joint (TMJ) pain", lang: "Arabic" },
+  { id: "qwIDLWHKc-I", title: "The benefits of digital dental implants", lang: "Arabic" },
+  { id: "aHlDVAzWtsA", title: "Dental treatment with chronic illnesses", lang: "Arabic" },
 ];

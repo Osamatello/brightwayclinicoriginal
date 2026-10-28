@@ -1,0 +1,102 @@
+.section { scroll-margin-top: 7rem; padding: 5.5rem 0 6.5rem; background: #fff; overflow: hidden; }
+.inner { max-width: 1280px; margin-inline: auto; padding-inline: 24px; }
+
+/* Centred title with the handle as a profile-style pill underneath */
+.header { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; margin-bottom: 3rem; text-align: center; }
+.heading { font-family: var(--font-display); font-size: clamp(2.8rem, 4.6vw, 4.4rem); font-weight: 500; line-height: 1.03; letter-spacing: -.035em; color: #3e2d0e; }
+.heading span { color: #a77d2a; font-style: italic; }
+
+.handle {
+  display: inline-flex; align-items: center; gap: .7rem; padding: .4rem 1.2rem .4rem .4rem;
+  border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #e3cf9f;
+  color: #6e5219; font-size: .95rem; font-weight: 700;
+  transition: background 250ms ease, box-shadow 250ms ease, color 250ms ease;
+}
+.handle:hover { background: #fbf4e4; box-shadow: inset 0 0 0 1px #c39433; color: #3e2d0e; }
+.handle > svg:last-child { transition: translate 250ms ease; }
+.handle:hover > svg:last-child { translate: 3px 0; }
+/* Gold "story ring" around the Instagram mark */
+.ring {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: conic-gradient(from 210deg, #e8c77a, #a77d2a, #d9b45f, #8a6a24, #e8c77a);
+  padding: 2px;
+}
+.ringIcon { width: 100%; height: 100%; padding: 8px; border-radius: 50%; background: #fff; color: #a77d2a; }
+
+/* Reels fanned out like a hand of cards: --o is the card's place from the middle (-3 … 3) */
+.deck {
+  --w: min(200px, 16.4vw);
+  position: relative; display: flex; justify-content: center; align-items: flex-start;
+  padding: 1.5rem 0 4.5rem;
+}
+.deck::before {
+  /* soft gold glow the cards sit on */
+  content: ""; position: absolute; left: 50%; top: 52%; width: min(1100px, 92%); aspect-ratio: 3 / 1; translate: -50% -50%;
+  background: radial-gradient(closest-side, #f4e6c6 0%, #fbf4e4 45%, #fff0 100%); pointer-events: none;
+}
+.card {
+  position: relative; z-index: calc(10 - var(--abs)); flex: 0 0 var(--w); width: var(--w);
+  margin-left: calc(var(--w) * -.14);
+  translate: 0 calc(var(--abs) * var(--abs) * 7px);
+  rotate: calc(var(--o) * 5deg);
+  scale: calc(1.08 - var(--abs) * .03);
+  transform-origin: 50% 100%;
+}
+.card:first-child { margin-left: 0; }
+.card:hover, .card:focus-visible { z-index: 20; outline: none; }
+
+/* Gold-edged frame; on hover it straightens, lifts and grows */
+.frame {
+  position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 18px;
+  border: 3px solid transparent;
+  background: linear-gradient(#f4ecdc, #f4ecdc) padding-box, linear-gradient(150deg, #f1d68e, #a77d2a 45%, #e8c77a 70%, #8a6a24) border-box;
+  box-shadow: 0 30px 50px -30px #3e2d0e99, 0 8px 18px -10px #3e2d0e40;
+  transition: rotate 450ms cubic-bezier(.22,.7,.25,1), translate 450ms cubic-bezier(.22,.7,.25,1), scale 450ms cubic-bezier(.22,.7,.25,1), box-shadow 450ms ease;
+}
+.card:hover .frame, .card:focus-visible .frame {
+  rotate: calc(var(--o) * -5deg); translate: 0 -26px; scale: 1.1;
+  box-shadow: 0 40px 60px -30px #3e2d0eb3, 0 0 0 6px #c3943333;
+}
+.frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#0000 55%, #3e2d0e8c); pointer-events: none; }
+.photo { object-fit: cover; border-radius: 15px; }
+
+.reelBadge { position: absolute; top: 10px; right: 10px; z-index: 1; width: 22px; height: 22px; color: #fff; filter: drop-shadow(0 1px 3px #0009); }
+.play {
+  position: absolute; left: 50%; bottom: 14px; z-index: 1; translate: -50% 0;
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: #ffffff38; backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px #ffffff80; color: #fff;
+  transition: background 300ms ease, box-shadow 300ms ease, scale 300ms ease;
+}
+.playIcon { width: 18px; height: 18px; margin-left: 2px; }
+.card:hover .play { background: #c39433; box-shadow: inset 0 0 0 1px #f1d68e; scale: 1.1; }
+
+/* Cards fan out from a stack as the section scrolls in (browsers with scroll-driven animations) */
+@supports (animation-timeline: view()) {
+  @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+    .card { animation: fan-in linear both; animation-timeline: view(); animation-range: entry 5% cover 38%; }
+  }
+}
+@keyframes fan-in {
+  from { translate: calc(var(--o) * var(--w) * -.86) 40px; rotate: 0deg; scale: .9; opacity: 0; }
+}
+
+/* Phone/tablet: a swipeable row of straight cards */
+@media (max-width: 899px) {
+  .deck {
+    --w: min(62vw, 250px);
+    justify-content: flex-start; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-inline: -24px; padding: 1rem 24px 2.5rem; scroll-padding-inline: 24px;
+  }
+  .deck::-webkit-scrollbar { display: none; }
+  .deck::before { display: none; }
+  .card { margin-left: 0; translate: none; rotate: none; scale: none; scroll-snap-align: center; }
+  .card:hover .frame { rotate: none; translate: 0 -6px; scale: 1; }
+}
+@media (max-width: 539px) {
+  .section { padding-block: 4rem 3.5rem; }
+  .heading { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+  .header { margin-bottom: 1.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frame, .play, .handle > svg:last-child { transition: none; }
+}

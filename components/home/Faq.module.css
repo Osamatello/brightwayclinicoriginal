@@ -1,0 +1,87 @@
+.section { scroll-margin-top: 7rem; padding: 6rem 0 6.5rem; background: linear-gradient(#fbf7ef 0%, #fff 100%); }
+
+/* Two columns of equal height: heading + photo + call on the left, questions on the right */
+.inner {
+  max-width: 1280px; margin-inline: auto; padding-inline: 24px;
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+}
+.side { display: flex; flex-direction: column; gap: 2rem; min-width: 0; }
+
+.heading { font-family: var(--font-display); font-size: clamp(2.8rem, 4.3vw, 4.3rem); font-weight: 500; line-height: 1.02; letter-spacing: -.035em; color: #3e2d0e; }
+.heading span { display: block; color: #a77d2a; font-style: italic; }
+
+/* Fixed photo shape: opening a question grows the list, never the photo */
+.photoFrame { position: relative; flex: none; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 6px; background: #eee9df; }
+.photo { object-fit: cover; object-position: 55% 40%; /* keeps the patient, the dentist and the model in view */ transition: scale 900ms cubic-bezier(.22,.7,.25,1); }
+.side:hover .photo { scale: 1.03; }
+
+/* Call line under the photo, on a gold hairline */
+.still {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem;
+  padding-top: 1.5rem; border-top: 1px solid #e3cf9f;
+}
+.still > span { color: #3e2d0e; font-family: var(--font-display); font-size: 1.75rem; font-style: italic; font-weight: 500; line-height: 1.1; }
+
+/* Questions: white rows, gold +/× toggle, open row gets a gold edge */
+.list { display: flex; flex-direction: column; gap: .75rem; min-width: 0; interpolate-size: allow-keywords; }
+.item {
+  position: relative; overflow: hidden; border-radius: 6px; background: #fff;
+  box-shadow: inset 0 0 0 1px #ebdfc8; transition: box-shadow 300ms ease;
+}
+.item::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #c39433; transform: scaleY(0); transition: transform 350ms ease; }
+.item[open] { box-shadow: inset 0 0 0 1px #d9c28c, 0 22px 44px -32px #3e2d0e59; }
+.item[open]::before { transform: scaleY(1); }
+.item:hover { box-shadow: inset 0 0 0 1px #d9c28c; }
+
+.question {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.35rem 1.5rem 1.35rem 1.75rem; cursor: pointer; list-style: none;
+  color: #3e2d0e; font-size: 1.075rem; font-weight: 700; line-height: 1.45;
+}
+.question::-webkit-details-marker { display: none; }
+.question:focus-visible { outline: 2px solid #a77d2a; outline-offset: -4px; border-radius: 6px; }
+
+.toggle {
+  position: relative; flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%;
+  background: #fbf4e4; box-shadow: inset 0 0 0 1px #e3cf9f; transition: background 300ms ease, transform 350ms ease;
+}
+.toggle::before, .toggle::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 13px; height: 1.6px; border-radius: 1px;
+  background: #8a6a24; translate: -50% -50%;
+}
+.toggle::after { rotate: 90deg; }
+.item[open] .toggle { background: #c39433; transform: rotate(45deg); }
+.item[open] .toggle::before, .item[open] .toggle::after { background: #fff; }
+
+.answer { padding: 0 4.5rem 1.5rem 1.75rem; color: #6f675b; font-size: 1rem; line-height: 1.8; }
+
+/* Opening motion: the row grows smoothly (browsers that support ::details-content) and the answer fades + slides in */
+.item::details-content {
+  block-size: 0; overflow: hidden;
+  transition: block-size 450ms cubic-bezier(.22,.7,.25,1), content-visibility 450ms allow-discrete;
+}
+.item[open]::details-content { block-size: auto; }
+.item[open] .answer { animation: answer-in 500ms cubic-bezier(.22,.7,.25,1) both; }
+@keyframes answer-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* Phone/tablet: heading, photo, questions, then the call line */
+@media (max-width: 899px) {
+  .inner { max-width: 720px; grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .side { display: contents; }
+  .heading { order: 1; text-align: center; }
+  .photoFrame { order: 2; flex: none; width: 100%; max-width: 560px; min-height: 0; aspect-ratio: 3 / 2; justify-self: center; }
+  .list { order: 3; justify-content: flex-start; }
+  .still { order: 4; justify-content: center; text-align: center; border-top: 0; padding-top: .5rem; }
+}
+@media (max-width: 539px) {
+  .section { padding-block: 4rem 4.5rem; }
+  .heading { font-size: clamp(2.4rem, 10vw, 3.2rem); }
+  .question { padding: 1.1rem 1rem 1.1rem 1.25rem; font-size: 1rem; gap: 1rem; }
+  .toggle { flex-basis: 32px; width: 32px; height: 32px; }
+  .answer { padding: 0 1.25rem 1.25rem; font-size: .95rem; }
+  .still > span { font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .item, .item::before, .toggle, .item::details-content, .photo { transition: none; }
+  .item[open] .answer { animation: none; }
+}

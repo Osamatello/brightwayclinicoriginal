@@ -4,8 +4,9 @@ import type { NextConfig } from "next";
 // On launch day set ALLOW_INDEXING=true in Vercel's production env vars (plan Phase 6).
 const allowIndexing = process.env.ALLOW_INDEXING === "true";
 
-// Only what the site really loads: own files, Meta Pixel (connect.facebook.net + facebook.com/tr), Google Maps iframe.
-// Add a source here before embedding anything new (e.g. a hosted hero video or YouTube player).
+// Only what the site really loads: own files, Meta Pixel (connect.facebook.net + facebook.com/tr), Google Maps iframe,
+// and the privacy-enhanced YouTube player (loads only after a visitor presses play in the Videos section).
+// Add a source here before embedding anything new (e.g. a hosted hero video).
 const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "production" ? "" : " 'unsafe-eval'"} https://connect.facebook.net`,
@@ -13,7 +14,7 @@ const csp = [
   "img-src 'self' data: blob: https://www.facebook.com",
   "font-src 'self'",
   "connect-src 'self' https://www.facebook.com https://connect.facebook.net",
-  "frame-src https://www.google.com https://maps.google.com",
+  "frame-src https://www.google.com https://maps.google.com https://www.youtube-nocookie.com",
   "media-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",

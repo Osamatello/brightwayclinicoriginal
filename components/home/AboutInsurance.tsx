@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { aboutCards, insurers } from "@/content/home";
 import { clinic } from "@/content/site";
-import { Heading } from "@/components/ui";
+import { Arrow } from "@/components/ui";
 import styles from "./About.module.css";
+import insuranceStyles from "./Insurance.module.css";
 
 const pillarIcons = [
   <g key="mission"><circle cx="16" cy="16" r="12.5" /><path d="m20.5 11.5-3 6.5-6.5 3 3-6.5Z" /><circle cx="16" cy="16" r="1" /></g>,
@@ -65,21 +66,33 @@ export function About() {
 }
 
 export function Insurance() {
+  // The list is rendered twice so the ribbon can loop seamlessly; the copy is hidden from screen readers.
+  const ribbon = [...insurers, ...insurers];
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto max-w-7xl space-y-10 px-5 text-center">
-        <div className="mx-auto max-w-2xl space-y-4">
-          <Heading lead="Insurance" accent="Companies" />
-          <p>At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.</p>
-        </div>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
-          {insurers.map((src) => (
-            <div key={src} className="flex h-24 items-center justify-center rounded-2xl border border-line bg-cream p-4 grayscale transition hover:grayscale-0">
-              <Image src={src} alt="Accepted insurance company" width={160} height={80} className="max-h-16 w-auto object-contain" />
-            </div>
-          ))}
-        </div>
+    <section id="insurance" aria-labelledby="insurance-heading" className={insuranceStyles.section}>
+      <div className={insuranceStyles.header}>
+        <h2 id="insurance-heading" className={insuranceStyles.heading}>
+          Insurance <span>Companies</span>
+        </h2>
+        <p className={insuranceStyles.copy}>At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.</p>
       </div>
+
+      <div className={insuranceStyles.ribbon}>
+        <ul className={insuranceStyles.track}>
+          {ribbon.map((insurer, i) => (
+            <li key={insurer.logo + i} className={insuranceStyles.logo} aria-hidden={i >= insurers.length || undefined}>
+              <Image src={insurer.logo} alt={i < insurers.length ? `${insurer.name} — insurance accepted at Bright Way Dental Clinic` : ""} width={180} height={90} loading="eager" />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className={insuranceStyles.ask}>
+        Not sure if your plan is covered?{" "}
+        <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer">
+          Ask us on WhatsApp <Arrow />
+        </a>
+      </p>
     </section>
   );
 }
