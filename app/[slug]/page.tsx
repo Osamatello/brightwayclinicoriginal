@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { formatDate, getByPath, postsEn, readingMinutes, seoMetadata, servicesEn, type Entry } from "@/lib/content";
@@ -7,16 +6,12 @@ import PostCard from "@/components/page/PostCard";
 import { services as serviceCards } from "@/content/home";
 import { clinic } from "@/content/site";
 import { BookingCard, BreadcrumbSchema, PageHero, Prose } from "@/components/page/PageParts";
-import { Arrow, Eyebrow, Heading } from "@/components/ui";
-import Cta from "@/components/home/Cta";
+import { Heading } from "@/components/ui";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import TreatmentBody from "@/components/treatment/TreatmentBody";
 import MoreTreatments from "@/components/treatment/MoreTreatments";
 import TreatmentCta from "@/components/treatment/TreatmentCta";
-import { heroImages, hideOldImages, treatmentFigures } from "@/content/treatments";
-
-// Treatment pages get their new design one page at a time; the rest keep the old parts until their turn.
-const redesigned = new Set(["/dentalimplants-en/"]);
+import { heroImages, hideOldImages, moreTreatments, treatmentFigures } from "@/content/treatments";
 
 // One route for every English service page and blog post: /<slug>/ — exactly the old WordPress URLs.
 export const dynamicParams = false;
@@ -40,7 +35,8 @@ export default async function EntryPage({ params }: { params: Promise<{ slug: st
 
 function ServicePage({ entry }: { entry: Entry }) {
   const card = serviceCards.find((s) => s.href === entry.path);
-  const others = serviceCards.filter((s) => s.href !== entry.path).slice(0, 4);
+  const picked = moreTreatments[entry.path]?.map((href) => serviceCards.find((s) => s.href === href)).filter((s) => s !== undefined);
+  const others = picked?.length ? picked : serviceCards.filter((s) => s.href !== entry.path).slice(0, 4);
   const schema = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -53,53 +49,10 @@ function ServicePage({ entry }: { entry: Entry }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <BreadcrumbSchema items={[{ name: "Services", path: "/services/" }, { name: entry.title, path: entry.path }]} />
-      {redesigned.has(entry.path) ? (
-        <TreatmentHero title={entry.title} intro={card?.text} image={heroImages[entry.path] || card?.img || entry.featured} />
-      ) : (
-        <PageHero
-          eyebrow="Our services"
-          title={entry.title}
-          intro={card?.text}
-          crumbs={[{ label: "Services", href: "/services/" }, { label: entry.title }]}
-          image={card?.img || entry.featured}
-          imageAlt={entry.title}
-        />
-      )}
-      {redesigned.has(entry.path) ? (
-        <TreatmentBody html={entry.html} figures={treatmentFigures[entry.path]} hideOldImages={hideOldImages.has(entry.path)} />
-      ) : (
-        <section className="bg-cream py-20">
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_340px]">
-            <Prose html={entry.html} />
-            <BookingCard />
-          </div>
-        </section>
-      )}
-      {redesigned.has(entry.path) ? (
-        <MoreTreatments services={others} total={serviceCards.length} />
-      ) : (
-        <section className="bg-white py-20">
-          <div className="mx-auto max-w-7xl space-y-10 px-5">
-            <div className="space-y-4">
-              <Eyebrow>More treatments</Eyebrow>
-              <Heading lead="Explore other" accent="dental services" />
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {others.map((s) => (
-                <Link key={s.href} href={s.href} className="group overflow-hidden rounded-[1.75rem] bg-cream">
-                  <div className="relative aspect-[16/11] overflow-hidden">
-                    <Image src={s.img} alt={s.title} fill sizes="25vw" className="object-cover transition duration-700 group-hover:scale-110" />
-                  </div>
-                  <p className="flex items-center justify-between gap-3 p-5 font-extrabold text-brown-dark">
-                    {s.title} <Arrow className="h-4 w-4 shrink-0 text-gold-dark" />
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-      {redesigned.has(entry.path) ? <TreatmentCta /> : <Cta />}
+      <TreatmentHero title={entry.title} intro={card?.text} image={heroImages[entry.path] || card?.img || entry.featured} />
+      <TreatmentBody html={entry.html} figures={treatmentFigures[entry.path]} hideOldImages={hideOldImages.has(entry.path)} />
+      <MoreTreatments services={others} total={serviceCards.length} />
+      <TreatmentCta />
     </>
   );
 }
