@@ -49,4 +49,8 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   "/cosmetic-dentistry/": [
     { after: "Why Choose Bright Way Dental Clinic for Cosmetic Dentistry?", src: "/images/treatments/cosmetic-dentistry/cosmetic-toolkit.webp", alt: "Veneers, whitening gel, bonding syringe and shade guide arranged around a dental model" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/teeth-cleaning-and-gum-treatment/": [
+    { after: "Why Choose Bright Way Dental Clinic for Gum Treatment", src: "/images/treatments/teeth-cleaning/tartar-vs-healthy.webp", alt: "Teeth with tartar and inflamed gums next to clean teeth with healthy gums on dental models" },
+  ],
 };
