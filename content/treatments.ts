@@ -3,7 +3,7 @@
 export type TreatmentFigure = { after: string; src: string; alt: string };
 
 // Pages where the old WordPress article images are hidden so only the new photos show (content file left untouched).
-export const hideOldImages = new Set(["/dentalimplants-en/", "/veneer-en/"]);
+export const hideOldImages = new Set(["/dentalimplants-en/", "/veneer-en/", "/orthodontics-en/", "/teeth-whitening/"]);
 
 // Title-area photo when it should differ from the page's Services-card photo
 export const heroImages: Record<string, string> = {
@@ -36,5 +36,13 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
     { after: "What Are Dental Veneers?", src: "/images/treatments/veneers/veneer-placing.webp", alt: "Thin porcelain veneer being placed on the front of a tooth on a dental model" },
     { after: "Digital Veneers", src: "/images/treatments/veneers/composite-vs-porcelain.webp", alt: "Composite veneers and porcelain veneers compared on two dental models" },
     { after: "Our Process For Veneers", src: "/images/treatments/veneers/veneer-steps.webp", alt: "Three dental models showing the original teeth, the prepared teeth and the finished veneers" },
+  ],
+  "/orthodontics-en/": [
+    { after: "Why Choose Orthodontics?", src: "/images/treatments/orthodontics/braces-types.webp", alt: "Metal braces, ceramic braces and a clear aligner compared on three dental models" },
+    { after: "Why Choose Bright Way Dental Clinic for Orthodontics", src: "/images/treatments/orthodontics/aligner-steps.webp", alt: "A series of clear aligners showing step-by-step tooth movement, with the digital scan behind" },
+  ],
+  "/teeth-whitening/": [
+    { after: "Why Choose Professional Teeth Whitening?", src: "/images/treatments/teeth-whitening/shade-change.webp", alt: "Stained and professionally whitened teeth on two dental models with a shade guide between them" },
+    { after: "Why is Bright Way Dental Clinic the Best", src: "/images/treatments/teeth-whitening/whitening-kit.webp", alt: "In-clinic LED whitening lamp beside take-home whitening trays and gel syringes" },
   ],
 };
