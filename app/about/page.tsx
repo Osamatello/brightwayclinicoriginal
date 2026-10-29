@@ -5,8 +5,8 @@ import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import AboutGoodChoice from "@/components/about/AboutGoodChoice";
 import AboutDoctors from "@/components/about/AboutDoctors";
-import { Insurance } from "@/components/home/AboutInsurance";
-import Cta from "@/components/home/Cta";
+import AboutInsurance from "@/components/about/AboutInsurance";
+import AboutCta from "@/components/about/AboutCta";
 import AboutPillars from "@/components/about/AboutPillars";
 
 const ABOUT_ID = 615;
@@ -27,8 +27,8 @@ export default function AboutPage() {
       <AboutStory />
       <AboutGoodChoice />
       <AboutDoctors />
-      <Insurance />
-      <Cta />
+      <AboutInsurance />
+      <AboutCta />
     </>
   );
 }

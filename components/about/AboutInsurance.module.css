@@ -1,0 +1,68 @@
+/* Text on the left, every insurer on one gold-edged coverage card on the right */
+.section { position: relative; padding: 6rem 0; background: linear-gradient(#fbf7ef, #fff 70%); }
+.inner {
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 1200px; margin-inline: auto; padding-inline: 24px;
+}
+.heading { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.8rem, 4.4vw, 4.25rem); font-weight: 500; line-height: 1.03; letter-spacing: -.035em; }
+.heading span { display: block; color: #a77d2a; font-style: italic; }
+.copy { max-width: 440px; margin-top: 1.3rem; color: #6f675b; font-size: 1.1rem; line-height: 1.75; }
+
+.ask { margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid #eadfc8; max-width: 440px; color: #6f675b; font-size: 1rem; }
+.ask a { display: inline-flex; align-items: center; gap: .4rem; color: #8a6a24; font-weight: 700; border-bottom: 1px solid #d9c28c; }
+.ask a:hover { color: #3e2d0e; border-color: #8a6a24; }
+.ask svg { width: 15px; height: 15px; transition: translate 300ms ease; }
+.ask a:hover svg { translate: 3px 0; }
+
+.card {
+  position: relative; overflow: visible; padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1.5px solid transparent; border-radius: 28px;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #f1d68e, #c39433 40%, #f3e2b4 70%, #a77d2a) border-box;
+  box-shadow: 0 40px 70px -45px #3e2d0e66;
+}
+.emblem {
+  position: absolute; top: -26px; left: -26px; z-index: 1; display: grid; place-items: center; width: 64px; height: 64px;
+  border-radius: 50%; color: #fff; background: linear-gradient(150deg, #e2bd6b, #a77d2a);
+  box-shadow: 0 0 0 6px #fff, 0 14px 28px -12px #8a6a24;
+}
+.emblem svg { width: 32px; height: 32px; }
+.watermark {
+  position: absolute; right: 1.25rem; bottom: 1rem; width: 120px; pointer-events: none;
+  fill: none; stroke: #c39433; stroke-width: 3; opacity: .12; rotate: 12deg;
+}
+
+/* 3 x 2 grid, hairlines between the logos only */
+.logos { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.logo {
+  display: grid; place-items: center; height: 150px; padding: 1.25rem 1.5rem;
+  border-right: 1px solid #efe5d1; border-bottom: 1px solid #efe5d1;
+  transition: background 300ms ease;
+}
+.logo:nth-child(3n) { border-right: 0; }
+.logo:nth-last-child(-n + 3) { border-bottom: 0; }
+.logo img { width: 100%; max-width: 170px; height: 72px; object-fit: contain; transition: scale 300ms ease; }
+.logo:hover { background: #fdf9f0; }
+.logo:hover img { scale: 1.07; }
+
+@media (max-width: 899px) {
+  .section { padding-block: 4.5rem; }
+  .inner { grid-template-columns: 1fr; }
+  .copyCol { text-align: center; }
+  .copy, .ask { margin-inline: auto; }
+  .card { margin-top: 1rem; }
+  .emblem { left: 50%; translate: -50% 0; top: -32px; }
+}
+@media (max-width: 539px) {
+  .heading { font-size: clamp(2.3rem, 9.5vw, 2.9rem); }
+  .copy { font-size: 1rem; }
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logo { height: 110px; padding: 1rem; }
+  .logo:nth-child(3n) { border-right: 1px solid #efe5d1; }
+  .logo:nth-child(2n) { border-right: 0; }
+  .logo:nth-last-child(3) { border-bottom: 1px solid #efe5d1; }
+  .logo:nth-last-child(-n + 2) { border-bottom: 0; }
+  .logo img { height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo, .logo img, .ask svg { transition: none; }
+}

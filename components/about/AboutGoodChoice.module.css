@@ -52,7 +52,7 @@
   .left, .right { grid-row: 2; }
   .left { grid-column: 1; }
   .right { grid-column: 2; }
-  .left .point, .right .point { flex-direction: row; text-align: left; translate: none; }
+  .left .point, .right .point, .left .point:nth-child(2), .right .point:nth-child(2) { flex-direction: row; text-align: left; translate: none; }
   .point::after { display: none; }
 }
 @media (max-width: 599px) {
