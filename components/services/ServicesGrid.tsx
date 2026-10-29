@@ -9,7 +9,7 @@ type Service = { title: string; text: string; img: string; href: string };
 const TOOTH = "M7.5 3.5c-2.2 0-3.6 2-3 4.6.5 2.2 1 4 1.3 6.3.3 2.6.7 5.6 2 5.6 1.2 0 1.4-2.6 1.8-4.6.3-1.4.8-2 2.4-2s2.1.6 2.4 2c.4 2 .6 4.6 1.8 4.6 1.3 0 1.7-3 2-5.6.3-2.3.8-4.1 1.3-6.3.6-2.6-.8-4.6-3-4.6-1.8 0-2.6 1-4.5 1s-2.7-1-4.5-1Z";
 
 // One line icon per treatment (24px grid), keyed by the service page
-const icons: Record<string, ReactNode> = {
+export const serviceIcons: Record<string, ReactNode> = {
   "/dentalimplants-en/": <><path d="M7 2.5c-2 0-3 1.8-2.5 4 .3 1.4 1 2.5 2 2.5h11c1 0 1.7-1.1 2-2.5.5-2.2-.5-4-2.5-4-1.7 0-2.5.9-5 .9s-3.3-.9-5-.9Z" /><path d="M10 9v10l2 2 2-2V9M9.5 12h5M9.5 14.5h5M10 17h4" /></>,
   "/teeth-cleaning-and-gum-treatment/": <><path d={TOOTH} /><path d="M20.5 1v3.5M18.75 2.75h3.5" /></>,
   "/teeth-whitening/": <><path d={TOOTH} /><path d="M12 .5v1.5M2.5 2.5l1 1M21.5 2.5l-1 1M8.5 8.5c1-.8 2.2-1 3.5-1" /></>,
@@ -35,7 +35,7 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
               </div>
               <span className={styles.icon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  {icons[s.href]}
+                  {serviceIcons[s.href]}
                 </svg>
               </span>
               <div className={styles.body}>

@@ -1,0 +1,41 @@
+/* Happy patient photo (4:5, gold edge) beside the call to action */
+.section { padding: 5.5rem 0 6rem; background: #fff; }
+.inner {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem);
+  max-width: 1200px; margin-inline: auto; padding-inline: 24px;
+}
+
+.visual { position: relative; width: min(100%, 420px); justify-self: center; }
+.frame {
+  position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 26px; border: 3px solid transparent;
+  background: linear-gradient(#f1ebe0, #f1ebe0) padding-box, linear-gradient(160deg, #f1d68e, #a77d2a 45%, #e8c77a 75%, #8a6a24) border-box;
+  box-shadow: 0 40px 70px -40px #3e2d0e80;
+}
+.photo { object-fit: cover; transition: scale 900ms cubic-bezier(.22,.7,.25,1); }
+.frame:hover .photo { scale: 1.04; }
+
+.heading { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.6rem, 4.2vw, 4rem); font-weight: 500; line-height: 1.03; letter-spacing: -.035em; }
+.heading span { display: block; color: #a77d2a; font-style: italic; }
+.copy { max-width: 440px; margin-top: 1.3rem; color: #6f675b; font-size: 1.1rem; line-height: 1.75; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 2.1rem; }
+.secondary {
+  display: inline-flex; align-items: center; gap: .55rem; min-height: 3rem; padding-inline: 1.3rem;
+  border-radius: 999px; box-shadow: inset 0 0 0 1px #d9c28c; color: #6e5219; font-size: .875rem; font-weight: 700;
+  transition: background 250ms ease, color 250ms ease, box-shadow 250ms ease;
+}
+.secondary:hover { background: #fbf4e4; color: #3e2d0e; box-shadow: inset 0 0 0 1px #b08433; }
+.secondary svg { width: 18px; height: 18px; color: #a78036; }
+
+@media (max-width: 899px) {
+  .section { padding-block: 4rem 4.5rem; }
+  .inner { grid-template-columns: 1fr; }
+  .visual { width: min(100%, 380px); }
+}
+@media (max-width: 539px) {
+  .heading { font-size: clamp(2.2rem, 9.5vw, 2.9rem); line-height: 1.08; }
+  .copy { font-size: 1.02rem; }
+  .actions > * { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo, .secondary { transition: none; }
+}
