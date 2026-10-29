@@ -13,6 +13,11 @@
   font-size: clamp(2rem, 3.2vw, 2.75rem); font-weight: 500; line-height: 1.1; letter-spacing: -.02em;
 }
 .article > h2:first-child { margin-top: 0; font-size: clamp(2.2rem, 3.6vw, 3.1rem); }
+/* most WordPress articles open with their title as a plain paragraph — style it exactly like the article's H2 headings */
+.article > p:first-child {
+  color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 500; line-height: 1.1; letter-spacing: -.02em;
+}
 .article h3 {
   position: relative; margin-top: 2.5rem; padding-left: 1.1rem; color: #3e2d0e; font-family: var(--font-display);
   font-size: clamp(1.55rem, 2.2vw, 1.9rem); font-weight: 600; line-height: 1.2;

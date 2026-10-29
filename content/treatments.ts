@@ -45,4 +45,8 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
     { after: "Why Choose Professional Teeth Whitening?", src: "/images/treatments/teeth-whitening/shade-change.webp", alt: "Stained and professionally whitened teeth on two dental models with a shade guide between them" },
     { after: "Why is Bright Way Dental Clinic the Best", src: "/images/treatments/teeth-whitening/whitening-kit.webp", alt: "In-clinic LED whitening lamp beside take-home whitening trays and gel syringes" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/cosmetic-dentistry/": [
+    { after: "Why Choose Bright Way Dental Clinic for Cosmetic Dentistry?", src: "/images/treatments/cosmetic-dentistry/cosmetic-toolkit.webp", alt: "Veneers, whitening gel, bonding syringe and shade guide arranged around a dental model" },
+  ],
 };
