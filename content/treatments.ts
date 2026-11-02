@@ -53,4 +53,8 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   "/teeth-cleaning-and-gum-treatment/": [
     { after: "Why Choose Bright Way Dental Clinic for Gum Treatment", src: "/images/treatments/teeth-cleaning/tartar-vs-healthy.webp", alt: "Teeth with tartar and inflamed gums next to clean teeth with healthy gums on dental models" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/root-canal-treatment/": [
+    { after: "Advanced Technology for Dental Canal Procedures", src: "/images/treatments/root-canal/infected-vs-saved.webp", alt: "Cut-away tooth models comparing an infected tooth with decay and inflamed pulp to a saved tooth with filled root canals and a ceramic crown" },
+  ],
 };
