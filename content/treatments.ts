@@ -57,4 +57,8 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   "/root-canal-treatment/": [
     { after: "Advanced Technology for Dental Canal Procedures", src: "/images/treatments/root-canal/infected-vs-saved.webp", alt: "Cut-away tooth models comparing an infected tooth with decay and inflamed pulp to a saved tooth with filled root canals and a ceramic crown" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/tooth-extraction/": [
+    { after: "3. Extraction with Precision", src: "/images/treatments/tooth-extraction/damaged-vs-clean-gap.webp", alt: "Two lower-jaw dental models comparing a badly decayed molar with the clean, healed gap after the tooth is removed" },
+  ],
 };
