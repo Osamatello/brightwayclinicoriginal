@@ -61,4 +61,8 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   "/tooth-extraction/": [
     { after: "3. Extraction with Precision", src: "/images/treatments/tooth-extraction/damaged-vs-clean-gap.webp", alt: "Two lower-jaw dental models comparing a badly decayed molar with the clean, healed gap after the tooth is removed" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/oral-surgery/": [
+    { after: "Why Choose Bright Way Dental Clinic for Dental Surgery", src: "/images/treatments/oral-surgery/surgical-guide.webp", alt: "Lower-jaw dental model with a clear 3D-printed surgical guide over a tooth gap, beside sterile titanium surgical instruments" },
+  ],
 };
