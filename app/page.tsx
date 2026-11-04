@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import Services from "@/components/home/Services";
+import SmileScene from "@/components/home/SmileScene";
 import WhyUs from "@/components/home/WhyUs";
 import Doctors from "@/components/home/Doctors";
 import BeforeAfter from "@/components/home/BeforeAfter";
@@ -54,6 +55,7 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <Hero />
+      <SmileScene />
       <Services />
       <WhyUs />
       <Doctors />

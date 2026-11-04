@@ -37,7 +37,7 @@ export default function Hero({ videoSrc }: { videoSrc?: string }) {
         </div>
 
         {/* trust card: under the text on phones, bottom-right of the stage from lg */}
-        <div className="relative mx-6 mb-6 grid divide-y divide-line rounded-2xl sm:grid-cols-2 sm:divide-x sm:divide-y-0 bg-white/95 shadow-2xl backdrop-blur sm:mx-10 sm:max-w-md lg:absolute lg:bottom-9 lg:right-14 lg:m-0 lg:w-[480px] lg:max-w-none">
+        <div className="relative mx-6 mb-6 grid divide-y divide-line rounded-2xl sm:grid-cols-2 sm:divide-x sm:divide-y-0 bg-white shadow-2xl sm:mx-10 sm:max-w-md lg:absolute lg:bottom-9 lg:right-14 lg:m-0 lg:w-[480px] lg:max-w-none">
           <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 p-4 sm:p-5">
             <GoogleIcon />
             <div>

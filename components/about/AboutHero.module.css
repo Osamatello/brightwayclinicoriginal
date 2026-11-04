@@ -13,7 +13,7 @@
 /* Frosted glass card with a gold top edge */
 .card {
   position: relative; width: min(600px, 52%); margin-left: clamp(1.5rem, 5vw, 5rem); padding: 2.6rem 2.75rem 2.75rem;
-  border-radius: 16px; background: #fffffff0; backdrop-filter: blur(14px) saturate(1.2);
+  border-radius: 16px; background: #fffffff0;
   box-shadow: 0 40px 80px -40px #1f180fcc, inset 0 0 0 1px #ffffffb3;
   animation: rise 900ms 150ms cubic-bezier(.22,.7,.25,1) both;
 }

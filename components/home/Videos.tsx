@@ -58,7 +58,7 @@ export default function Videos() {
 
           {/* Playlist scrolls inside the column so it never grows taller than the stage */}
           <div className={styles.listWrap}>
-            <ul className={styles.list}>
+            <ul className={styles.list} data-lenis-prevent>
               {videos.map((item, i) => (
                 <li key={item.id}>
                   <button type="button" aria-pressed={i === active} onClick={() => setActive(i)} className={styles.row}>

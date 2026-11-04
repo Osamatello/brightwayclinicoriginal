@@ -1,3 +1,5 @@
+import { services } from "./home";
+
 // Clinic facts shared by every page. Source: current brightway.clinic contact page + LocalBusiness schema.
 export const clinic = {
   name: "Bright Way Dental Clinic",
@@ -20,12 +22,20 @@ export const clinic = {
   },
 };
 
-export const nav = [
+type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
+
+export const nav: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about/" },
-  { label: "Services", href: "/services/" },
+  {
+    label: "About",
+    href: "/about/",
+    children: [
+      { label: "Dr. Hasan A. Mahdy", href: "/dr-hasan-a-mahdy/" },
+      { label: "Career", href: "/career/" },
+    ],
+  },
+  { label: "Services", href: "/services/", children: services.map((s) => ({ label: s.title, href: s.href })) },
   { label: "Blog", href: "/blog/" },
   { label: "Smile Gallery", href: "/smile-gallery/" },
-  { label: "Career", href: "/career/" },
   { label: "Contact us", href: "/contact-us/" },
 ];

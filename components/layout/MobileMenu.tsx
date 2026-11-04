@@ -11,6 +11,7 @@ const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 /** Below xl (1280px): call button + menu button that opens the full menu under the header. */
 export default function MobileMenu({ sections }: { sections: NavSections }) {
   const [open, setOpen] = useState(false);
+  const [openList, setOpenList] = useState<string | null>(null);
   const isActive = useActiveNav(sections);
 
   useEffect(() => {
@@ -46,15 +47,53 @@ export default function MobileMenu({ sections }: { sections: NavSections }) {
       {open && (
         <div
           id="mobile-menu"
+          data-lenis-prevent
           onClick={closeOnLink}
           className="absolute inset-x-0 top-full h-[calc(100dvh-73px)] overflow-y-auto border-t border-line bg-cream px-5 pb-12 pt-2 md:h-[calc(100dvh-81px)] lg:h-[calc(100dvh-117px)]"
         >
           <nav aria-label="Main" className="flex flex-col">
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${isActive(item.href) ? "text-gold-dark" : "text-brown-dark"}`}>
-                {item.label} <Arrow className="h-4 w-4 text-gold-dark" />
-              </Link>
-            ))}
+            {nav.map((item) => {
+              const color = isActive(item.href) ? "text-gold-dark" : "text-brown-dark";
+              if (!item.children) {
+                return (
+                  <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${color}`}>
+                    {item.label} <Arrow className="h-4 w-4 text-gold-dark" />
+                  </Link>
+                );
+              }
+              const expanded = openList === item.href;
+              return (
+                <div key={item.href} className="border-b border-line">
+                  <div className="flex items-center justify-between">
+                    <Link href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex-1 py-4 text-lg font-bold ${color}`}>
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-label={`${item.label} pages`}
+                      onClick={() => setOpenList(expanded ? null : item.href)}
+                      className="flex h-11 w-11 items-center justify-center text-gold-dark"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={`h-3.5 w-3.5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}>
+                        <path d="m2.500 4.500 3.500 3.500 3.500-3.500" />
+                      </svg>
+                    </button>
+                  </div>
+                  {expanded && (
+                    <ul className="pb-3">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link href={child.href} aria-current={isActive(child.href) ? "page" : undefined} className={`block py-2.5 pl-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
             <Link href="/ar/" lang="ar" dir="rtl" className="border-b border-line py-4 text-lg font-bold text-gold-dark">
               العربية
             </Link>

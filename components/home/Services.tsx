@@ -8,7 +8,7 @@ export default function Services() {
   const top = topServiceHrefs.map((href) => services.find((s) => s.href === href)!);
 
   return (
-    <section id="services" className="scroll-mt-28 bg-white py-24 md:py-28">
+    <section data-home-grid className="scroll-mt-28 bg-white py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
           <h2 className="max-w-2xl font-display text-5xl font-medium leading-[0.95] text-brown-dark md:text-6xl">

@@ -7,7 +7,11 @@ import MobileMenu from "@/components/layout/MobileMenu";
 import NavLinks from "@/components/layout/NavLinks";
 
 export default function Header() {
-  const sections = { "/services/": servicesEn().map((e) => e.path), "/blog/": postsEn().map((e) => e.path) };
+  const sections = {
+    "/about/": ["/dr-hasan-a-mahdy/", "/career/"],
+    "/services/": servicesEn().map((e) => e.path),
+    "/blog/": postsEn().map((e) => e.path),
+  };
   return (
     <header className="sticky top-0 z-40">
       {/* top bar from lg up; below that the numbers and hours live in the menu (MobileMenu) */}
@@ -21,7 +25,7 @@ export default function Header() {
           <span>{clinic.hours}</span>
         </div>
       </div>
-      <div className="relative border-b border-line bg-cream/90 backdrop-blur-md">
+      <div className="relative border-b border-line bg-cream">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
           <Link href="/" aria-label={clinic.name}>
             {/* logo-trimmed.png = logo.png without its empty margin, so the mark itself shows larger */}

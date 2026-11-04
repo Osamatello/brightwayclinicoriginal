@@ -46,7 +46,7 @@
 .benefits {
   position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem;
   padding: 1.25rem 1.5rem 1.35rem; border-radius: 12px;
-  background: #fffffff0; backdrop-filter: blur(10px); box-shadow: 0 20px 40px -24px #0009, inset 0 0 0 1px #ffffff;
+  background: #fffffff0; box-shadow: 0 20px 40px -24px #0009, inset 0 0 0 1px #ffffff;
 }
 .benefitsLabel { color: #9b752b; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 .benefits ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem 1rem; margin-top: .85rem; list-style: none; padding: 0; }
