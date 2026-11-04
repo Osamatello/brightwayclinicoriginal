@@ -65,7 +65,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={styles.bottom}>© {new Date().getFullYear()} {clinic.name}, Dubai</div>
+        <div className={styles.bottom}>
+          © {new Date().getFullYear()} {clinic.name}, Dubai · <Link href="/privacy-policy/">Privacy Policy</Link>
+        </div>
       </footer>
       <FloatingWhatsApp />
     </>

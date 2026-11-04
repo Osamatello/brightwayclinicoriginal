@@ -20,17 +20,17 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.p
 n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');}`;
 
-/** Loads the pixel once (PageView) and sends a PageView on every client-side page change, like the old full page loads did. */
+/** Loads the pixel once (PageView) and sends a PageView on every client-side page change, like the old full page loads did. Always on (Osama, 2026-11-04); the cookie notice tells visitors. */
 export default function MetaPixel() {
   const pathname = usePathname();
-  const first = useRef(true);
+  const lastPath = useRef(pathname);
+
   useEffect(() => {
-    if (first.current) {
-      first.current = false; // the first PageView is sent by the snippet itself
-      return;
-    }
+    if (lastPath.current === pathname) return; // the first PageView is sent by the snippet itself
+    lastPath.current = pathname;
     window.fbq?.("track", "PageView");
   }, [pathname]);
+
   return <Script id="meta-pixel" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: snippet }} />;
 }
 

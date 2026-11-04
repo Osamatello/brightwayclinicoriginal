@@ -1,0 +1,15 @@
+/* Bottom-centre: clear of the homepage's consultation button on the left and the Google card and WhatsApp button on the right */
+.notice {
+  position: fixed; left: 50%; bottom: 1.25rem; translate: -50% 0; z-index: 45; display: flex; align-items: center; gap: 1rem; width: min(22.5rem, calc(100vw - 2.5rem));
+  padding: .85rem 1rem .85rem 1.25rem; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px #eadfc8, 0 24px 50px -22px #3e2d0e73;
+}
+.text { flex: 1; color: #5f584c; font-size: .9rem; line-height: 1.5; }
+.text a { color: #8a6a24; font-weight: 700; border-bottom: 1px solid #d9c28c; }
+.accept { flex: none; min-width: 3.5rem; min-height: 2.75rem; padding-inline: 1.1rem; border-radius: 999px; color: #fff; font-size: .875rem; font-weight: 700; background: linear-gradient(135deg, #c79a3f, #8f6d25); transition: filter 200ms ease; }
+.accept:hover { filter: brightness(1.08); }
+.accept:focus-visible { outline: 2px solid #a77d2a; outline-offset: 2px; }
+
+/* Phones: full width, above the WhatsApp button */
+@media (max-width: 539px) {
+  .notice { left: .75rem; right: .75rem; bottom: 5rem; width: auto; translate: none; }
+}

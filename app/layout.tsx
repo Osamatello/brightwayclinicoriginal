@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MetaPixel from "@/components/tracking/MetaPixel";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import CookieNotice from "@/components/layout/CookieNotice";
 import "./globals.css";
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Footer />
         <MetaPixel />
         <SmoothScroll />
+        <CookieNotice />
       </body>
     </html>
   );

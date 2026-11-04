@@ -36,7 +36,7 @@
 .photograph { position: relative; grid-column: 2; grid-row: 1 / 4; min-height: 580px; margin-block: .75rem; }
 .photoFrame {
   position: absolute; inset: 0; overflow: hidden;
-  border-radius: 150px 8px 150px 8px; background: #f4eee3;
+  border-radius: 8px 150px 8px 150px; background: #f4eee3;
   box-shadow: 0 24px 55px -30px #71532345;
 }
 .photo { object-fit: cover; object-position: 50% 45%; transition: transform 1.2s cubic-bezier(.2,.65,.3,1); }
@@ -63,7 +63,7 @@
   .heading { font-size: clamp(2.75rem, 6vw, 4rem); }
   .layout { display: flex; flex-direction: column; }
   .photograph { width: min(100% - 24px, 520px); aspect-ratio: 4 / 5; min-height: 0; align-self: center; margin-block: 0 3rem; }
-  .photoFrame { border-radius: 125px 6px 125px 6px; }
+  .photoFrame { border-radius: 6px 125px 6px 125px; }
   .thread { width: 150%; height: 800px; top: -40px; left: -25%; }
   .points { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
   .point, .point:nth-child(n+4) { grid-area: auto; align-self: stretch; align-items: flex-start; text-align: left; transform: none; padding-block: 1.5rem; border-top: 1px solid #e9dfcc; }
@@ -75,7 +75,7 @@
   .header { margin-bottom: 2.5rem; }
   .heading { font-size: clamp(2.45rem, 10vw, 3.35rem); line-height: 1.07; }
   .photograph { width: calc(100% - 12px); margin-bottom: 2.5rem; }
-  .photoFrame { border-radius: 100px 5px 100px 5px; }
+  .photoFrame { border-radius: 5px 100px 5px 100px; }
   .points { grid-template-columns: 1fr; }
   .point, .point:nth-child(n+4) { flex-direction: row; align-items: center; gap: 1.25rem; padding-block: 1.25rem; }
   .icon { width: 30px; height: 30px; flex: 0 0 30px; margin: 0; }

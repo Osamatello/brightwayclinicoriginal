@@ -6,7 +6,10 @@ const SITE = "https://brightway.clinic";
 // Same URLs as the old Yoast sitemaps (plan Phase 4 SEO). Old /sitemap_index.xml etc. 301 here (middleware).
 // TODO(Arabic): add entriesByLang("ar") once the /ar/ pages are built.
 // Pages that are new on this site (no WordPress entry)
-const NEW_PAGES = [{ path: "/services/", lastModified: "2026-10-26" }];
+const NEW_PAGES = [
+  { path: "/services/", lastModified: "2026-10-26" },
+  { path: "/privacy-policy/", lastModified: "2026-11-04" },
+];
 // Pages kept on the site but hidden for now (Osama, 2026-11-04); they also carry a noindex tag
 const HIDDEN_PATHS = new Set(["/transform-your-smile/", "/transform-your-smile-typ/"]);
 
