@@ -65,4 +65,12 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   "/oral-surgery/": [
     { after: "Why Choose Bright Way Dental Clinic for Dental Surgery", src: "/images/treatments/oral-surgery/surgical-guide.webp", alt: "Lower-jaw dental model with a clear 3D-printed surgical guide over a tooth gap, beside sterile titanium surgical instruments" },
   ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/pediatric-dentistry/": [
+    { after: "Why Choose Bright Way Dental Clinic as the Best Pediatric Dentist", src: "/images/treatments/pediatric-dentistry/sealant-care-kit.webp", alt: "Child-sized lower-jaw dental model with sealed molars, beside fluoride varnish with an applicator brush and a child's soft toothbrush" },
+  ],
+  // the article's original WordPress photo stays at the top (Osama); one new photo further down
+  "/prosthodontics/": [
+    { after: "Why is Bright Way Dental Clinic the Best for Prosthodontics", src: "/images/treatments/prosthodontics/worn-vs-restored.webp", alt: "Two full-arch dental models comparing worn, chipped and missing teeth with a complete row of restored ceramic teeth" },
+  ],
 };

@@ -1,0 +1,96 @@
+/* Shared look of the two ad landing pages: warm wash, serif headings, white cards with a gold edge */
+
+/* Title area: text beside a framed picture */
+.hero { padding: 4rem 0 4.5rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.heroInner { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(2.5rem, 5vw, 5rem); max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.brand { color: #8a6a24; font-size: 1rem; font-weight: 700; }
+.heading { margin-top: .8rem; color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 4.75rem); font-weight: 500; line-height: 1.03; letter-spacing: -.03em; }
+.heading em { color: #a77d2a; font-style: italic; }
+.headingSmaller { font-size: clamp(2.4rem, 4vw, 3.9rem); line-height: 1.06; }
+.intro { max-width: 560px; margin-top: 1.25rem; color: #6f675b; font-size: 1.14rem; line-height: 1.7; }
+.words { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1rem 0 0; padding: 0; list-style: none; color: #3e2d0e; font-weight: 700; }
+.words li { display: inline-flex; align-items: center; gap: .45rem; }
+.words svg { flex: none; width: 17px; height: 19px; color: #c39433; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.actionsCentered { justify-content: center; margin-top: 2.5rem; }
+
+.frame {
+  position: relative; overflow: hidden; border: 1.5px solid transparent; border-radius: 22px; padding: 10px;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;
+  box-shadow: 0 40px 64px -44px #3e2d0e8c;
+}
+.frameImg { display: block; width: 100%; height: auto; border-radius: 13px; }
+
+/* Bands */
+.band { padding: 4.5rem 0 5rem; background: #fff; }
+.bandCream { background: #fbf7ef; }
+.inner { max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.title { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.3rem, 3.8vw, 3.4rem); font-weight: 500; line-height: 1.06; letter-spacing: -.025em; }
+.titleCentered { text-align: center; }
+.title em { color: #a77d2a; font-style: italic; }
+.sub { max-width: 640px; margin-top: 1rem; color: #6f675b; font-size: 1.08rem; line-height: 1.7; }
+
+/* Cards */
+.cards { display: grid; gap: 1.5rem; margin: 2.5rem 0 0; padding: 0; list-style: none; }
+.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card {
+  padding: 1.9rem 1.6rem; border: 1.5px solid transparent; border-radius: 20px; text-align: center;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;
+  box-shadow: 0 30px 50px -40px #3e2d0e80; transition: translate 400ms ease;
+}
+.card:hover { translate: 0 -5px; }
+.cardIcon { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 1rem; border-radius: 50%; background: #fbf4e4; box-shadow: inset 0 0 0 1px #e3cf9f; color: #a77d2a; }
+.cardIcon svg { width: 27px; height: 30px; }
+.cardTitle { color: #3e2d0e; font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; line-height: 1.15; }
+.cardText { margin-top: .6rem; color: #6f675b; font-size: .96rem; line-height: 1.6; }
+.cardPicture { position: relative; aspect-ratio: 4 / 3; margin-bottom: 1.1rem; }
+.cardPicture img { object-fit: contain; }
+
+/* Benefits beside the offer */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(2.5rem, 5vw, 5rem); }
+.benefits { display: grid; gap: 1.3rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+.benefit { display: flex; gap: .9rem; padding-top: 1.2rem; border-top: 1px solid #efe5d2; }
+.benefit svg { flex: none; width: 22px; height: 25px; margin-top: .15rem; color: #c39433; }
+.benefitTitle { color: #3e2d0e; font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; line-height: 1.2; }
+.benefitText { margin-top: .25rem; color: #6f675b; font-size: 1rem; line-height: 1.6; }
+
+.offer {
+  padding: clamp(2rem, 3.5vw, 3rem); border: 1.5px solid transparent; border-radius: 22px; text-align: center;
+  background: linear-gradient(160deg, #fffaf0, #fbf3e0) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;
+  box-shadow: 0 40px 64px -44px #3e2d0e8c;
+}
+.save {
+  font-family: var(--font-display); font-size: clamp(3rem, 5.5vw, 4.75rem); font-weight: 600; line-height: 1; letter-spacing: -.02em;
+  background: linear-gradient(110deg, #8a6a24 0%, #c9962f 30%, #fff1c4 46%, #d9a640 54%, #8a6a24 80%, #c9962f 100%);
+  background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: landing-shine 4.5s ease-in-out infinite;
+}
+@keyframes landing-shine { 0% { background-position: 100% 0; } 60%, 100% { background-position: 0 0; } }
+.offerTitle { margin-top: .6rem; color: #3e2d0e; font-family: var(--font-display); font-size: 1.8rem; font-weight: 500; font-style: italic; }
+.offerText { margin-top: .8rem; color: #6f675b; font-size: 1rem; line-height: 1.65; }
+
+/* Form band */
+.formBand { scroll-margin-top: 7rem; padding: 4.5rem 0 5rem; background: #fff; }
+.formInner { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); align-items: center; gap: clamp(2.5rem, 5vw, 5rem); max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.formLead { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 500; line-height: 1.12; letter-spacing: -.02em; }
+.formPicture { margin-top: 1.75rem; }
+
+@media (max-width: 1023px) {
+  .four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  .heroInner, .split, .formInner { grid-template-columns: minmax(0, 1fr); }
+  .frame { max-width: 560px; }
+}
+@media (max-width: 539px) {
+  .hero { padding-block: 2.5rem 3rem; }
+  .band, .formBand { padding-block: 3rem 3.5rem; }
+  .two, .four { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .intro, .sub { font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { translate: none; }
+  .save { animation: none; background-position: 50% 0; }
+}

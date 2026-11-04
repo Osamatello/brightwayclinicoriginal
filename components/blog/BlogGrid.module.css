@@ -1,0 +1,37 @@
+/* Every article in one even grid; photos at their own 3:2 shape with nothing on top of them */
+.section { padding: 3.5rem 0 5.5rem; background: #fff; }
+.keepReading { padding-block: 4.5rem 5rem; background: #fbf7ef; }
+.inner { max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.heading { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.2rem, 3.4vw, 3rem); font-weight: 500; line-height: 1.1; letter-spacing: -.02em; }
+.heading em { color: #a77d2a; font-style: italic; }
+
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 1.75rem; margin-top: 2rem; }
+.card {
+  display: flex; flex-direction: column; overflow: hidden; border: 1px solid #efe6d4; border-radius: 20px; background: #fff;
+  box-shadow: 0 22px 40px -34px #3e2d0e66; transition: translate 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+}
+.card:hover { translate: 0 -4px; border-color: #d9bd7f; box-shadow: 0 30px 50px -34px #3e2d0e8c; }
+/* A single card left on the last row sits in the middle */
+.card:last-child:nth-child(3n + 1) { grid-column: 2; }
+.photo { position: relative; aspect-ratio: 3 / 2; background: #f6efe0; }
+.img { object-fit: cover; }
+
+.text { display: flex; flex: 1; flex-direction: column; padding: 1.35rem 1.4rem 1.5rem; }
+.date { color: #8a6a24; font-size: .82rem; font-weight: 700; }
+.title { margin-top: .55rem; color: #3e2d0e; font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; line-height: 1.16; letter-spacing: -.01em; }
+.excerpt { display: -webkit-box; flex: 1; margin-top: .6rem; overflow: hidden; color: #6f675b; font-size: .94rem; line-height: 1.62; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.read { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; color: #8a6a24; font-size: .9rem; font-weight: 700; transition: gap 250ms ease; }
+.card:hover .read { gap: .8rem; }
+
+@media (max-width: 1099px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card:last-child:nth-child(3n + 1) { grid-column: auto; }
+}
+@media (max-width: 639px) {
+  .section, .keepReading { padding-block: 2.5rem 4rem; }
+  .grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1.25rem; margin-top: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .read { transition: none; }
+  .card:hover { translate: none; }
+}

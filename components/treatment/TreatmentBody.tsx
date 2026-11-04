@@ -25,31 +25,38 @@ export default function TreatmentBody({ html, figures = [], hideOldImages = fals
       <div className={styles.inner}>
         <article className={styles.article} dangerouslySetInnerHTML={{ __html: withFigures(body, figures) }} />
 
-        <aside className={styles.booking}>
-          <p className={styles.bookingTitle}>Book your consultation</p>
-          <p className={styles.bookingText}>Our DHA-licensed dentists will examine your case and plan the right treatment for you.</p>
-          <GoldButton href="/contact-us/" className="w-full">
-            Get Dental Consultation <Arrow />
-          </GoldButton>
-          <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer" className={styles.whatsapp}>
-            <WhatsAppIcon /> WhatsApp us
-          </a>
-          <dl className={styles.details}>
-            <div>
-              <dt>Call</dt>
-              <dd><a href={`tel:${clinic.phone}`}>{clinic.phoneDisplay}</a></dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>{clinic.hours}</dd>
-            </div>
-            <div>
-              <dt>Visit</dt>
-              <dd>{clinic.address}</dd>
-            </div>
-          </dl>
-        </aside>
+        <BookingAside />
       </div>
     </section>
+  );
+}
+
+/** Light booking card that stays in view beside a long article; also used on blog posts. */
+export function BookingAside({ title = "Book your consultation" }: { title?: string }) {
+  return (
+    <aside className={styles.booking}>
+      <p className={styles.bookingTitle}>{title}</p>
+      <p className={styles.bookingText}>Our DHA-licensed dentists will examine your case and plan the right treatment for you.</p>
+      <GoldButton href="/contact-us/" className="w-full">
+        Get Dental Consultation <Arrow />
+      </GoldButton>
+      <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer" className={styles.whatsapp}>
+        <WhatsAppIcon /> WhatsApp us
+      </a>
+      <dl className={styles.details}>
+        <div>
+          <dt>Call</dt>
+          <dd><a href={`tel:${clinic.phone}`}>{clinic.phoneDisplay}</a></dd>
+        </div>
+        <div>
+          <dt>Hours</dt>
+          <dd>{clinic.hours}</dd>
+        </div>
+        <div>
+          <dt>Visit</dt>
+          <dd>{clinic.address}</dd>
+        </div>
+      </dl>
+    </aside>
   );
 }

@@ -1,12 +1,12 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { formatDate, getByPath, postsEn, readingMinutes, seoMetadata, servicesEn, type Entry } from "@/lib/content";
-import PostCard from "@/components/page/PostCard";
 import { services as serviceCards } from "@/content/home";
 import { clinic } from "@/content/site";
-import { BookingCard, BreadcrumbSchema, PageHero, Prose } from "@/components/page/PageParts";
-import { Heading } from "@/components/ui";
+import { BreadcrumbSchema } from "@/components/page/PageParts";
+import BlogGrid from "@/components/blog/BlogGrid";
+import PostBody from "@/components/blog/PostBody";
+import PostHero from "@/components/blog/PostHero";
 import TreatmentHero from "@/components/treatment/TreatmentHero";
 import TreatmentBody from "@/components/treatment/TreatmentBody";
 import MoreTreatments from "@/components/treatment/MoreTreatments";
@@ -74,30 +74,9 @@ function PostPage({ entry }: { entry: Entry }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <BreadcrumbSchema items={[{ name: "Blog", path: "/blog/" }, { name: entry.title, path: entry.path }]} />
-      <PageHero eyebrow={`${formatDate(entry.date)} · ${readingMinutes(entry.html)} min read`} title={entry.title} crumbs={[{ label: "Blog", href: "/blog/" }, { label: entry.title }]} />
-      <article className="bg-cream py-16">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1fr_340px]">
-          <div className="space-y-10">
-            {entry.featured && !entry.html.includes(entry.featured) && (
-              <div className="relative aspect-[16/9] overflow-hidden rounded-[2rem]">
-                <Image src={entry.featured} alt={entry.title} fill priority sizes="(min-width: 1024px) 60vw, 100vw" className="object-cover" />
-              </div>
-            )}
-            <Prose html={entry.html} />
-          </div>
-          <BookingCard title="Have a question about your teeth?" />
-        </div>
-      </article>
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-7xl space-y-10 px-5">
-          <Heading lead="Keep" accent="reading" />
-          <div className="grid gap-6 md:grid-cols-3">
-            {related.map((p) => (
-              <PostCard key={p.id} post={p} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <PostHero title={entry.title} meta={`${formatDate(entry.date)} · ${readingMinutes(entry.html)} min read`} />
+      <PostBody title={entry.title} html={entry.html} featured={entry.featured} />
+      <BlogGrid posts={related} keepReading />
     </>
   );
 }

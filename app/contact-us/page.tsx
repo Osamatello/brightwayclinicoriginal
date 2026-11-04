@@ -1,37 +1,35 @@
 import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
-import { clinic } from "@/content/site";
-import { BreadcrumbSchema, PageHero } from "@/components/page/PageParts";
-import { OutlineButton, WhatsAppIcon } from "@/components/ui";
+import { contactFaqs } from "@/content/contact";
+import { BreadcrumbSchema } from "@/components/page/PageParts";
+import ContactHero from "@/components/contact/ContactHero";
 import Contact from "@/components/home/Contact";
 import Faq from "@/components/home/Faq";
 
 const CONTACT_ID = 622;
+const OLD_SHARE_IMAGE = "/wp-content/uploads/2024/03/logo-Bright-Way-01.png"; // the old page's og:image
 
 export function generateMetadata(): Metadata {
   const page = getById(CONTACT_ID);
-  return page ? seoMetadata(page) : { title: "Contact us" };
+  if (!page) return { title: "Contact us" };
+  const seo = seoMetadata(page);
+  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
 }
 
 export default function ContactPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: contactFaqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <BreadcrumbSchema items={[{ name: "Contact us", path: "/contact-us/" }]} />
-      <PageHero
-        eyebrow="Contact Bright Way Dental Clinic"
-        title="Get In Touch with Our Team"
-        intro="Have questions or need to schedule an appointment? Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit."
-        crumbs={[{ label: "Contact us" }]}
-      >
-        <div className="flex flex-wrap gap-3">
-          <OutlineButton href={`tel:${clinic.phone}`} light>{clinic.phoneDisplay}</OutlineButton>
-          <OutlineButton href={clinic.whatsapp} light>
-            <WhatsAppIcon /> WhatsApp
-          </OutlineButton>
-        </div>
-      </PageHero>
-      <Contact />
-      <Faq />
+      <ContactHero />
+      <Contact page />
+      {/* free Pexels 12635375 */}
+      <Faq items={contactFaqs} photo={{ src: "/images/contact/faq-consultation.webp", alt: "Dentist talking with a patient before her treatment in a modern dental clinic" }} />
     </>
   );
 }

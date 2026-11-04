@@ -11,6 +11,6 @@ export function generateMetadata(): Metadata {
 
 export default function ImplantCostThankYou() {
   return (
-    <ThankYou message="We're thrilled that you've taken the first step towards getting your personalized dental implant cost estimate — instantly and for free. Our team will send your estimate shortly." />
+    <ThankYou message="We’re thrilled that you’ve taken the first step towards Get Your Personalized Dental Implant Cost Estimate – Instantly and for Free!" />
   );
 }

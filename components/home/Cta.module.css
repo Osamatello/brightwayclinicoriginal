@@ -31,6 +31,15 @@
 }
 .photo { object-fit: cover; object-position: 62% 45%; } /* keeps her face, smile and the mirror in view */
 
+/* Follows a white 1200px-wide section: no cream gaps, text starts on that section's left edge */
+.aligned { container-type: inline-size; min-height: calc(560px + 5.5rem); margin-block: 0; padding-block: 2.75rem; }
+@media (min-width: 900px) {
+  .aligned .content { width: auto; margin-left: 0; padding-right: 1.5rem; padding-left: max(24px, calc((100cqw - 1200px) / 2 + 24px)); }
+}
+@media (max-width: 899px) {
+  .section.aligned { min-height: 0; margin-block: 0; padding-block: 2rem; }
+}
+
 @media (max-width: 1100px) and (min-width: 900px) {
   .photoWrap { border-radius: 220px 0 0 220px; }
 }

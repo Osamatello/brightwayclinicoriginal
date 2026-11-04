@@ -53,12 +53,58 @@ export const doctors = [
 
 // Real Bright Way before/after pairs (from the old site's smile gallery). No treatment names on purpose.
 // To add a case: put both photos in /public and add one line (photos are shown whole, never cropped).
-export type SmileCase = { before: string; after: string };
+export type SmileCase = { before: string; after: string; beforeAlt: string; afterAlt: string };
+// Pairs are 4:3 crops matched in scale and position; never put patient names in file names or alt text.
+// Cases 5-8 are the clinic's own photos from Drive (design/drive-media-library.md); confirm patient consent before launch.
 export const smileCases: SmileCase[] = [
-  { before: "/wp-content/uploads/2024/05/1-1.jpg", after: "/wp-content/uploads/2024/05/1-2.jpg" },
-  { before: "/wp-content/uploads/2024/05/444.jpg", after: "/wp-content/uploads/2024/05/44.jpg" },
-  { before: "/wp-content/uploads/2024/05/33.jpg", after: "/wp-content/uploads/2024/05/333.jpg" },
-  { before: "/wp-content/uploads/2024/05/555.jpg", after: "/wp-content/uploads/2024/05/55.jpg" },
+  {
+    before: "/wp-content/uploads/2024/05/1-1.jpg",
+    after: "/wp-content/uploads/2024/05/1-2.jpg",
+    beforeAlt: "Worn, discoloured upper and lower teeth before dental treatment",
+    afterAlt: "Bright, even upper and lower teeth after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-2-before.webp",
+    after: "/images/smile-cases/case-2-after.webp",
+    beforeAlt: "Woman's smile with uneven, discoloured teeth before dental treatment",
+    afterAlt: "Woman's bright, even smile after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/wp-content/uploads/2024/05/33.jpg",
+    after: "/wp-content/uploads/2024/05/333.jpg",
+    beforeAlt: "Damaged and missing upper teeth before dental treatment",
+    afterAlt: "Restored row of bright upper teeth after treatment at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-4-before.webp",
+    after: "/images/smile-cases/case-4-after.webp",
+    beforeAlt: "Man's smile with yellowed, chipped teeth before dental treatment",
+    afterAlt: "Man's white, even smile after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-5-before.webp",
+    after: "/images/smile-cases/case-5-after.webp",
+    beforeAlt: "Crowded, yellowish teeth before dental treatment",
+    afterAlt: "Straight, bright smile after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-6-before.webp",
+    after: "/images/smile-cases/case-6-after.webp",
+    beforeAlt: "Decayed teeth with gaps before dental treatment",
+    afterAlt: "Complete, white smile after treatment at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-7-before.webp",
+    after: "/images/smile-cases/case-7-after.webp",
+    beforeAlt: "Broken, stained front teeth before dental treatment",
+    afterAlt: "Bright, even front teeth after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
+  {
+    before: "/images/smile-cases/case-8-before.webp",
+    after: "/images/smile-cases/case-8-after.webp",
+    beforeAlt: "Yellowish, uneven front teeth before dental treatment",
+    afterAlt: "White, even front teeth after smile makeover at Bright Way Dental Clinic, Dubai",
+  },
 ];
 
 export const digitalFeatures = [

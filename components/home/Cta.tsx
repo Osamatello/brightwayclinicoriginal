@@ -3,9 +3,9 @@ import { clinic } from "@/content/site";
 import { Arrow, GoldButton } from "@/components/ui";
 import styles from "./Cta.module.css";
 
-export default function Cta() {
+export default function Cta({ aligned = false }: { aligned?: boolean }) {
   return (
-    <section aria-labelledby="cta-heading" className={styles.section}>
+    <section aria-labelledby="cta-heading" className={`${styles.section} ${aligned ? styles.aligned : ""}`}>
       <div className={styles.content}>
         <h2 id="cta-heading" className={styles.heading}>
           Become The Next <span>Our Happy Client</span>

@@ -6,11 +6,12 @@ const PAGE_ID = 2468;
 
 export function generateMetadata(): Metadata {
   const page = getById(PAGE_ID);
-  return page ? seoMetadata(page) : { title: "Thank you" };
+  // Hidden with /transform-your-smile/ (Osama, 2026-11-04)
+  return { ...(page ? seoMetadata(page) : { title: "Thank you" }), robots: { index: false, follow: false } };
 }
 
 export default function TransformYourSmileThankYou() {
   return (
-    <ThankYou message="We're thrilled that you've taken the first step towards transforming your smile with our Virtual Smile Design service. Our team will send your personalized smile designs shortly." />
+    <ThankYou message="We’re thrilled that you’ve taken the first step towards transforming your smile with our Virtual Smile Design service." />
   );
 }

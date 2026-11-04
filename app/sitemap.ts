@@ -7,10 +7,12 @@ const SITE = "https://brightway.clinic";
 // TODO(Arabic): add entriesByLang("ar") once the /ar/ pages are built.
 // Pages that are new on this site (no WordPress entry)
 const NEW_PAGES = [{ path: "/services/", lastModified: "2026-10-26" }];
+// Pages kept on the site but hidden for now (Osama, 2026-11-04); they also carry a noindex tag
+const HIDDEN_PATHS = new Set(["/transform-your-smile/", "/transform-your-smile-typ/"]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const old = entriesByLang("en")
-    .filter((e) => e.seo.robots?.index !== "noindex")
+    .filter((e) => e.seo.robots?.index !== "noindex" && !HIDDEN_PATHS.has(e.path))
     .map((e) => ({
       url: `${SITE}${e.path}`,
       lastModified: e.modified || e.date,

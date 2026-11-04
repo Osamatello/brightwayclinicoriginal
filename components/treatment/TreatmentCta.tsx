@@ -4,7 +4,7 @@ import { Arrow, GoldButton } from "@/components/ui";
 import styles from "./TreatmentCta.module.css";
 
 /** Treatment page CTA: a happy patient photo (free Pexels 8155047) beside the call to action. Text as on the homepage CTA. */
-export default function TreatmentCta() {
+export default function TreatmentCta({ copy = "Our best dentists in Dubai are ready to provide you with top-tier care tailored to your needs." }: { copy?: string }) {
   return (
     <section aria-labelledby="treatment-cta-heading" className={styles.section}>
       <div className={styles.inner}>
@@ -24,7 +24,7 @@ export default function TreatmentCta() {
           <h2 id="treatment-cta-heading" className={styles.heading}>
             Become The Next <span>Our Happy Client</span>
           </h2>
-          <p className={styles.copy}>Our best dentists in Dubai are ready to provide you with top-tier care tailored to your needs.</p>
+          <p className={styles.copy}>{copy}</p>
           <div className={styles.actions}>
             <GoldButton href="/contact-us/">
               Get Dental Consultation <Arrow />

@@ -1,0 +1,19 @@
+.section { padding: 5rem 24px 6rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.card {
+  max-width: 820px; margin-inline: auto; padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem); border: 1.5px solid transparent; border-radius: 24px; text-align: center;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;
+  box-shadow: 0 44px 70px -48px #3e2d0e8c;
+}
+.check { display: grid; place-items: center; width: 72px; height: 72px; margin-inline: auto; border-radius: 50%; background: linear-gradient(145deg, #dcb45e, #a77d2a); color: #fff; box-shadow: 0 0 0 10px #c394331f; }
+.check svg { width: 32px; height: 32px; }
+.heading { margin-top: 1.75rem; color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.3rem, 4.5vw, 3.75rem); font-weight: 500; line-height: 1.06; letter-spacing: -.025em; }
+.heading em { display: block; color: #a77d2a; font-style: italic; }
+.message { margin-top: 1.25rem; color: #3e2d0e; font-size: 1.12rem; font-weight: 600; line-height: 1.65; }
+.text { margin-top: .75rem; color: #6f675b; font-size: 1.05rem; line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 2rem; }
+.actions svg { color: #25d366; }
+
+@media (max-width: 539px) {
+  .section { padding-block: 2.5rem 3.5rem; }
+  .message, .text { font-size: 1rem; }
+}

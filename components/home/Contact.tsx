@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { clinic } from "@/content/site";
+import { socialIcons } from "@/components/layout/Footer";
+import LeadFormShell from "@/components/page/LeadFormShell";
 import styles from "./Contact.module.css";
 
 const icon = (d: ReactNode) => (
@@ -19,8 +21,11 @@ const icons = {
 
 const TOOTH = "M8.6 9.5C7 5.6 9.2 2.5 12.6 2.5c1.7 0 2.3 1.3 3.4 1.3s1.7-1.3 3.4-1.3c3.4 0 5.6 3.1 4 7l-1.7 8.4-1 8.7c-.3 2.4-2.8 2.4-3.1 0L16.7 20h-1.4l-.9 6.6c-.3 2.4-2.8 2.4-3.1 0l-1-8.7Z";
 
-/** Contact section (also on /contact-us/). The form's destination is not decided yet (plan D4) — submit does nothing until it is. */
-export default function Contact() {
+/**
+ * Contact section. The form sends through LeadFormShell.
+ * `page` = the Contact page's version, in the old page's order: form and map first, then "Contact Us" with the details and social links.
+ */
+export default function Contact({ page = false }: { page?: boolean }) {
   // Each line shows on its own row; both phone numbers are tappable
   const info: { label: string; icon: ReactNode; lines: { text: string; href?: string }[] }[] = [
     { label: "Visit us", icon: icons.pin, lines: [{ text: clinic.address }] },
@@ -35,42 +40,51 @@ export default function Contact() {
     },
     { label: "Email", icon: icons.mail, lines: [{ text: clinic.email, href: `mailto:${clinic.email}` }] },
   ];
-  return (
-    <section id="contact" aria-labelledby="contact-heading" className={styles.section}>
-      <div className={styles.inner}>
-        <header className={styles.header}>
-          <h2 id="contact-heading" className={styles.heading}>
-            Get In Touch <span>with Our Team</span>
-          </h2>
-          <p className={styles.intro}>
-            Have questions or need to schedule an appointment? Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit.
-          </p>
-        </header>
+  const FormTitle = page ? "h2" : "h3"; // an H2 on the old Contact page
 
-        {/* Clinic details: one wide strip, four columns */}
-        <dl className={styles.info}>
-          {info.map((item) => (
-            <div key={item.label} className={styles.infoItem}>
-              <span className={styles.infoIcon}>{item.icon}</span>
-              <div>
-                <dt className={styles.infoLabel}>{item.label}</dt>
-                {item.lines.map((line) => (
-                  <dd key={line.text} className={styles.infoValue}>
-                    {line.href ? <a href={line.href}>{line.text}</a> : line.text}
-                  </dd>
-                ))}
-              </div>
-            </div>
-          ))}
-        </dl>
+  // Clinic details: one wide strip, four columns
+  const details = (
+    <dl className={styles.info}>
+      {info.map((item) => (
+        <div key={item.label} className={styles.infoItem}>
+          <span className={styles.infoIcon}>{item.icon}</span>
+          <div>
+            <dt className={styles.infoLabel}>{item.label}</dt>
+            {item.lines.map((line) => (
+              <dd key={line.text} className={styles.infoValue}>
+                {line.href ? <a href={line.href}>{line.text}</a> : line.text}
+              </dd>
+            ))}
+          </div>
+        </div>
+      ))}
+    </dl>
+  );
+
+  return (
+    <section id="contact" aria-labelledby="contact-heading" className={`${styles.section} ${page ? styles.page : ""}`}>
+      <div className={styles.inner}>
+        {!page && (
+          <>
+            <header className={styles.header}>
+              <h2 id="contact-heading" className={styles.heading}>
+                Get In Touch <span>with Our Team</span>
+              </h2>
+              <p className={styles.intro}>
+                Have questions or need to schedule an appointment? Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit.
+              </p>
+            </header>
+            {details}
+          </>
+        )}
 
         <div className={styles.layout}>
           {/* Booking card */}
-          <form className={styles.form} action="#" method="post">
+          <LeadFormShell className={styles.form}>
             <svg aria-hidden="true" viewBox="0 0 32 32" className={styles.watermark}><path d={TOOTH} /></svg>
-            <h3 className={styles.formTitle}>
+            <FormTitle className={styles.formTitle}>
               Book Your <span>Appointment Now</span>
-            </h3>
+            </FormTitle>
             <p className={styles.formNote}>Please fill the form below and our team will contact you as soon as possible.</p>
             <div className={styles.pair}>
               <label className={styles.field}>
@@ -84,7 +98,7 @@ export default function Contact() {
             </div>
             <div className={styles.pair}>
               <label className={styles.field}>
-                <span>{icons.phone}Phone</span>
+                <span>{icons.phone}{page ? "Phone Number" : "Phone"}</span>
                 <input name="phone" type="tel" autoComplete="tel" required />
               </label>
               <label className={styles.field}>
@@ -99,7 +113,7 @@ export default function Contact() {
             <button type="submit" className={styles.send}>
               Send <span className={styles.sendArrow}>{icons.arrow}</span>
             </button>
-          </form>
+          </LeadFormShell>
 
           {/* Landscape map in a gold frame */}
           <div className={styles.map}>
@@ -111,6 +125,22 @@ export default function Contact() {
             />
           </div>
         </div>
+
+        {page && (
+          <div className={styles.reach}>
+            <h2 id="contact-heading" className={styles.reachHeading}>Contact Us</h2>
+            {details}
+            <p className={styles.stay}>Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.</p>
+            <div className={styles.social}>
+              {Object.entries(clinic.social).map(([name, href]) => (
+                <a key={name} href={href} className={styles.socialLink}>
+                  {socialIcons[name]}
+                  {name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { clinic, nav } from "@/content/site";
+import { clinic } from "@/content/site";
+import { postsEn, servicesEn } from "@/lib/content";
 import { GoldButton } from "@/components/ui";
 import MobileMenu from "@/components/layout/MobileMenu";
+import NavLinks from "@/components/layout/NavLinks";
 
 export default function Header() {
+  const sections = { "/services/": servicesEn().map((e) => e.path), "/blog/": postsEn().map((e) => e.path) };
   return (
     <header className="sticky top-0 z-40">
       {/* top bar from lg up; below that the numbers and hours live in the menu (MobileMenu) */}
@@ -24,20 +27,14 @@ export default function Header() {
             {/* logo-trimmed.png = logo.png without its empty margin, so the mark itself shows larger */}
             <Image src="/images/logo-trimmed.png" alt={clinic.name} width={2636} height={774} priority sizes="200px" className="h-12 w-auto md:h-14" />
           </Link>
-          <nav aria-label="Main" className="hidden gap-x-6 whitespace-nowrap text-sm font-semibold text-brown-dark xl:flex">
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="transition hover:text-gold-dark">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <NavLinks sections={sections} />
           <div className="hidden items-center gap-4 whitespace-nowrap xl:flex">
             <Link href="/ar/" lang="ar" className="text-sm font-bold text-gold-dark hover:text-brown-dark">
               العربية
             </Link>
             <GoldButton href="/contact-us/">Book an Appointment</GoldButton>
           </div>
-          <MobileMenu />
+          <MobileMenu sections={sections} />
         </div>
       </div>
     </header>

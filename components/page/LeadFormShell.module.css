@@ -1,0 +1,5 @@
+.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.status, .failed { font-size: .95rem; font-weight: 600; line-height: 1.5; }
+.status:empty, .failed:empty { display: none; }
+.status { color: #7d6120; }
+.failed { color: #a32a1f; }

@@ -3,16 +3,21 @@ import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
 import LeadForm from "@/components/page/LeadForm";
 import { nameFields } from "@/content/forms";
-import { Eyebrow, Heading } from "@/components/ui";
-import { Videos } from "@/components/home/Media";
+import { Arrow, GoldButton } from "@/components/ui";
+import { Instagram, Videos } from "@/components/home/Media";
+import styles from "@/components/landing/Landing.module.css";
 
 const PAGE_ID = 2652;
+const OLD_SHARE_IMAGE = "/wp-content/uploads/2024/03/logo-Bright-Way-01.png"; // the old page's og:image
 
 export function generateMetadata(): Metadata {
   const page = getById(PAGE_ID);
-  return page ? seoMetadata(page) : { title: "Personalized Dental Implant Cost" };
+  if (!page) return { title: "Personalized Dental Implant Cost" };
+  const seo = seoMetadata(page);
+  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
 }
 
+// All text and pictures from the old page (ad campaigns and SEO depend on them)
 const reasons = [
   { title: "Regain your natural smile and confidence.", img: "/wp-content/uploads/2024/10/4-1.png" },
   { title: "Enjoy your favorite foods without worry.", img: "/wp-content/uploads/2024/10/5.png" },
@@ -20,70 +25,80 @@ const reasons = [
   { title: "Prevent bone loss and maintain facial structure.", img: "/wp-content/uploads/2024/10/3.png" },
 ];
 
-const form = (
-  <LeadForm
-    title="Get your free cost estimate"
-    subtitle="Enter your details below for a quick and clear cost estimate – no obligations."
-    fields={[...nameFields, { name: "missing", label: "How many teeth do you want to replace?" }]}
-    submitLabel="Get my implant cost"
-    thankYouPath="/personalized-dental-implant-cost-typ/"
-  />
-);
-
 export default function ImplantCostPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-brown text-white">
-        <div aria-hidden="true" className="absolute -right-32 -top-32 h-[460px] w-[460px] rounded-full bg-gold/20 blur-3xl" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-6">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Bright Way Dental Clinic</p>
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-5xl">
-              Get Your Personalized <span className="font-display italic text-gold-light">Dental Implant Cost</span> Estimate – Instantly and for Free!
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div>
+            <p className={styles.brand}>Bright Way Dental Clinic</p>
+            <h1 className={`${styles.heading} ${styles.headingSmaller}`}>
+              Get Your Personalized <em>Dental Implant Cost</em> Estimate – Instantly and for Free!
             </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-white/80">
-              Wondering how much it will cost to restore your smile? Find out now by entering a few simple details – no commitments, just clarity.
-            </p>
-            <p className="max-w-xl leading-relaxed text-white/70">Dental implants are a great investment in your smile, but costs can vary.</p>
-            <div className="relative hidden max-w-sm lg:block">
-              <Image src="/wp-content/uploads/2024/03/Untitled-1.png" alt="Exclusive Dental Implant Offer: Bright Way Dental Clinic, Dubai." width={480} height={480} className="h-auto w-full" />
+            <p className={styles.intro}>Wondering how much it will cost to restore your smile? Find out now by entering a few simple details – no commitments, just clarity.</p>
+            <div className={styles.actions}>
+              <GoldButton href="#estimate">Get Your Free Estimate Now <Arrow /></GoldButton>
             </div>
           </div>
-          {form}
+          <div className={styles.frame}>
+            <Image src="/wp-content/uploads/2024/03/Untitled-1.png" alt="Exclusive Dental Implant Offer: Bright Way Dental Clinic, Dubai." width={512} height={512} priority sizes="(min-width: 900px) 500px, 100vw" className={styles.frameImg} />
+          </div>
         </div>
       </section>
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-7xl space-y-12 px-5">
-          <div className="max-w-2xl space-y-4">
-            <Eyebrow>Why choose dental implants?</Eyebrow>
-            <Heading lead="A smile that" accent="lasts" />
+      <section id="estimate" className={styles.formBand}>
+        <div className={styles.formInner}>
+          <div>
+            <p className={styles.formLead}>Dental implants are a great investment in your smile, but costs can vary.</p>
+            <p className={styles.sub}>Enter your details below for a quick and clear cost estimate – no obligations.</p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <LeadForm
+            fields={[...nameFields, { name: "missing", label: "How many teeth do you want to replace?" }]}
+            submitLabel="Discover Your Implant Cost Now!"
+            thankYouPath="/personalized-dental-implant-cost-typ/"
+          />
+        </div>
+      </section>
+
+      <section className={`${styles.band} ${styles.bandCream}`}>
+        <div className={styles.inner}>
+          <h2 className={`${styles.title} ${styles.titleCentered}`}>
+            Why Choose <em>Dental Implants?</em>
+          </h2>
+          <ul className={`${styles.cards} ${styles.four}`}>
             {reasons.map((r) => (
-              <article key={r.title} className="group overflow-hidden rounded-[2rem] bg-white">
-                <div className="relative aspect-square overflow-hidden bg-gold-soft">
-                  <Image src={r.img} alt={r.title} fill sizes="25vw" className="object-cover transition duration-700 group-hover:scale-105" />
+              <li key={r.title} className={styles.card}>
+                <div className={styles.cardPicture}>
+                  <Image src={r.img} alt={r.title} fill sizes="(min-width: 1024px) 240px, (min-width: 540px) 45vw, 90vw" />
                 </div>
-                <p className="p-6 text-lg font-extrabold leading-snug text-brown-dark">{r.title}</p>
-              </article>
+                <h3 className={styles.cardTitle}>{r.title}</h3>
+              </li>
             ))}
+          </ul>
+          <div className={`${styles.actions} ${styles.actionsCentered}`}>
+            <GoldButton href="#estimate">Check Your Implant Cost Now! <Arrow /></GoldButton>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
-          <div className="space-y-5">
-            <Heading lead="Take the first step towards" accent="your dream smile today." />
-            <p className="text-lg leading-relaxed">It&apos;s quick, easy, and completely free to find out how much it will cost you to smile with confidence again.</p>
-            <div className="relative aspect-[4/3] max-w-md overflow-hidden rounded-[2rem]">
-              <Image src="/wp-content/uploads/2024/10/6.png" alt="Dental implant treatment at Bright Way Dental Clinic" fill sizes="40vw" className="object-cover" />
+      <section className={styles.band}>
+        <div className={`${styles.inner} ${styles.split}`}>
+          <div>
+            <h2 className={styles.title}>
+              Take the first step towards <em>your dream smile today.</em>
+            </h2>
+            <p className={styles.sub}>It’s quick, easy, and completely free to find out how much it will cost you to smile with confidence again.</p>
+            <div className={styles.actions}>
+              <GoldButton href="#estimate">Discover Your Implant Cost Now! <Arrow /></GoldButton>
             </div>
           </div>
-          {form}
+          <div className={styles.frame}>
+            <Image src="/wp-content/uploads/2024/10/6.png" alt="Dental implant treatment at Bright Way Dental Clinic" width={720} height={399} sizes="(min-width: 900px) 560px, 100vw" className={styles.frameImg} />
+          </div>
         </div>
       </section>
+
+      <Instagram />
       <Videos />
     </>
   );

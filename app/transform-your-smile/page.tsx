@@ -3,138 +3,174 @@ import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
 import LeadForm from "@/components/page/LeadForm";
 import { nameFields } from "@/content/forms";
-import { Check, Eyebrow, Heading } from "@/components/ui";
-import { Videos } from "@/components/home/Media";
+import { Arrow, GoldButton, OutlineButton } from "@/components/ui";
+import { Instagram, Videos } from "@/components/home/Media";
+import styles from "@/components/landing/Landing.module.css";
 
 const PAGE_ID = 2341;
+const OLD_SHARE_IMAGE = "/wp-content/uploads/2024/03/logo-Bright-Way-01.png"; // the old page's og:image
 
 export function generateMetadata(): Metadata {
   const page = getById(PAGE_ID);
-  return page ? seoMetadata(page) : { title: "Transform Your Smile for Just $5!" };
+  // Hidden for now (Osama, 2026-11-04): no search listing, not in the sitemap (HIDDEN_PATHS in app/sitemap.ts), no links to it.
+  if (!page) return { title: "Transform Your Smile for Just $5!", robots: { index: false, follow: false } };
+  const seo = seoMetadata(page);
+  return { ...seo, robots: { index: false, follow: false }, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
 }
 
+const Tooth = () => (
+  <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">
+    <path d="M24 8c-4-3-9-4-13-1-5 3-6 10-4 16 1 5 3 8 4 13 1 4 2 10 6 10 3 0 3-4 4-8 .6-3 1.500-5 3-5s2.400 2 3 5c1 4 1 8 4 8 4 0 5-6 6-10 1-5 3-8 4-13 2-6 1-13-4-16-4-3-9-2-13 1Z" />
+  </svg>
+);
+
+// All text word for word from the old page (ad campaigns and SEO depend on it)
+const designs = [
+  { title: "Five Customized Smile Designs:", text: "See various transformations tailored to your preferences, crafted by our expert dental team." },
+  { title: "Free Consultation:", text: "Enjoy a complimentary session or call with our dental specialists to discuss your preferred smile design and explore the best treatment options." },
+];
 const whyChoose = [
   { title: "Low-Barrier Entry", text: "With just $5, you can visualize your dream smile without any financial strain." },
   { title: "Multiple Options", text: "Receive five unique design options to find the perfect smile that matches your personality and preferences." },
   { title: "Free Professional Consultation", text: "Our experts will guide you through the designs, ensuring you understand all available treatments and make informed decisions." },
   { title: "Exclusive Incentive", text: "Get a 10% discount on dental implants when you choose to proceed with treatment, making your dream smile even more affordable." },
 ];
-
 const benefits = [
   { title: "Visualize Your Dream Smile", text: "See the potential of your smile transformation before committing to any treatment." },
   { title: "Make Informed Decisions", text: "Understand different treatment options and choose what's best for you with confidence." },
   { title: "Personalized Care", text: "Each design is tailored to your unique features, ensuring a natural and beautiful result." },
 ];
-
 const steps = [
-  { title: "Sign Up", text: "Fill out the form to begin designing your virtual smile." },
-  { title: "Pay $5", text: "Complete the payment to access the service." },
-  { title: "Upload Photos", text: "Upload clear photos of your face from the right and left sides with your mouth open." },
-  { title: "Receive Designs", text: "Our team will contact you and send your virtual smile designs via WhatsApp or email." },
+  { title: "1. Sign Up", text: "Fill out the form below to begin designing your virtual smile." },
+  { title: "2. Pay $5", text: "Complete the payment to access the service." },
+  { title: "3. Upload Photos", text: "Upload clear photos of your face from the right and left sides with your mouth open." },
+  { title: "4. Receive Designs", text: "Our team will contact you and send your virtual smile designs via WhatsApp or email." },
 ];
-
-const form = (
-  <LeadForm
-    title="Sign Up Now"
-    subtitle="Start your journey to a brighter smile — five virtual smile designs for only $5."
-    fields={nameFields}
-    submitLabel="Get my 5 smile designs"
-    thankYouPath="/transform-your-smile-typ/"
-  />
-);
 
 export default function TransformYourSmilePage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-brown text-white">
-        <div aria-hidden="true" className="absolute -left-40 top-10 h-[480px] w-[480px] rounded-full bg-gold/20 blur-3xl" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-6">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-light">Bright Way Dental Clinic</p>
-            <h1 className="text-5xl font-extrabold leading-[1.02] tracking-tight md:text-6xl">
-              Transform Your Smile for <span className="font-display italic text-gold-light">Just $5!</span>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <div>
+            <p className={styles.brand}>Bright Way Dental Clinic</p>
+            <h1 className={styles.heading}>
+              Transform Your Smile for <em>Just $5!</em>
             </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-white/80">
-              Everyone deserves a smile they&apos;re proud of — that&apos;s why we&apos;re offering an incredible deal that combines affordability, personalization and expert consultation.
-            </p>
-            <ul className="space-y-3">
-              {["Virtual Smile Design — 5 options for only $5", "Five customized smile designs crafted by our expert team", "Free consultation with our dental specialists"].map((t) => (
-                <li key={t} className="flex items-center gap-3 font-semibold">
-                  <span className="bg-gold-gradient flex h-7 w-7 shrink-0 items-center justify-center rounded-full"><Check className="h-4 w-4" /></span>
-                  {t}
-                </li>
-              ))}
+            <p className={styles.intro}>Everyone deserves a smile they&apos;re proud of, that’s why we&apos;re offering an incredible deal that combines</p>
+            <ul className={styles.words}>
+              <li><Tooth /> Affordability</li>
+              <li><Tooth /> Personalization</li>
+              <li><Tooth /> Expert Consultation.</li>
             </ul>
-            <div className="arch relative hidden aspect-[16/10] max-w-md overflow-hidden lg:block">
-              <Image src="/images/lp-happy-client.jpg" alt="Happy client smiling at Bright Way Dental Clinic" fill priority sizes="30vw" className="object-cover" />
+            <div className={styles.actions}>
+              <GoldButton href="#signup">Get 5 Virtual Smile Design <Arrow /></GoldButton>
+              <OutlineButton href="/contact-us/">Get In Touch</OutlineButton>
             </div>
           </div>
-          {form}
+          <div className={styles.frame}>
+            <Image src="/wp-content/uploads/2024/07/close-up-happy-client-dental-clinic-2.jpg" alt="Happy client looking at his new smile in a mirror at Bright Way Dental Clinic" width={1400} height={1128} priority sizes="(min-width: 900px) 500px, 100vw" className={styles.frameImg} />
+          </div>
         </div>
       </section>
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-7xl space-y-12 px-5">
-          <div className="max-w-2xl space-y-4">
-            <Eyebrow>Why choose Bright Way?</Eyebrow>
-            <Heading lead="Your dream smile," accent="without the risk" />
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {whyChoose.map((w, i) => (
-              <article key={w.title} className="rounded-[2rem] bg-white p-8">
-                <span className="font-display text-5xl font-semibold text-gold-soft">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-xl font-extrabold text-brown-dark">{w.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed">{w.text}</p>
-              </article>
+      <section className={styles.band}>
+        <div className={styles.inner}>
+          <h2 className={`${styles.title} ${styles.titleCentered}`}>
+            Virtual Smile Design (5 Options) <em>for Only $5</em>
+          </h2>
+          <ul className={`${styles.cards} ${styles.two}`}>
+            {designs.map((d) => (
+              <li key={d.title} className={styles.card}>
+                <span className={styles.cardIcon}><Tooth /></span>
+                <h3 className={styles.cardTitle}>{d.title}</h3>
+                <p className={styles.cardText}>{d.text}</p>
+              </li>
             ))}
+          </ul>
+          <div className={`${styles.actions} ${styles.actionsCentered}`}>
+            <GoldButton href="#signup">Get 5 Virtual Smile Design <Arrow /></GoldButton>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <Eyebrow>Benefits of our Virtual Smile Design</Eyebrow>
-              <Heading lead="See it" accent="before you commit" />
-            </div>
-            <ul className="space-y-5">
+      <section className={`${styles.band} ${styles.bandCream}`}>
+        <div className={styles.inner}>
+          <h2 className={`${styles.title} ${styles.titleCentered}`}>
+            Why Choose <em>Bright Way Dental Clinic?</em>
+          </h2>
+          <ul className={`${styles.cards} ${styles.four}`}>
+            {whyChoose.map((w) => (
+              <li key={w.title} className={styles.card}>
+                <span className={styles.cardIcon}><Tooth /></span>
+                <h3 className={styles.cardTitle}>{w.title}</h3>
+                <p className={styles.cardText}>{w.text}</p>
+              </li>
+            ))}
+          </ul>
+          <div className={`${styles.actions} ${styles.actionsCentered}`}>
+            <GoldButton href="#signup">Transform Your Smile Today! <Arrow /></GoldButton>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.band}>
+        <div className={`${styles.inner} ${styles.split}`}>
+          <div>
+            <h2 className={styles.title}>
+              Benefits of Our <em>Virtual Smile Design</em>
+            </h2>
+            <ul className={styles.benefits}>
               {benefits.map((b) => (
-                <li key={b.title} className="flex gap-4 border-t border-line pt-5">
-                  <span className="bg-gold-gradient flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"><Check /></span>
+                <li key={b.title} className={styles.benefit}>
+                  <Tooth />
                   <div>
-                    <p className="font-extrabold text-brown-dark">{b.title}</p>
-                    <p className="text-sm leading-relaxed">{b.text}</p>
+                    <h3 className={styles.benefitTitle}>{b.title}</h3>
+                    <p className={styles.benefitText}>{b.text}</p>
                   </div>
                 </li>
               ))}
             </ul>
+            <div className={styles.actions}>
+              <GoldButton href="#signup">Get 5 Virtual Smile Design <Arrow /></GoldButton>
+            </div>
           </div>
-          <div className="bg-gold-gradient space-y-4 rounded-[2.25rem] p-10 text-white">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/80">Limited time offer</p>
-            <p className="font-display text-6xl font-semibold">10% discount</p>
-            <p className="leading-relaxed text-white/90">
-              The 10% discount on dental implants is available for a limited time only. We have a limited number of slots available for this special offer — don&apos;t miss out on the chance to transform your smile at an unbeatable price.
-            </p>
+          <div className={styles.offer}>
+            <p className={styles.save}>10% discount</p>
+            <h2 className={styles.offerTitle}>Limited Time Offer</h2>
+            <p className={styles.offerText}>The 10% discount on dental implants is available for a limited time only. Secure your spot now to take advantage of this exclusive deal.</p>
+            <p className={styles.offerText}>We have a limited number of slots available for this special offer. Don’t miss out on the chance to transform your smile at an unbeatable price.</p>
+            <div className={`${styles.actions} ${styles.actionsCentered}`}>
+              <GoldButton href="#signup">Act Now! <Arrow /></GoldButton>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-cream py-24">
-        <div className="mx-auto max-w-7xl space-y-12 px-5">
-          <Heading lead="How to" accent="Get Started" />
-          <ol className="grid gap-5 md:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.title} className="relative rounded-[2rem] bg-white p-8">
-                <span className="bg-gold-gradient flex h-12 w-12 items-center justify-center rounded-full font-extrabold text-white">{i + 1}</span>
-                <h3 className="mt-5 text-lg font-extrabold text-brown-dark">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed">{s.text}</p>
+      <section className={`${styles.band} ${styles.bandCream}`}>
+        <div className={styles.inner}>
+          <h2 className={`${styles.title} ${styles.titleCentered}`}>
+            How to <em>Get Started</em>
+          </h2>
+          <ol className={`${styles.cards} ${styles.four}`}>
+            {steps.map((s) => (
+              <li key={s.title} className={styles.card}>
+                <h3 className={styles.cardTitle}>{s.title}</h3>
+                <p className={styles.cardText}>{s.text}</p>
               </li>
             ))}
           </ol>
-          <div className="mx-auto max-w-xl">{form}</div>
         </div>
       </section>
+
+      <section id="signup" className={styles.formBand}>
+        <div className={styles.formInner}>
+          <p className={styles.formLead}>Ready to see your perfect smile? Don’t wait – Sign Up Now and start your journey to a brighter smile!</p>
+          <LeadForm fields={nameFields} submitLabel="Sign Up Now" thankYouPath="/transform-your-smile-typ/" />
+        </div>
+      </section>
+
+      <Instagram />
       <Videos />
     </>
   );

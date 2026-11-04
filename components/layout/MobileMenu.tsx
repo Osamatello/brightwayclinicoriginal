@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useEffect, useState, type MouseEvent } from "react";
 import { clinic, nav } from "@/content/site";
 import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
+import { useActiveNav, type NavSections } from "@/components/layout/NavLinks";
 
 const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 
 /** Below xl (1280px): call button + menu button that opens the full menu under the header. */
-export default function MobileMenu() {
+export default function MobileMenu({ sections }: { sections: NavSections }) {
   const [open, setOpen] = useState(false);
+  const isActive = useActiveNav(sections);
 
   useEffect(() => {
     if (!open) return;
@@ -49,7 +51,7 @@ export default function MobileMenu() {
         >
           <nav aria-label="Main" className="flex flex-col">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="flex items-center justify-between border-b border-line py-4 text-lg font-bold text-brown-dark">
+              <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${isActive(item.href) ? "text-gold-dark" : "text-brown-dark"}`}>
                 {item.label} <Arrow className="h-4 w-4 text-gold-dark" />
               </Link>
             ))}

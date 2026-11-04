@@ -46,6 +46,7 @@
   background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: gold-shine 4.5s ease-in-out infinite;
 }
+.saveRest { display: block; margin-top: .35rem; font-size: .42em; font-weight: 600; line-height: 1.2; letter-spacing: 0; }
 @keyframes gold-shine { 0% { background-position: 100% 0; } 60%, 100% { background-position: 0 0; } }
 .points { display: grid; gap: .7rem; padding: 0 0 0 2.5rem; border-inline-start: 1px solid #e3d3b2; list-style: none; }
 .points li { display: flex; gap: .7rem; color: #5f574b; font-size: 1rem; line-height: 1.5; }

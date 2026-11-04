@@ -12,7 +12,15 @@ function ToothCheck({ className }: { className: string }) {
   );
 }
 
-export default function CareAndOffer() {
+// The offer exactly as worded on the old Smile Gallery page (kept for SEO, including its "Enjoying with")
+const galleryOfferPoints = [
+  "Offering a long-lasting replacement for lost teeth.",
+  "Improving the appearance, functionality, and speech.",
+  "Enjoying with the benefits of restored chewing and speech.",
+];
+
+export default function CareAndOffer({ galleryWording = false }: { galleryWording?: boolean }) {
+  const points = galleryWording ? galleryOfferPoints : offerPoints;
   return (
     <section aria-labelledby="care-heading" className={styles.section}>
       <div className={styles.inner}>
@@ -48,13 +56,13 @@ export default function CareAndOffer() {
           <div className={styles.offerTitle}>
             <p className={styles.label}>Special Offer</p>
             <h2 id="offer-heading" className={styles.offerHeading}>
-              Exclusive Dental Implant Offer at <span>Bright Way</span>
+              {galleryWording ? "Exclusive Dental Implant Offer" : <>Exclusive Dental Implant Offer at <span>Bright Way</span></>}
             </h2>
-            <p className={styles.save}>Save 10%</p>
+            <p className={styles.save}>Save 10%{galleryWording && <span className={styles.saveRest}> on our dental implants.</span>}</p>
           </div>
 
           <ul className={styles.points}>
-            {offerPoints.map((point) => (
+            {points.map((point) => (
               <li key={point}>
                 <Check className={styles.check} />
                 {point}

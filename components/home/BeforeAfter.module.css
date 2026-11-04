@@ -10,64 +10,77 @@
 .heading span { display: block; color: #a77d2a; font-style: italic; }
 .intro { max-width: 540px; margin: 1.4rem auto 0; color: #746d62; font-size: 1.15rem; line-height: 1.7; }
 
-/* All cases visible together, every card the same size */
+/* Photos framed like prints: white mat, gold edge. Every card the same size; a short last row sits in the middle */
 .grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 2.2vw, 2rem);
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(1.25rem, 2.2vw, 2rem);
   padding: 0; margin: 0; list-style: none;
 }
-.photos {
-  position: relative; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; isolation: isolate;
-  border-radius: 6px; background: #efe7d8;
-  box-shadow: 0 26px 50px -32px #3e2d0e66, 0 0 0 1px #e6d7b8;
-  transition: transform 500ms cubic-bezier(.22,.7,.25,1), box-shadow 500ms ease;
+.card {
+  grid-column: span 2; padding: 10px; border: 1.5px solid transparent; border-radius: 20px;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;
+  box-shadow: 0 36px 60px -44px #3e2d0e8c;
+  transition: translate 500ms cubic-bezier(.22,.7,.25,1), box-shadow 500ms ease;
 }
-.card:hover .photos { transform: translateY(-6px); box-shadow: 0 34px 60px -30px #3e2d0e80, 0 0 0 1px #d2b479; }
-/* Whole photo always visible (never cropped); a blurred copy fills the frame behind it */
+.card:nth-child(3n + 1):nth-last-child(2) { grid-column: 2 / span 2; }
+.card:nth-child(3n + 1):last-child { grid-column: 3 / span 2; }
+.card:hover { translate: 0 -6px; box-shadow: 0 48px 70px -42px #3e2d0ea6; }
+.photos { position: relative; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; isolation: isolate; border-radius: 11px; background: #efe7d8; }
 .layer { position: absolute; inset: 0; overflow: hidden; background: #efe7d8; }
-.layer + .layer { z-index: 1; }
-.backdrop { object-fit: cover; filter: blur(22px) brightness(.85); transform: scale(1.15); }
-.photo { object-fit: contain; }
+.layer + .layer { z-index: 1; will-change: clip-path; }
+.photo { object-fit: cover; }
 .labels {
   position: absolute; z-index: 2; inset: 0 0 auto; display: flex; justify-content: space-between;
-  padding: 1rem 1.1rem 2.25rem; pointer-events: none;
-  background: linear-gradient(#0000004d, transparent);
-  color: #fff; font-size: .6875rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: .85rem 1.1rem 2.5rem; pointer-events: none;
+  background: linear-gradient(#0000005c, transparent);
+  color: #fff; font-family: var(--font-display); font-size: 1.25rem; font-style: italic; font-weight: 500;
+  text-shadow: 0 1px 10px #00000059;
 }
-.divider { position: absolute; z-index: 3; top: 0; bottom: 0; width: 2px; translate: -1px 0; background: #fff; pointer-events: none; box-shadow: 0 0 10px #0003; }
+.divider { position: absolute; z-index: 3; top: 0; bottom: 0; width: 2px; translate: -1px 0; background: linear-gradient(#f6e8c3, #fff 50%, #f6e8c3); pointer-events: none; box-shadow: 0 0 14px #3e2d0e59; will-change: left; }
 .handle {
   position: absolute; left: 50%; top: 50%; display: grid; place-items: center; transform: translate(-50%, -50%);
-  width: 46px; height: 46px; border-radius: 50%; border: 1px solid #d9c28c; background: #fffdf8; color: #97712a;
-  box-shadow: 0 4px 22px #3e2d0e40;
+  width: 48px; height: 48px; border-radius: 50%; border: 2px solid #fff; background: linear-gradient(145deg, #dcb45e, #a77d2a); color: #fff;
+  box-shadow: 0 8px 22px #3e2d0e66, 0 0 0 5px #ffffff33;
 }
 .handle svg { width: 24px; height: 17px; }
 .range { position: absolute; z-index: 4; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
 .photos:has(.range:focus-visible) .handle { outline: 3px solid #a77d2a; outline-offset: 4px; }
 
-/* Empty slot for a future case */
-.empty { display: grid; place-content: center; justify-items: center; gap: .9rem; background: linear-gradient(160deg, #fdfaf4, #f4ecdc); box-shadow: inset 0 0 0 1px #e6d7b8; }
-.card:hover .empty { transform: none; box-shadow: inset 0 0 0 1px #e6d7b8; }
-.empty .labels { background: none; color: #b9a57c; }
-.emptyLine { position: absolute; inset: 0 auto 0 50%; width: 1px; background: linear-gradient(transparent, #dcc9a2 20%, #dcc9a2 80%, transparent); }
-.emptyTooth { position: relative; width: 46px; height: 46px; padding: 10px; box-sizing: content-box; border-radius: 50%; background: #fffdf8; color: #b08433; box-shadow: 0 0 0 1px #e3d2ad; }
-.emptyText { position: relative; padding: .35rem .6rem; background: #f8f1e3; color: #8a7a5c; font-family: var(--font-display); font-size: 1.2rem; font-style: italic; line-height: 1.25; text-align: center; }
+/* Smile Gallery page: no header, bigger cards (2 per row) on a warm wall */
+.page { padding: 4.5rem 0 6.5rem; background: linear-gradient(#fffcf6 0%, #f8f1e3 100%); }
+.page .inner { max-width: 1160px; }
+.page .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 3.2vw, 3.25rem); }
+.page .card, .page .card:nth-child(3n + 1):nth-last-child(2), .page .card:nth-child(3n + 1):last-child { grid-column: auto; padding: 12px; border-radius: 22px; }
+.page .photos { border-radius: 12px; }
+.page .labels { padding: 1.1rem 1.4rem 3rem; font-size: 1.45rem; }
+.page .handle { width: 58px; height: 58px; box-shadow: 0 8px 26px #3e2d0e66, 0 0 0 6px #ffffff33; }
+.page .handle svg { width: 28px; height: 20px; }
 
 @media (max-width: 1023px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card, .card:nth-child(3n + 1):nth-last-child(2), .card:nth-child(3n + 1):last-child { grid-column: auto; }
 }
 @media (max-width: 899px) {
   .section { padding-block: 4.5rem 5.5rem; }
   .inner { padding-inline: 24px; }
   .header { margin-bottom: 2.75rem; }
   .heading { font-size: clamp(2.7rem, 6.5vw, 4rem); }
+  .page { padding-block: 2.5rem 4.5rem; }
+  .page .inner { padding-inline: 20px; }
+  .page .grid { gap: 1.25rem; }
 }
+/* Phones: smaller cards, two per row, on both pages */
 @media (max-width: 539px) {
   .heading { font-size: clamp(2.45rem, 10.1vw, 3.4rem); }
   .intro { font-size: 1.05rem; }
-  .grid { grid-template-columns: 1fr; gap: 1.1rem; }
-  .labels { padding: .85rem 1rem 1.75rem; font-size: .625rem; }
-  .handle { width: 42px; height: 42px; }
+  .inner, .page .inner { padding-inline: 14px; }
+  .grid, .page .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .card, .page .card, .page .card:nth-child(3n + 1):nth-last-child(2), .page .card:nth-child(3n + 1):last-child { padding: 5px; border-radius: 12px; }
+  .photos, .page .photos { border-radius: 8px; }
+  .labels, .page .labels { padding: .4rem .55rem 1.1rem; font-size: .9rem; }
+  .handle, .page .handle { width: 30px; height: 30px; border-width: 1.5px; box-shadow: 0 3px 10px #3e2d0e66; }
+  .handle svg, .page .handle svg { width: 17px; height: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .photos { transition: none; }
-  .card:hover .photos { transform: none; }
+  .card { transition: none; }
+  .card:hover { translate: none; }
 }

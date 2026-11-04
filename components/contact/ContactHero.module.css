@@ -1,0 +1,27 @@
+/* Same family as the Smile Gallery title area: large centred heading on a warm wash */
+.section { padding: 4rem 0 4rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.inner { display: flex; flex-direction: column; align-items: center; max-width: 1000px; margin-inline: auto; padding-inline: 24px; text-align: center; }
+
+.crumbs ol { display: flex; align-items: center; gap: .5rem; margin: 0; padding: 0; list-style: none; font-size: .8rem; color: #6f675b; }
+.crumbs a { transition: color 250ms ease; }
+.crumbs a:hover { color: #a77d2a; }
+.crumbs [aria-current] { color: #8a6a24; font-weight: 700; }
+.chevron { display: inline-flex; color: #c39433; }
+.chevron svg { width: 12px; height: 12px; }
+
+.heading {
+  margin-top: 1.25rem; color: #3e2d0e; font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 5.5rem); font-weight: 500; line-height: 1.02; letter-spacing: -.035em;
+}
+.heading em { display: block; color: #a77d2a; font-style: italic; }
+.topics { display: flex; align-items: center; justify-content: center; gap: .6rem; margin-top: 1.1rem; color: #3e2d0e; font-size: 1.05rem; font-weight: 700; line-height: 1.5; }
+.topics svg { flex: none; width: 20px; height: 22px; color: #c39433; }
+.intro { max-width: 760px; margin-top: .7rem; color: #6f675b; font-size: 1.1rem; line-height: 1.7; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.6rem; }
+.actions svg { color: #25d366; }
+
+@media (max-width: 539px) {
+  .section { padding-block: 2.5rem; }
+  .intro { font-size: 1rem; }
+  .topics { font-size: .95rem; }
+}

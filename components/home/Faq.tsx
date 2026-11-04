@@ -4,7 +4,9 @@ import { clinic } from "@/content/site";
 import { GoldButton } from "@/components/ui";
 import styles from "./Faq.module.css";
 
-export default function Faq() {
+const HOME_PHOTO = { src: "/images/faq-dentist-explaining.webp", alt: "Dentist explaining a treatment to a patient using a dental model" };
+
+export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { src: string; alt: string }; items?: { q: string; a: string }[] }) {
   return (
     <section id="faq" aria-labelledby="faq-heading" className={styles.section}>
       <div className={styles.inner}>
@@ -15,8 +17,8 @@ export default function Faq() {
           </h2>
           <div className={styles.photoFrame}>
             <Image
-              src="/images/faq-dentist-explaining.webp"
-              alt="Dentist explaining a treatment to a patient using a dental model"
+              src={photo.src}
+              alt={photo.alt}
               fill
               sizes="(min-width: 1280px) 500px, (min-width: 900px) 40vw, (min-width: 568px) 520px, calc(100vw - 48px)"
               className={styles.photo}
@@ -30,7 +32,7 @@ export default function Faq() {
 
         {/* Opening one question closes the others. */}
         <div className={styles.list}>
-          {faqs.map((f) => (
+          {items.map((f) => (
             <details key={f.q} name="faq" className={styles.item}>
               <summary className={styles.question}>
                 <span>{f.q}</span>
