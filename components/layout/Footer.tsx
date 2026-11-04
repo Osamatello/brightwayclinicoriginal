@@ -29,7 +29,7 @@ export default function Footer() {
       <footer className={styles.footer}>
         <div className={styles.inner}>
           <div className={styles.brand}>
-            <Image src="/images/logo.png" alt={t(clinic.name)} width={2953} height={1135} className={styles.logo} />
+            <Image src="/images/logo.png" alt={t(clinic.name)} width={2953} height={1135} sizes="200px" className={styles.logo} />
             <p className={styles.tagline}>{t("Good health begins with dental health.")}</p>
             <p className={styles.blurb}>{t("Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.")}</p>
           </div>

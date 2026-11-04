@@ -33,9 +33,6 @@ html[dir="rtl"] body * {
   font-style: normal !important;
   letter-spacing: 0 !important;
 }
-html[dir="rtl"] svg:has(> path[d="M5 12h14M13 6l6 6-6 6"]) {
-  scale: -1 1;
-}
 [type="tel"], input[type="email"]) {
   direction: ltr;
   text-align: right;

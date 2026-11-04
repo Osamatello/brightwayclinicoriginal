@@ -107,7 +107,7 @@ export default function Contact({ page = false }: { page?: boolean }) {
               <span>{icons.message}{t("Message")}</span>
               <textarea name="message" rows={2} />
             </label>
-            <button type="submit" className={styles.send}>{t("Send")}{" "}<span className={styles.sendArrow}>{icons.arrow}</span>
+            <button type="submit" className={styles.send}>{t("Send")}{" "}<span className={`rtl:-scale-x-100 ${styles.sendArrow}`}>{icons.arrow}</span>
             </button>
           </LeadFormShell>
 

@@ -37,7 +37,8 @@ const nextConfig: NextConfig = {
   // WordPress URLs end with "/" — keep every old URL identical (plan D5)
   trailingSlash: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF files are smaller but take several times longer to decode, which caused pauses while scrolling
+    formats: ["image/webp"],
   },
   async headers() {
     const headers = allowIndexing ? securityHeaders : [...securityHeaders, { key: "X-Robots-Tag", value: "noindex, nofollow" }];
