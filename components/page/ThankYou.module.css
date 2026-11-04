@@ -1,4 +1,4 @@
-.section { padding: 5rem 24px 6rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.section { position: relative; overflow: hidden; isolation: isolate; padding: 5rem 24px 6rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
 .card {
   max-width: 820px; margin-inline: auto; padding: clamp(2.25rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem); border: 1.5px solid transparent; border-radius: 24px; text-align: center;
   background: linear-gradient(#fff, #fff) padding-box, linear-gradient(150deg, #efd28c, #c39433 40%, #f6e8c3 68%, #a77d2a) border-box;

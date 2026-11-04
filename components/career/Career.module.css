@@ -1,5 +1,5 @@
 /* Title area: same family as Smile Gallery and Contact us */
-.hero { padding: 4.5rem 0 4.25rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.hero { position: relative; overflow: hidden; isolation: isolate; padding: 4.5rem 0 4.25rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
 .heroInner { display: flex; flex-direction: column; align-items: center; max-width: 1040px; margin-inline: auto; padding-inline: 24px; text-align: center; }
 .crumbs ol { display: flex; align-items: center; gap: .5rem; margin: 0; padding: 0; list-style: none; font-size: .8rem; color: #6f675b; }
 .crumbs a { transition: color 250ms ease; }

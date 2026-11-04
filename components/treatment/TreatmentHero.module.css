@@ -1,7 +1,5 @@
 /* "Dental lightbox": text on a cream wash, the treatment photo pinned in a softly glowing film viewer with two gold clips */
-.section { position: relative; overflow: hidden; padding: 3rem 0 3.5rem; background: linear-gradient(#f7f0e3, #fbf7ef); }
-/* scattered faint tooth outlines (positions set inline in TreatmentHero.tsx) */
-.scatter { position: absolute; pointer-events: none; fill: none; stroke: #b68a37; stroke-width: .7; opacity: .55; }
+.section { position: relative; overflow: hidden; isolation: isolate; padding: 3rem 0 3.5rem; background: linear-gradient(#f7f0e3, #fbf7ef); }
 .inner {
   position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 360px; align-items: center; gap: clamp(2.5rem, 6vw, 6rem);
   max-width: 1200px; margin-inline: auto; padding-inline: 24px;
@@ -45,5 +43,4 @@
   .heading { font-size: clamp(2.5rem, 11vw, 3.2rem); }
   .intro { font-size: 1rem; }
   .viewer { padding: 12px; }
-  .scatter { scale: .65; }
 }

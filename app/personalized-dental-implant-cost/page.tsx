@@ -5,6 +5,7 @@ import LeadForm from "@/components/page/LeadForm";
 import { nameFields } from "@/content/forms";
 import { Arrow, GoldButton } from "@/components/ui";
 import { Instagram, Videos } from "@/components/home/Media";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "@/components/landing/Landing.module.css";
 
 const PAGE_ID = 2652;
@@ -29,6 +30,7 @@ export default function ImplantCostPage() {
   return (
     <>
       <section className={styles.hero}>
+        <ScatteredTeeth />
         <div className={styles.heroInner}>
           <div>
             <p className={styles.brand}>Bright Way Dental Clinic</p>

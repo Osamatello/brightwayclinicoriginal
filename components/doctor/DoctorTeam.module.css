@@ -1,0 +1,21 @@
+.section { padding: 4.5rem 0; background: #fbf7ef; }
+.team { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding-inline: 24px; list-style: none; }
+.card { display: flex; align-items: center; gap: 1.75rem; padding: 1.75rem; border-radius: 12px; background: #fff; box-shadow: 0 0 0 1px #efe5d1, 0 24px 50px -38px #3e2d0e80; }
+
+.ring {
+  position: relative; flex: none; width: 168px; aspect-ratio: 1; overflow: hidden; border-radius: 50%; border: 3px solid transparent;
+  background: linear-gradient(#1c1914, #1c1914) padding-box, linear-gradient(160deg, #f1d68e, #a77d2a 50%, #e8c77a) border-box;
+}
+.photo { object-fit: cover; object-position: 50% 15%; }
+
+.name { color: #3e2d0e; font-family: var(--font-display); font-size: clamp(1.6rem, 2.2vw, 2rem); font-weight: 500; line-height: 1.12; letter-spacing: -.015em; text-wrap: balance; }
+.role { margin-top: .6rem; color: #6f675b; font-size: 1rem; line-height: 1.6; }
+
+@media (max-width: 899px) {
+  .team { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 539px) {
+  .section { padding-block: 3rem; }
+  .card { flex-direction: column; text-align: center; gap: 1.25rem; padding: 1.5rem; }
+  .ring { width: 148px; }
+}

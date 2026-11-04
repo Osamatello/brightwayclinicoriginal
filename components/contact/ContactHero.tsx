@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { clinic } from "@/content/site";
 import { OutlineButton, WhatsAppIcon } from "@/components/ui";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./ContactHero.module.css";
 
 /** Contact page title area. Text word for word from the old page. */
 export default function ContactHero() {
   return (
     <section className={styles.section}>
+      <ScatteredTeeth />
       <div className={styles.inner}>
         <nav aria-label="Breadcrumb" className={styles.crumbs}>
           <ol>

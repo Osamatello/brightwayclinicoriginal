@@ -1,6 +1,7 @@
 import { clinic } from "@/content/site";
 import { Check, GoldButton, OutlineButton, WhatsAppIcon } from "@/components/ui";
 import { PixelEvents } from "@/components/tracking/MetaPixel";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./ThankYou.module.css";
 
 const conversionEvents = ["Lead", "CompleteRegistration"];
@@ -9,6 +10,7 @@ const conversionEvents = ["Lead", "CompleteRegistration"];
 export default function ThankYou({ message }: { message: string }) {
   return (
     <section className={styles.section}>
+      <ScatteredTeeth />
       <PixelEvents events={conversionEvents} />
       <div className={styles.card}>
         <span className={styles.check}>

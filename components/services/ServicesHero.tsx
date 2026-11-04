@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./ServicesHero.module.css";
 
 // Generated as one set (same clinic, light and colours as the service photos); originals in design/services-hub-candidates/
@@ -12,6 +13,7 @@ const photos = [
 export default function ServicesHero() {
   return (
     <section className={styles.section}>
+      <ScatteredTeeth />
       <div className={styles.inner}>
         <div className={styles.copyCol}>
           <nav aria-label="Breadcrumb" className={styles.crumbs}>

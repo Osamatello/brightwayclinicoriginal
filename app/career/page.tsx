@@ -6,6 +6,7 @@ import { getById, seoMetadata } from "@/lib/content";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import LeadForm from "@/components/page/LeadForm";
 import { nameFields } from "@/content/forms";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "@/components/career/Career.module.css";
 
 const CAREER_ID = 620;
@@ -45,6 +46,7 @@ export default function CareerPage() {
       <BreadcrumbSchema items={[{ name: "Career", path: "/career/" }]} />
 
       <section className={styles.hero}>
+        <ScatteredTeeth />
         <div className={styles.heroInner}>
           <nav aria-label="Breadcrumb" className={styles.crumbs}>
             <ol>

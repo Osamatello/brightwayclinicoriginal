@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./PostHero.module.css";
 
 /** Blog post title area: same light look as the blog list, left edge lined up with the article below. */
@@ -11,6 +12,7 @@ export default function PostHero({ title, meta }: { title: string; meta: string 
 
   return (
     <section className={styles.section}>
+      <ScatteredTeeth />
       <div className={styles.inner}>
         <nav aria-label="Breadcrumb" className={styles.crumbs}>
           <ol>

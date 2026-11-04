@@ -1,7 +1,7 @@
 /* Shared look of the two ad landing pages: warm wash, serif headings, white cards with a gold edge */
 
 /* Title area: text beside a framed picture */
-.hero { padding: 4rem 0 4.5rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
+.hero { position: relative; overflow: hidden; isolation: isolate; padding: 4rem 0 4.5rem; background: linear-gradient(180deg, #fff6e2 0%, #fffcf6 100%); }
 .heroInner { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(2.5rem, 5vw, 5rem); max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
 .brand { color: #8a6a24; font-size: 1rem; font-weight: 700; }
 .heading { margin-top: .8rem; color: #3e2d0e; font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 4.75rem); font-weight: 500; line-height: 1.03; letter-spacing: -.03em; }

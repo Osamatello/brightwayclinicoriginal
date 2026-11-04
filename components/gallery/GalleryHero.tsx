@@ -1,9 +1,11 @@
 import Link from "next/link";
+import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./GalleryHero.module.css";
 
 export default function GalleryHero() {
   return (
     <section className={styles.section}>
+      <ScatteredTeeth />
       <div className={styles.inner}>
         <nav aria-label="Breadcrumb" className={styles.crumbs}>
           <ol>
