@@ -50,8 +50,9 @@ export async function POST(req: Request) {
   });
   const message = [`New enquiry from ${text("page", 200) || "the website"}`, "", ...lines].join("\n");
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // trim: a space pasted into the Vercel value makes Telegram refuse the request
+  const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
+  const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
   if (!token || !chatId) {
     console.error("Lead form: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is not set");
     return reply(503);
@@ -66,7 +67,9 @@ export async function POST(req: Request) {
       signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) {
-      console.error(`Lead form: Telegram answered ${res.status}`);
+      // Telegram's reason only (e.g. "chat not found"), never the enquiry itself
+      const reason = await res.json().then((r) => r.description, () => "");
+      console.error(`Lead form: Telegram answered ${res.status} ${reason}`);
       return reply(502);
     }
   } catch {
