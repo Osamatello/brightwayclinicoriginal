@@ -54,11 +54,11 @@
 }
 .row {
   position: relative; display: flex; align-items: center; gap: 1rem; width: 100%; padding: .5rem 1rem .5rem .5rem;
-  border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px #ebdfc8; text-align: left; cursor: pointer;
+  border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px #ebdfc8; text-align: start; cursor: pointer;
   transition: box-shadow 300ms ease, background 300ms ease, translate 300ms ease;
 }
-.row::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: #c39433; transform: scaleY(0); transition: transform 350ms ease; }
-.row:hover { box-shadow: inset 0 0 0 1px #d9c28c; translate: 4px 0; }
+.row::before { content: ""; position: absolute; inset-inline-start: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 2px; background: #c39433; transform: scaleY(0); transition: transform 350ms ease; }
+.row:hover { box-shadow: inset 0 0 0 1px #d9c28c; translate: calc(4px * var(--dir, 1)) 0; }
 .row[aria-pressed="true"] { background: #fbf4e4; box-shadow: inset 0 0 0 1px #d9c28c, 0 18px 36px -28px #3e2d0e66; }
 .row[aria-pressed="true"]::before { transform: scaleY(1); }
 .row:focus-visible { outline: 2px solid #a77d2a; outline-offset: 2px; }
@@ -88,7 +88,7 @@
   .list > li { flex: 0 0 min(66vw, 280px); scroll-snap-align: start; }
   .row { flex-direction: column; align-items: stretch; height: 100%; padding: .5rem .5rem .9rem; }
   .row:hover { translate: none; }
-  .row::before { left: 10px; right: 10px; top: auto; bottom: 0; width: auto; height: 3px; transform: scaleX(0); }
+  .row::before { inset-inline-start: 10px; inset-inline-end: 10px; top: auto; bottom: 0; width: auto; height: 3px; transform: scaleX(0); }
   .row[aria-pressed="true"]::before { transform: scaleX(1); }
   .thumb { width: 100%; }
   .rowText { padding-inline: .35rem; }

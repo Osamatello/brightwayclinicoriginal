@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { instagramPosts } from "@/content/home";
@@ -30,23 +31,21 @@ export function Instagram() {
     <section id="instagram" aria-labelledby="instagram-heading" className={ig.section}>
       <div className={ig.inner}>
         <header className={ig.header}>
-          <h2 id="instagram-heading" className={ig.heading}>
-            Follow on <span>Instagram</span>
+          <h2 id="instagram-heading" className={ig.heading}>{t("Follow on")}{" "}<span>{t("Instagram")}</span>
           </h2>
           <a href={clinic.social.instagram} className={ig.handle}>
-            <span className={ig.ring}><InstagramGlyph className={ig.ringIcon} /></span>
-            @dr.hasanmahdy <Arrow />
+            <span className={ig.ring}><InstagramGlyph className={ig.ringIcon} /></span>{t("@dr.hasanmahdy")}{" "}<Arrow />
           </a>
         </header>
         {/* Real reels fanned like a hand of cards; each opens its own reel */}
-        <div className={ig.deck}>
+        <div dir="ltr" className={ig.deck}>
           {instagramPosts.map((p, i) => {
             const offset = i - (instagramPosts.length - 1) / 2; // -3 … 3
             const style = { "--o": offset, "--abs": Math.abs(offset) } as CSSProperties;
             return (
-              <a key={p.code} href={p.href} target="_blank" rel="noopener noreferrer" className={ig.card} style={style}>
+              <a key={p.code} href={l(p.href)} target="_blank" rel="noopener noreferrer" className={ig.card} style={style}>
                 <span className={ig.frame}>
-                  <Image src={p.src} alt="Dr. Hasan Mahdy reel on Instagram" fill sizes="(min-width: 900px) 230px, 62vw" className={ig.photo} />
+                  <Image src={p.src} alt={t("Dr. Hasan Mahdy reel on Instagram")} fill sizes="(min-width: 900px) 230px, 62vw" className={ig.photo} />
                   <ReelGlyph className={ig.reelBadge} />
                   <span className={ig.play}><PlayIcon className={ig.playIcon} /></span>
                 </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { nav } from "@/content/site";
@@ -18,19 +19,20 @@ export function useActiveNav(sections: NavSections) {
 
 /** Desktop menu; the page you are on is shown in gold with a gold underline. About, Services and Blog drop a list on hover or keyboard focus. */
 export default function NavLinks({ sections, lists }: { sections: NavSections; lists: NavLists }) {
+  const { l, t } = useI18n();
   const isActive = useActiveNav(sections);
   const pathname = usePathname();
   return (
-    <nav aria-label="Main" className="hidden gap-x-6 whitespace-nowrap text-sm font-semibold text-brown-dark xl:flex">
+    <nav aria-label={t("Main")} className="hidden gap-x-6 whitespace-nowrap text-sm font-semibold text-brown-dark xl:flex">
       {nav.map((item) => {
         const active = isActive(item.href);
         const link = (
           <Link
-            href={item.href}
+            href={l(item.href)}
             aria-current={active ? "page" : undefined}
             className={`transition hover:text-gold-dark ${active ? "text-gold-dark underline decoration-gold decoration-2 underline-offset-[6px]" : ""}`}
           >
-            {item.label}
+            {t(item.label)}
           </Link>
         );
         const children = item.children ?? lists[item.href];
@@ -47,7 +49,7 @@ export default function NavLinks({ sections, lists }: { sections: NavSections; l
               <ul data-lenis-prevent={long || undefined} className={`${styles.list} ${long ? styles.longList : children.length > 6 ? styles.twoColumns : ""}`}>
                 {children.map((child) => (
                   <li key={child.href}>
-                    <Link href={child.href}>{child.label}</Link>
+                    <Link href={l(child.href)}>{t(child.label)}</Link>
                   </li>
                 ))}
               </ul>

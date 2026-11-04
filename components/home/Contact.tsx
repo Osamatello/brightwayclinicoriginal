@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import type { ReactNode } from "react";
 import { clinic } from "@/content/site";
 import { socialIcons } from "@/components/layout/Footer";
@@ -49,10 +50,10 @@ export default function Contact({ page = false }: { page?: boolean }) {
         <div key={item.label} className={styles.infoItem}>
           <span className={styles.infoIcon}>{item.icon}</span>
           <div>
-            <dt className={styles.infoLabel}>{item.label}</dt>
+            <dt className={styles.infoLabel}>{t(item.label)}</dt>
             {item.lines.map((line) => (
               <dd key={line.text} className={styles.infoValue}>
-                {line.href ? <a href={line.href}>{line.text}</a> : line.text}
+                {line.href ? <a href={l(line.href)}>{t(line.text)}</a> : t(line.text)}
               </dd>
             ))}
           </div>
@@ -67,12 +68,9 @@ export default function Contact({ page = false }: { page?: boolean }) {
         {!page && (
           <>
             <header className={styles.header}>
-              <h2 id="contact-heading" className={styles.heading}>
-                Get In Touch <span>with Our Team</span>
+              <h2 id="contact-heading" className={styles.heading}>{t("Get In Touch")}{" "}<span>{t("with Our Team")}</span>
               </h2>
-              <p className={styles.intro}>
-                Have questions or need to schedule an appointment? Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit.
-              </p>
+              <p className={styles.intro}>{t("Have questions or need to schedule an appointment? Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit.")}</p>
             </header>
             {details}
           </>
@@ -82,43 +80,41 @@ export default function Contact({ page = false }: { page?: boolean }) {
           {/* Booking card */}
           <LeadFormShell className={styles.form}>
             <svg aria-hidden="true" viewBox="0 0 32 32" className={styles.watermark}><path d={TOOTH} /></svg>
-            <FormTitle className={styles.formTitle}>
-              Book Your <span>Appointment Now</span>
+            <FormTitle className={styles.formTitle}>{t("Book Your")}{" "}<span>{t("Appointment Now")}</span>
             </FormTitle>
-            <p className={styles.formNote}>Please fill the form below and our team will contact you as soon as possible.</p>
+            <p className={styles.formNote}>{t("Please fill the form below and our team will contact you as soon as possible.")}</p>
             <div className={styles.pair}>
               <label className={styles.field}>
-                <span>{icons.user}First name</span>
+                <span>{icons.user}{t("First name")}</span>
                 <input name="fname" autoComplete="given-name" required />
               </label>
               <label className={styles.field}>
-                <span>{icons.user}Last name</span>
+                <span>{icons.user}{t("Last name")}</span>
                 <input name="lname" autoComplete="family-name" />
               </label>
             </div>
             <div className={styles.pair}>
               <label className={styles.field}>
-                <span>{icons.phone}{page ? "Phone Number" : "Phone"}</span>
+                <span>{icons.phone}{t(page ? "Phone Number" : "Phone")}</span>
                 <input name="phone" type="tel" autoComplete="tel" required />
               </label>
               <label className={styles.field}>
-                <span>{icons.mail}Email</span>
+                <span>{icons.mail}{t("Email")}</span>
                 <input name="email" type="email" autoComplete="email" />
               </label>
             </div>
             <label className={styles.field}>
-              <span>{icons.message}Message</span>
+              <span>{icons.message}{t("Message")}</span>
               <textarea name="message" rows={2} />
             </label>
-            <button type="submit" className={styles.send}>
-              Send <span className={styles.sendArrow}>{icons.arrow}</span>
+            <button type="submit" className={styles.send}>{t("Send")}{" "}<span className={styles.sendArrow}>{icons.arrow}</span>
             </button>
           </LeadFormShell>
 
           {/* Landscape map in a gold frame */}
           <div className={styles.map}>
             <iframe
-              title="Bright Way Dental Clinic on Google Maps"
+              title={t("Bright Way Dental Clinic on Google Maps")}
               src={clinic.mapEmbed}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -128,14 +124,14 @@ export default function Contact({ page = false }: { page?: boolean }) {
 
         {page && (
           <div className={styles.reach}>
-            <h2 id="contact-heading" className={styles.reachHeading}>Contact Us</h2>
+            <h2 id="contact-heading" className={styles.reachHeading}>{t("Contact Us")}</h2>
             {details}
-            <p className={styles.stay}>Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.</p>
+            <p className={styles.stay}>{t("Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.")}</p>
             <div className={styles.social}>
               {Object.entries(clinic.social).map(([name, href]) => (
-                <a key={name} href={href} className={styles.socialLink}>
+                <a key={name} href={l(href)} className={styles.socialLink}>
                   {socialIcons[name]}
-                  {name}
+                  {t(name)}
                 </a>
               ))}
             </div>

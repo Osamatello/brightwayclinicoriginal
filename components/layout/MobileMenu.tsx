@@ -1,5 +1,7 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
+import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import Link from "next/link";
 import { useEffect, useState, type MouseEvent } from "react";
 import { clinic, nav } from "@/content/site";
@@ -10,6 +12,7 @@ const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 
 /** Below xl (1280px): call button + menu button that opens the full menu under the header. */
 export default function MobileMenu({ sections, lists }: { sections: NavSections; lists: NavLists }) {
+  const { l, t } = useI18n();
   const [open, setOpen] = useState(false);
   const [openList, setOpenList] = useState<string | null>(null);
   const isActive = useActiveNav(sections);
@@ -30,14 +33,14 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
 
   return (
     <div className="flex items-center gap-2 xl:hidden">
-      <a href={`tel:${clinic.phone}`} aria-label={`Call ${clinic.phoneDisplay}`} className={`${iconButton} border border-line text-gold-dark`}>
+      <a href={`tel:${clinic.phone}`} aria-label={`${t("Call")} ${clinic.phoneDisplay}`} className={`${iconButton} border border-line text-gold-dark`}>
         <PhoneIcon />
       </a>
       <button
         type="button"
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={t(open ? "Close menu" : "Open menu")}
         onClick={() => setOpen((o) => !o)}
         className={`${iconButton} bg-gold-gradient text-white shadow-[0_10px_30px_-12px_rgba(125,97,32,0.8)]`}
       >
@@ -51,14 +54,14 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
           onClick={closeOnLink}
           className="absolute inset-x-0 top-full h-[calc(100dvh-73px)] overflow-y-auto border-t border-line bg-cream px-5 pb-12 pt-2 md:h-[calc(100dvh-81px)] lg:h-[calc(100dvh-117px)]"
         >
-          <nav aria-label="Main" className="flex flex-col">
+          <nav aria-label={t("Main")} className="flex flex-col">
             {nav.map((item) => {
               const color = isActive(item.href) ? "text-gold-dark" : "text-brown-dark";
               const children = item.children ?? lists[item.href];
               if (!children) {
                 return (
-                  <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${color}`}>
-                    {item.label} <Arrow className="h-4 w-4 text-gold-dark" />
+                  <Link key={item.href} href={l(item.href)} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${color}`}>
+                    {t(item.label)} <Arrow className="h-4 w-4 text-gold-dark" />
                   </Link>
                 );
               }
@@ -66,13 +69,13 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
               return (
                 <div key={item.href} className="border-b border-line">
                   <div className="flex items-center justify-between">
-                    <Link href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex-1 py-4 text-lg font-bold ${color}`}>
-                      {item.label}
+                    <Link href={l(item.href)} aria-current={isActive(item.href) ? "page" : undefined} className={`flex-1 py-4 text-lg font-bold ${color}`}>
+                      {t(item.label)}
                     </Link>
                     <button
                       type="button"
                       aria-expanded={expanded}
-                      aria-label={`${item.label} pages`}
+                      aria-label={`${t(item.label)} ${t("pages")}`}
                       onClick={() => setOpenList(expanded ? null : item.href)}
                       className="flex h-11 w-11 items-center justify-center text-gold-dark"
                     >
@@ -85,8 +88,8 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
                     <ul className="pb-3">
                       {children.map((child) => (
                         <li key={child.href}>
-                          <Link href={child.href} aria-current={isActive(child.href) ? "page" : undefined} className={`block py-2.5 pl-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
-                            {child.label}
+                          <Link href={l(child.href)} aria-current={isActive(child.href) ? "page" : undefined} className={`block py-2.5 ps-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
+                            {t(child.label)}
                           </Link>
                         </li>
                       ))}
@@ -95,21 +98,16 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
                 </div>
               );
             })}
-            <Link href="/ar/" lang="ar" dir="rtl" className="border-b border-line py-4 text-lg font-bold text-gold-dark">
-              العربية
-            </Link>
+            <LanguageSwitch className="border-b border-line py-4 text-lg font-bold text-gold-dark" />
           </nav>
-          <GoldButton href="/contact-us/" className="mt-6 w-full">
-            Book an Appointment
-          </GoldButton>
+          <GoldButton href={l("/contact-us/")} className="mt-6 w-full">{t("Book an Appointment")}</GoldButton>
           <div className="mt-8 space-y-2 text-sm text-ink">
-            <a href={`tel:${clinic.phone}`} className="block font-bold text-brown-dark">{clinic.phoneDisplay}</a>
-            <a href={`tel:${clinic.landline}`} className="block font-bold text-brown-dark">{clinic.landlineDisplay}</a>
-            <p>{clinic.hours}</p>
-            <p>{clinic.address}</p>
+            <a href={`tel:${clinic.phone}`} className="block font-bold text-brown-dark">{t(clinic.phoneDisplay)}</a>
+            <a href={`tel:${clinic.landline}`} className="block font-bold text-brown-dark">{t(clinic.landlineDisplay)}</a>
+            <p>{t(clinic.hours)}</p>
+            <p>{t(clinic.address)}</p>
             <a href={clinic.whatsapp} className="inline-flex items-center gap-2 pt-2 font-bold text-gold-dark">
-              <WhatsAppIcon /> WhatsApp us
-            </a>
+              <WhatsAppIcon />{" "}{t("WhatsApp us")}</a>
           </div>
         </div>
       )}

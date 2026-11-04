@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Image from "next/image";
 import { googleReviews, testimonials } from "@/content/home";
 import { getGoogleReviews, type GoogleReview } from "@/lib/googleReviews";
@@ -20,17 +21,16 @@ export default async function Testimonials() {
     <section aria-labelledby="testimonials-heading" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.top}>
-          <h2 id="testimonials-heading" className={styles.heading}>
-            The Honest <span>Patient Testimonials</span>
+          <h2 id="testimonials-heading" className={styles.heading}>{t("The Honest")}{" "}<span>{t("Patient Testimonials")}</span>
           </h2>
 
-          <div className={styles.score} role="group" aria-label="Google rating">
+          <div className={styles.score} role="group" aria-label={t("Google rating")}>
             <p className={styles.rating}>{rating.toFixed(1)}</p>
             <div className={styles.scoreDetails}>
               <Stars count={5} className={styles.scoreStars} />
-              <p className={styles.based}>Based on {count} reviews</p>
-              <a href={googleReviews.url} target="_blank" rel="noopener noreferrer" className={styles.allLink}>
-                <GoogleIcon /> Read all reviews on Google <Arrow />
+              <p className={styles.based}>{t("Based on")}{" "}{t(count)}{" "}{t("reviews")}</p>
+              <a href={l(googleReviews.url)} target="_blank" rel="noopener noreferrer" className={styles.allLink}>
+                <GoogleIcon />{" "}{t("Read all reviews on Google")}{" "}<Arrow />
               </a>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default async function Testimonials() {
             <figure key={card.author + card.text.slice(0, 20)} className={styles.review}>
               <span aria-hidden="true" className={styles.quoteMark}>&ldquo;</span>
               <Stars count={card.rating} className={styles.stars} />
-              <blockquote className={styles.text} lang={card.lang} dir={card.lang === "ar" ? "rtl" : undefined}>{card.text}</blockquote>
+              <blockquote className={styles.text} lang={card.lang} dir={card.lang === "ar" ? "rtl" : undefined}>{t(card.text)}</blockquote>
               <figcaption className={styles.author}>
                 {card.photo ? (
                   <Image src={card.photo} alt="" width={104} height={104} className={styles.avatar} />
@@ -50,12 +50,12 @@ export default async function Testimonials() {
                 )}
                 <span>
                   {card.authorUrl ? (
-                    <a href={card.authorUrl} target="_blank" rel="noopener noreferrer" className={styles.name}>{card.author}</a>
+                    <a href={l(card.authorUrl)} target="_blank" rel="noopener noreferrer" className={styles.name}>{t(card.author)}</a>
                   ) : (
-                    <span className={styles.name}>{card.author}</span>
+                    <span className={styles.name}>{t(card.author)}</span>
                   )}
                   <span className={styles.meta}>
-                    {card.source === "google" ? <><GoogleIcon small /> Google review{card.when ? ` · ${card.when}` : ""}</> : "Bright Way patient"}
+                    {card.source === "google" ? <><GoogleIcon small />{" "}{t("Google review")}{card.when ? ` · ${card.when}` : ""}</> : "Bright Way patient"}
                   </span>
                 </span>
               </figcaption>
@@ -69,7 +69,7 @@ export default async function Testimonials() {
 
 function Stars({ count, className }: { count: number; className: string }) {
   return (
-    <span className={className} role="img" aria-label={`${count} out of 5 stars`}>
+    <span className={className} role="img" aria-label={`${count} ${t("out of 5 stars")}`}>
       {Array.from({ length: 5 }, (_, i) => (
         <svg key={i} aria-hidden="true" viewBox="0 0 20 20" fill={i < count ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1">
           <path d="M10 1.8l2.5 5.2 5.7.8-4.1 4 1 5.6L10 14.7l-5.1 2.7 1-5.6-4.1-4 5.7-.8z" />

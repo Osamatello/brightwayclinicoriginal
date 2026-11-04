@@ -38,7 +38,7 @@
   border-bottom: 1px solid #d9c28c; color: #8a6a24; font-size: .9rem; font-weight: 700;
 }
 .more svg { width: 15px; height: 15px; transition: translate 300ms ease; }
-.card:hover .more svg { translate: 3px 0; }
+.card:hover .more svg { translate: calc(3px * var(--dir, 1)) 0; }
 
 @media (max-width: 1023px) {
   .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }

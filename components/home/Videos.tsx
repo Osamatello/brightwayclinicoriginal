@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
 import { useState } from "react";
 import Image from "next/image";
 import { videos } from "@/content/home";
@@ -12,6 +13,7 @@ import styles from "./Videos.module.css";
  * The video plays on the page, but the YouTube player (youtube-nocookie) only loads after the visitor presses play.
  */
 export default function Videos() {
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
   const v = videos[active];
@@ -21,11 +23,9 @@ export default function Videos() {
     <section id="videos" aria-labelledby="videos-heading" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="videos-heading" className={styles.heading}>
-            Watch &amp; learn about <span>your treatment</span>
+          <h2 id="videos-heading" className={styles.heading}>{t("Watch & learn about")}{" "}<span>{t("your treatment")}</span>
           </h2>
-          <GoldButton href={clinic.social.youtube}>
-            Subscribe <Arrow />
+          <GoldButton href={clinic.social.youtube}>{t("Subscribe")}{" "}<Arrow />
           </GoldButton>
         </header>
 
@@ -37,22 +37,22 @@ export default function Videos() {
                 {playing ? (
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0&playsinline=1`}
-                    title={v.title}
+                    title={t(v.title)}
                     allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
                     allowFullScreen
                     className={styles.player}
                   />
                 ) : (
-                  <button type="button" onClick={() => setPlaying(true)} className={styles.cover} aria-label={`Play: ${v.title}`}>
-                    <Image src={thumb(v.id)} alt={v.title} fill sizes="(min-width: 900px) 640px, 92vw" className={styles.screenImg} />
+                  <button type="button" onClick={() => setPlaying(true)} className={styles.cover} aria-label={`${t("Play:")} ${t(v.title)}`}>
+                    <Image src={thumb(v.id)} alt={t(v.title)} fill sizes="(min-width: 900px) 640px, 92vw" className={styles.screenImg} />
                     <span className={styles.play}><PlayIcon className={styles.playIcon} /></span>
                   </button>
                 )}
               </span>
             </div>
             <div className={styles.caption}>
-              <span className={styles.lang}>{v.lang}</span>
-              <p className={styles.title}>{v.title}</p>
+              <span className={styles.lang}>{t(v.lang)}</span>
+              <p className={styles.title}>{t(v.title)}</p>
             </div>
           </div>
 
@@ -67,8 +67,8 @@ export default function Videos() {
                       <PlayIcon className={styles.thumbPlay} />
                     </span>
                     <span className={styles.rowText}>
-                      <span className={styles.rowTitle}>{item.title}</span>
-                      <span className={styles.lang}>{item.lang}</span>
+                      <span className={styles.rowTitle}>{t(item.title)}</span>
+                      <span className={styles.lang}>{t(item.lang)}</span>
                     </span>
                   </button>
                 </li>

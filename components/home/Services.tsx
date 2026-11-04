@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Link from "next/link";
 import { services, topServiceHrefs } from "@/content/home";
 import { Arrow } from "@/components/ui";
@@ -11,12 +12,9 @@ export default function Services() {
     <section data-home-grid className="scroll-mt-28 bg-white py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
-          <h2 className="max-w-2xl font-display text-5xl font-medium leading-[0.95] text-brown-dark md:text-6xl">
-            Explore Our <em className="text-gold">Dental Services in Dubai</em>
+          <h2 className="max-w-2xl font-display text-5xl font-medium leading-[0.95] text-brown-dark md:text-6xl">{t("Explore Our")}{" "}<em className="text-gold">{t("Dental Services in Dubai")}</em>
           </h2>
-          <p className="max-w-sm leading-relaxed">
-            From a routine check-up to a complete smile makeover — eleven specialties under one roof. These are the treatments our patients ask for most.
-          </p>
+          <p className="max-w-sm leading-relaxed">{t("From a routine check-up to a complete smile makeover — eleven specialties under one roof. These are the treatments our patients ask for most.")}</p>
         </div>
 
         {/* phones: swipe sideways · md: 2 columns · lg: 4 columns */}
@@ -29,8 +27,7 @@ export default function Services() {
         </ul>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/services/" className="inline-flex min-h-12 items-center gap-3 rounded-full border border-gold px-7 text-sm font-bold text-gold-dark transition hover:bg-gold-soft">
-            View all {services.length} treatments <Arrow />
+          <Link href={l("/services/")} className="inline-flex min-h-12 items-center gap-3 rounded-full border border-gold px-7 text-sm font-bold text-gold-dark transition hover:bg-gold-soft">{t("View all")}{" "}{t(services.length)}{" "}{t("treatments")}{" "}<Arrow />
           </Link>
         </div>
       </div>

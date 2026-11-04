@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { faqs } from "@/content/home";
 import { clinic } from "@/content/site";
@@ -12,21 +13,20 @@ export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { sr
       <div className={styles.inner}>
         {/* Left: heading, photo filling the column, call line. Right: questions. */}
         <div className={styles.side}>
-          <h2 id="faq-heading" className={styles.heading}>
-            Frequently Asked <span>Questions</span>
+          <h2 id="faq-heading" className={styles.heading}>{t("Frequently Asked")}{" "}<span>{t("Questions")}</span>
           </h2>
           <div className={styles.photoFrame}>
             <Image
               src={photo.src}
-              alt={photo.alt}
+              alt={t(photo.alt)}
               fill
               unoptimized
               className={styles.photo}
             />
           </div>
           <div className={styles.still}>
-            <span>Still have a question?</span>
-            <GoldButton href={`tel:${clinic.phone}`}>Call {clinic.phoneDisplay}</GoldButton>
+            <span>{t("Still have a question?")}</span>
+            <GoldButton href={`tel:${clinic.phone}`}>{t("Call")}{" "}{t(clinic.phoneDisplay)}</GoldButton>
           </div>
         </div>
 
@@ -35,10 +35,10 @@ export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { sr
           {items.map((f) => (
             <details key={f.q} name="faq" className={styles.item}>
               <summary className={styles.question}>
-                <span>{f.q}</span>
+                <span>{t(f.q)}</span>
                 <span aria-hidden="true" className={styles.toggle} />
               </summary>
-              <p className={styles.answer}>{f.a}</p>
+              <p className={styles.answer}>{t(f.a)}</p>
             </details>
           ))}
         </div>

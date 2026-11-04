@@ -12,15 +12,15 @@
 
 /* Frosted glass card with a gold top edge */
 .card {
-  position: relative; width: min(600px, 52%); margin-left: clamp(1.5rem, 5vw, 5rem); padding: 2.6rem 2.75rem 2.75rem;
+  position: relative; width: min(600px, 52%); margin-inline-start: clamp(1.5rem, 5vw, 5rem); padding: 2.6rem 2.75rem 2.75rem;
   border-radius: 16px; background: #fffffff0;
   box-shadow: 0 40px 80px -40px #1f180fcc, inset 0 0 0 1px #ffffffb3;
   animation: rise 900ms 150ms cubic-bezier(.22,.7,.25,1) both;
 }
-.card::before { content: ""; position: absolute; left: 2.75rem; right: 2.75rem; top: 0; height: 3px; border-radius: 0 0 3px 3px; background: linear-gradient(90deg, #f1d68e, #a77d2a 50%, #e8c77a); }
+.card::before { content: ""; position: absolute; inset-inline-start: 2.75rem; inset-inline-end: 2.75rem; top: 0; height: 3px; border-radius: 0 0 3px 3px; background: linear-gradient(90deg, #f1d68e, #a77d2a 50%, #e8c77a); }
 
 .crumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; color: #8a8174; font-size: .8rem; }
-.crumbs li + li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin-right: .5rem; border-top: 1px solid #c39433; border-right: 1px solid #c39433; rotate: 45deg; translate: 0 -1px; }
+.crumbs li + li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin-inline-end: .5rem; border-top: 1px solid #c39433; border-inline-end: 1px solid #c39433; rotate: 45deg; translate: 0 -1px; }
 .crumbs a { transition: color 250ms ease; }
 .crumbs a:hover { color: #a77d2a; }
 .crumbs [aria-current] { color: #a77d2a; font-weight: 600; }
@@ -41,7 +41,7 @@
   .photo { position: relative !important; height: auto !important; aspect-ratio: 4 / 3; border-radius: 16px; z-index: 0; }
   .frame::after { display: none; }
   .card { width: auto; margin: -4rem 1rem 0; padding: 2rem 1.5rem 2.1rem; background: #fff; }
-  .card::before { left: 1.5rem; right: 1.5rem; }
+  .card::before { inset-inline-start: 1.5rem; inset-inline-end: 1.5rem; }
 }
 @media (max-width: 539px) {
   .hero { padding-inline: 12px; }

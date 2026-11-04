@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { insurers } from "@/content/home";
 import { clinic } from "@/content/site";
@@ -9,14 +10,11 @@ export default function AboutInsurance() {
     <section aria-labelledby="about-insurance-heading" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.copyCol}>
-          <h2 id="about-insurance-heading" className={styles.heading}>
-            Insurance <span>Companies</span>
+          <h2 id="about-insurance-heading" className={styles.heading}>{t("Insurance")}{" "}<span>{t("Companies")}</span>
           </h2>
-          <p className={styles.copy}>At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.</p>
-          <p className={styles.ask}>
-            Not sure if your plan is covered?{" "}
-            <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer">
-              Ask us on WhatsApp <Arrow />
+          <p className={styles.copy}>{t("At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.")}</p>
+          <p className={styles.ask}>{t("Not sure if your plan is covered?")}{" "}
+            <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer">{t("Ask us on WhatsApp")}{" "}<Arrow />
             </a>
           </p>
         </div>
@@ -35,7 +33,7 @@ export default function AboutInsurance() {
           <ul className={styles.logos}>
             {insurers.map((insurer) => (
               <li key={insurer.logo} className={styles.logo}>
-                <Image src={insurer.logo} alt={`${insurer.name} — insurance accepted at Bright Way Dental Clinic`} width={180} height={90} />
+                <Image src={insurer.logo} alt={`${insurer.name} — ${t("insurance accepted at Bright Way Dental Clinic")}`} width={180} height={90} />
               </li>
             ))}
           </ul>

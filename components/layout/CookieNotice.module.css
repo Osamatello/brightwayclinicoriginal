@@ -11,5 +11,5 @@
 
 /* Phones: full width, above the WhatsApp button */
 @media (max-width: 539px) {
-  .notice { left: .75rem; right: .75rem; bottom: 5rem; width: auto; translate: none; }
+  .notice { inset-inline-start: .75rem; inset-inline-end: .75rem; bottom: 5rem; width: auto; translate: none; }
 }

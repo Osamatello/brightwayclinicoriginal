@@ -12,7 +12,7 @@
 .ask a { display: inline-flex; align-items: center; gap: .4rem; color: #8a6a24; font-weight: 700; border-bottom: 1px solid #d9c28c; }
 .ask a:hover { color: #3e2d0e; border-color: #8a6a24; }
 .ask svg { width: 15px; height: 15px; transition: translate 300ms ease; }
-.ask a:hover svg { translate: 3px 0; }
+.ask a:hover svg { translate: calc(3px * var(--dir, 1)) 0; }
 
 .card {
   position: relative; overflow: visible; padding: clamp(1.25rem, 2.5vw, 2rem);
@@ -21,13 +21,13 @@
   box-shadow: 0 40px 70px -45px #3e2d0e66;
 }
 .emblem {
-  position: absolute; top: -26px; left: -26px; z-index: 1; display: grid; place-items: center; width: 64px; height: 64px;
+  position: absolute; top: -26px; inset-inline-start: -26px; z-index: 1; display: grid; place-items: center; width: 64px; height: 64px;
   border-radius: 50%; color: #fff; background: linear-gradient(150deg, #e2bd6b, #a77d2a);
   box-shadow: 0 0 0 6px #fff, 0 14px 28px -12px #8a6a24;
 }
 .emblem svg { width: 32px; height: 32px; }
 .watermark {
-  position: absolute; right: 1.25rem; bottom: 1rem; width: 120px; pointer-events: none;
+  position: absolute; inset-inline-end: 1.25rem; bottom: 1rem; width: 120px; pointer-events: none;
   fill: none; stroke: #c39433; stroke-width: 3; opacity: .12; rotate: 12deg;
 }
 
@@ -35,10 +35,10 @@
 .logos { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
 .logo {
   display: grid; place-items: center; height: 150px; padding: 1.25rem 1.5rem;
-  border-right: 1px solid #efe5d1; border-bottom: 1px solid #efe5d1;
+  border-inline-end: 1px solid #efe5d1; border-bottom: 1px solid #efe5d1;
   transition: background 300ms ease;
 }
-.logo:nth-child(3n) { border-right: 0; }
+.logo:nth-child(3n) { border-inline-end: 0; }
 .logo:nth-last-child(-n + 3) { border-bottom: 0; }
 .logo img { width: 100%; max-width: 170px; height: 72px; object-fit: contain; transition: scale 300ms ease; }
 .logo:hover { background: #fdf9f0; }
@@ -57,8 +57,8 @@
   .copy { font-size: 1rem; }
   .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .logo { height: 110px; padding: 1rem; }
-  .logo:nth-child(3n) { border-right: 1px solid #efe5d1; }
-  .logo:nth-child(2n) { border-right: 0; }
+  .logo:nth-child(3n) { border-inline-end: 1px solid #efe5d1; }
+  .logo:nth-child(2n) { border-inline-end: 0; }
   .logo:nth-last-child(3) { border-bottom: 1px solid #efe5d1; }
   .logo:nth-last-child(-n + 2) { border-bottom: 0; }
   .logo img { height: 56px; }

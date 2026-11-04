@@ -4,7 +4,7 @@
   background: linear-gradient(160deg, #fdfaf3 0%, #f8f1e3 100%);
 }
 .watermark {
-  position: absolute; z-index: -1; right: -60px; top: 50%; width: 520px; translate: 0 -50%;
+  position: absolute; z-index: -1; inset-inline-end: -60px; top: 50%; width: 520px; translate: 0 -50%;
   fill: none; stroke: #d9c08a; stroke-width: 1.2; opacity: .35; pointer-events: none;
 }
 .inner {
@@ -31,7 +31,7 @@
 }
 .pillar:last-child { border-bottom: 1px solid #e3d3b2; }
 .pillar::before {
-  content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px; background: #c9962f;
+  content: ""; position: absolute; inset-inline-start: 0; top: -1px; width: 0; height: 2px; background: #c9962f;
   transition: width 600ms cubic-bezier(.22,.7,.25,1);
 }
 .pillar:hover::before { width: 100%; }

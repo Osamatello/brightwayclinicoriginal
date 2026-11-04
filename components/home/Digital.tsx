@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { digitalBenefits, digitalFeatures } from "@/content/home";
 import styles from "./Digital.module.css";
@@ -18,12 +19,9 @@ export default function Digital() {
     <section id="digital-dentistry" aria-labelledby="digital-heading" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <h2 id="digital-heading" className={styles.heading}>
-            Smarter, Faster, <span>More Accurate in Dubai.</span>
+          <h2 id="digital-heading" className={styles.heading}>{t("Smarter, Faster,")}{" "}<span>{t("More Accurate in Dubai.")}</span>
           </h2>
-          <p className={styles.lede}>
-            We are proud of specializing in digital dentistry where the traditional methods will be converted to faster and more comfortable procedures.
-          </p>
+          <p className={styles.lede}>{t("We are proud of specializing in digital dentistry where the traditional methods will be converted to faster and more comfortable procedures.")}</p>
 
           <ul className={styles.features}>
             {digitalFeatures.map((feature, i) => (
@@ -31,7 +29,7 @@ export default function Digital() {
                 <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
                   {featureIcons[i]}
                 </svg>
-                <span>{feature.replace(/\.$/, "")}</span>
+                <span>{t(feature).replace(/\.$/, "")}</span>
               </li>
             ))}
           </ul>
@@ -41,20 +39,20 @@ export default function Digital() {
         <figure className={styles.stage}>
           <Image
             src="/images/digital-smile-design.webp"
-            alt="Dentist designing a new smile on a computer with digital dentistry software"
+            alt={t("Dentist designing a new smile on a computer with digital dentistry software")}
             fill
             sizes="(min-width: 960px) 46vw, (min-width: 640px) 600px, 100vw"
             className={styles.photo}
           />
           <figcaption className={styles.benefits}>
-            <p className={styles.benefitsLabel}>Benefits of digital dentistry in Dubai</p>
+            <p className={styles.benefitsLabel}>{t("Benefits of digital dentistry in Dubai")}</p>
             <ul>
               {digitalBenefits.map((benefit) => (
                 <li key={benefit}>
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12.5l4.5 4.5L19 7.5" />
                   </svg>
-                  {benefit}
+                  {t(benefit)}
                 </li>
               ))}
             </ul>

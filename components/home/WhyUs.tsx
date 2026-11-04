@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { whyPoints } from "@/content/home";
 import styles from "./WhyUs.module.css";
@@ -17,8 +18,7 @@ export default function WhyUs() {
       <div aria-hidden="true" className={styles.texture} />
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="why-us-heading" className={styles.heading}>
-            What Makes Bright Way Dental Clinic a <span>Good Choice?</span>
+          <h2 id="why-us-heading" className={styles.heading}>{t("What Makes Bright Way Dental Clinic a")}{" "}<span>{t("Good Choice?")}</span>
           </h2>
         </header>
 
@@ -31,7 +31,7 @@ export default function WhyUs() {
             <div className={styles.photoFrame}>
               <Image
                 src="/images/good-choice-happy-child.webp"
-                alt="Happy young patient giving a thumbs up with her dentist at the clinic"
+                alt={t("Happy young patient giving a thumbs up with her dentist at the clinic")}
                 fill
                 unoptimized
                 className={styles.photo}
@@ -45,7 +45,7 @@ export default function WhyUs() {
                 <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
                   {pointIcons[i]}
                 </svg>
-                <p>{point}</p>
+                <p>{t(point)}</p>
               </li>
             ))}
           </ul>

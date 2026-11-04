@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Link from "next/link";
 import { clinic } from "@/content/site";
 import { OutlineButton, WhatsAppIcon } from "@/components/ui";
@@ -10,36 +11,29 @@ export default function ContactHero() {
     <section className={styles.section}>
       <ScatteredTeeth />
       <div className={styles.inner}>
-        <nav aria-label="Breadcrumb" className={styles.crumbs}>
+        <nav aria-label={t("Breadcrumb")} className={styles.crumbs}>
           <ol>
             <li>
-              <Link href="/">Home</Link>
+              <Link href={l("/")}>{t("Home")}</Link>
             </li>
             <li aria-hidden="true" className={styles.chevron}>
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="m4.5 2.5 3.500 3.500-3.500 3.500" /></svg>
             </li>
-            <li aria-current="page">Contact us</li>
+            <li aria-current="page">{t("Contact us")}</li>
           </ol>
         </nav>
 
-        <h1 className={styles.heading}>
-          Get In Touch <em>with Our Team</em>
+        <h1 className={styles.heading}>{t("Get In Touch")}{" "}<em>{t("with Our Team")}</em>
         </h1>
         <p className={styles.topics}>
           <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">
             <path d="M24 8c-4-3-9-4-13-1-5 3-6 10-4 16 1 5 3 8 4 13 1 4 2 10 6 10 3 0 3-4 4-8 .6-3 1.500-5 3-5s2.400 2 3 5c1 4 1 8 4 8 4 0 5-6 6-10 1-5 3-8 4-13 2-6 1-13-4-16-4-3-9-2-13 1Z" />
-          </svg>
-          Contact Bright Way Dental Clinic
-        </p>
-        <p className={styles.intro}>
-          Have questions or need to schedule an appointment? Contact Bright Way Dental Clinic. Our team is ready to assist with your dental care needs, from general inquiries to booking your next
-          visit. We’re here to ensure your journey to optimal oral health is smooth and satisfying.
-        </p>
+          </svg>{t("Contact Bright Way Dental Clinic")}</p>
+        <p className={styles.intro}>{t("Have questions or need to schedule an appointment? Contact Bright Way Dental Clinic. Our team is ready to assist with your dental care needs, from general inquiries to booking your next visit. We’re here to ensure your journey to optimal oral health is smooth and satisfying.")}</p>
         <div className={styles.actions}>
-          <OutlineButton href={`tel:${clinic.phone}`}>{clinic.phoneDisplay}</OutlineButton>
+          <OutlineButton href={`tel:${clinic.phone}`}>{t(clinic.phoneDisplay)}</OutlineButton>
           <OutlineButton href={clinic.whatsapp}>
-            <WhatsAppIcon /> WhatsApp
-          </OutlineButton>
+            <WhatsAppIcon />{" "}{t("WhatsApp")}</OutlineButton>
         </div>
       </div>
     </section>

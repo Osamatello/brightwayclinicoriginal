@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import styles from "./DoctorTeam.module.css";
 
@@ -25,11 +26,11 @@ export default function DoctorTeam() {
         {team.map((doctor) => (
           <li key={doctor.name} className={styles.card}>
             <div className={styles.ring}>
-              <Image src={doctor.img} alt={doctor.alt} fill unoptimized className={styles.photo} />
+              <Image src={doctor.img} alt={t(doctor.alt)} fill unoptimized className={styles.photo} />
             </div>
             <div>
-              <h3 className={styles.name}>{doctor.name}</h3>
-              <p className={styles.role}>{doctor.role}</p>
+              <h3 className={styles.name}>{t(doctor.name)}</h3>
+              <p className={styles.role}>{t(doctor.role)}</p>
             </div>
           </li>
         ))}

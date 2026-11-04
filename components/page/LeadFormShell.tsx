@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
 import { useRouter } from "next/navigation";
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import { clinic } from "@/content/site";
@@ -19,6 +20,7 @@ export default function LeadFormShell({
   thankYouPath?: string;
   children: ReactNode;
 }) {
+  const { l, t } = useI18n();
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "failed">("idle");
   const sending = useRef(false);
@@ -37,7 +39,7 @@ export default function LeadFormShell({
       });
       if (!res.ok) throw new Error(String(res.status));
       if (thankYouPath) {
-        router.push(thankYouPath);
+        router.push(l(thankYouPath));
         return; // stays "sending" until the thank-you page opens
       }
       form.reset();
@@ -53,15 +55,13 @@ export default function LeadFormShell({
       {children}
       {/* Bots fill this in, people never see it */}
       <div className={styles.trap} aria-hidden="true">
-        <label>
-          Website
-          <input name="website" tabIndex={-1} autoComplete="off" />
+        <label>{t("Website")}<input name="website" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
       <p role="status" className={status === "failed" ? styles.failed : styles.status}>
-        {status === "sending" && "Sending…"}
-        {status === "sent" && "Thank you. Our team will contact you as soon as possible."}
-        {status === "failed" && `Sorry, your message was not sent. Please call us on ${clinic.phoneDisplay}.`}
+        {status === "sending" && t("Sending…")}
+        {status === "sent" && t("Thank you. Our team will contact you as soon as possible.")}
+        {status === "failed" && `${t("Sorry, your message was not sent. Please call us on")} ${t(clinic.phoneDisplay)}.`}
       </p>
     </form>
   );

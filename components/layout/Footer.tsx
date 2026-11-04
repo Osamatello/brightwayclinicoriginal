@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -28,45 +29,43 @@ export default function Footer() {
       <footer className={styles.footer}>
         <div className={styles.inner}>
           <div className={styles.brand}>
-            <Image src="/images/logo.png" alt={clinic.name} width={2953} height={1135} className={styles.logo} />
-            <p className={styles.tagline}>Good health begins with dental health.</p>
-            <p className={styles.blurb}>
-              Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.
-            </p>
+            <Image src="/images/logo.png" alt={t(clinic.name)} width={2953} height={1135} className={styles.logo} />
+            <p className={styles.tagline}>{t("Good health begins with dental health.")}</p>
+            <p className={styles.blurb}>{t("Stay connected with Bright Way Dental Clinic through our social media channels for the latest updates, dental tips, and special offers.")}</p>
           </div>
 
-          <nav aria-label="Footer" className={styles.nav}>
+          <nav aria-label={t("Footer")} className={styles.nav}>
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className={styles.navLink}>
-                {item.label}
+              <Link key={item.href} href={l(item.href)} className={styles.navLink}>
+                {t(item.label)}
               </Link>
             ))}
           </nav>
 
           <div className={styles.reach}>
             <ul className={styles.contact}>
-              <li>{icons.pin}<span>{clinic.address}</span></li>
-              <li>{icons.clock}<span>{clinic.hours}</span></li>
+              <li>{icons.pin}<span>{t(clinic.address)}</span></li>
+              <li>{icons.clock}<span>{t(clinic.hours)}</span></li>
               <li>
                 {icons.phone}
                 <span className={styles.phones}>
-                  <a href={`tel:${clinic.phone}`}>{clinic.phoneDisplay}</a>
-                  <a href={`tel:${clinic.landline}`}>{clinic.landlineDisplay}</a>
+                  <a href={`tel:${clinic.phone}`}>{t(clinic.phoneDisplay)}</a>
+                  <a href={`tel:${clinic.landline}`}>{t(clinic.landlineDisplay)}</a>
                 </span>
               </li>
             </ul>
             <div className={styles.social}>
               {Object.entries(clinic.social).map(([name, href]) => (
-                <a key={name} href={href} className={styles.socialLink}>
+                <a key={name} href={l(href)} className={styles.socialLink}>
                   {socialIcons[name]}
-                  {name}
+                  {t(name)}
                 </a>
               ))}
             </div>
           </div>
         </div>
         <div className={styles.bottom}>
-          © {new Date().getFullYear()} {clinic.name}, Dubai · <Link href="/privacy-policy/">Privacy Policy</Link>
+          © {new Date().getFullYear()} {t(clinic.name)}{t(", Dubai ·")}{" "}<Link href={l("/privacy-policy/")}>{t("Privacy Policy")}</Link>
         </div>
       </footer>
       <FloatingWhatsApp />

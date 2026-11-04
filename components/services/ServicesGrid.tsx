@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -29,9 +30,9 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
       <ul className={styles.grid}>
         {services.map((s) => (
           <li key={s.href} className={styles.item}>
-            <Link href={s.href} className={styles.card}>
+            <Link href={l(s.href)} className={styles.card}>
               <div className={styles.media}>
-                <Image src={s.img} alt={`${s.title} at Bright Way Dental Clinic, Dubai`} fill unoptimized className={styles.photo} />
+                <Image src={s.img} alt={`${t(s.title)} ${t("at Bright Way Dental Clinic, Dubai")}`} fill unoptimized className={styles.photo} />
               </div>
               <span className={styles.icon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
@@ -39,10 +40,9 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
                 </svg>
               </span>
               <div className={styles.body}>
-                <h3 className={styles.title}>{s.title}</h3>
-                <p className={styles.text}>{s.text}</p>
-                <span className={styles.more}>
-                  Learn more <Arrow />
+                <h3 className={styles.title}>{t(s.title)}</h3>
+                <p className={styles.text}>{t(s.text)}</p>
+                <span className={styles.more}>{t("Learn more")}{" "}<Arrow />
                 </span>
               </div>
             </Link>

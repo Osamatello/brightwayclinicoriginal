@@ -5,7 +5,7 @@
 }
 .content {
   display: flex; flex-direction: column; justify-content: center;
-  width: min(100%, 600px); margin-left: auto; padding: 2rem clamp(2rem, 5vw, 5rem) 6rem 40px; /* sits a little above centre */
+  width: min(100%, 600px); margin-inline-start: auto; padding: 2rem clamp(2rem, 5vw, 5rem) 6rem 40px; /* sits a little above centre */
 }
 .heading { font-family: var(--font-display); font-size: clamp(2.8rem, 4.4vw, 4.25rem); font-weight: 500; line-height: 1.03; letter-spacing: -.035em; color: #3e2d0e; }
 .heading span { display: block; color: #a77d2a; font-style: italic; }
@@ -34,7 +34,7 @@
 /* Follows a white 1200px-wide section: no cream gaps, text starts on that section's left edge */
 .aligned { container-type: inline-size; min-height: calc(560px + 5.5rem); margin-block: 0; padding-block: 2.75rem; }
 @media (min-width: 900px) {
-  .aligned .content { width: auto; margin-left: 0; padding-right: 1.5rem; padding-left: max(24px, calc((100cqw - 1200px) / 2 + 24px)); }
+  .aligned .content { width: auto; margin-inline-start: 0; padding-inline-end: 1.5rem; padding-inline-start: max(24px, calc((100cqw - 1200px) / 2 + 24px)); }
 }
 @media (max-width: 899px) {
   .section.aligned { min-height: 0; margin-block: 0; padding-block: 2rem; }

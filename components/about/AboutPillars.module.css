@@ -11,8 +11,8 @@
   transition: translate 450ms cubic-bezier(.22,.7,.25,1), box-shadow 450ms ease;
 }
 .card::before {
-  content: ""; position: absolute; left: 2rem; right: 2rem; top: 0; height: 3px; border-radius: 0 0 3px 3px;
-  background: linear-gradient(90deg, #f1d68e, #a77d2a 50%, #e8c77a); transform: scaleX(.35); transform-origin: left; transition: transform 500ms ease;
+  content: ""; position: absolute; inset-inline-start: 2rem; inset-inline-end: 2rem; top: 0; height: 3px; border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, #f1d68e, #a77d2a 50%, #e8c77a); transform: scaleX(.35); transform-origin: var(--start-edge, left); transition: transform 500ms ease;
 }
 .card:hover { translate: 0 -6px; box-shadow: 0 44px 70px -36px #3e2d0e8c, inset 0 0 0 1px #e3cf9f; }
 .card:hover::before { transform: scaleX(1); }

@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import styles from "./GalleryTreatments.module.css";
 
@@ -15,8 +16,7 @@ export default function GalleryTreatments() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 className={styles.heading}>
-            Our Latest <em>Smile Makeovers</em>
+          <h2 className={styles.heading}>{t("Our Latest")}{" "}<em>{t("Smile Makeovers")}</em>
           </h2>
         </header>
 
@@ -24,11 +24,11 @@ export default function GalleryTreatments() {
           {makeovers.map((m) => (
             <li key={m.title} className={styles.item}>
               <div className={styles.model}>
-                <Image src={m.img} alt={`${m.title} treatment illustration`} fill sizes="(min-width: 640px) 184px, 88px" className={styles.img} />
+                <Image src={m.img} alt={`${t(m.title)} ${t("treatment illustration")}`} fill sizes="(min-width: 640px) 184px, 88px" className={styles.img} />
               </div>
               <div>
-                <h3 className={styles.title}>{m.title}</h3>
-                <p className={styles.text}>{m.text}</p>
+                <h3 className={styles.title}>{t(m.title)}</h3>
+                <p className={styles.text}>{t(m.text)}</p>
               </div>
             </li>
           ))}

@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { GoldButton } from "@/components/ui";
@@ -17,40 +18,37 @@ export default function DoctorHero() {
       <ScatteredTeeth />
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <nav aria-label="Breadcrumb" className={styles.crumbs}>
+          <nav aria-label={t("Breadcrumb")} className={styles.crumbs}>
             <ol>
-              <li><Link href="/">Home</Link></li>
+              <li><Link href={l("/")}>{t("Home")}</Link></li>
               <li aria-hidden="true" className={styles.chevron}>
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="m4.500 2.500 3.500 3.500-3.500 3.500" /></svg>
               </li>
-              <li><Link href="/#doctors">Our doctors</Link></li>
+              <li><Link href={l("/#doctors")}>{t("Our doctors")}</Link></li>
               <li aria-hidden="true" className={styles.chevron}>
                 <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="m4.500 2.500 3.500 3.500-3.500 3.500" /></svg>
               </li>
-              <li aria-current="page">Dr. Hasan A. Mahdy</li>
+              <li aria-current="page">{t("Dr. Hasan A. Mahdy")}</li>
             </ol>
           </nav>
-          <p className={styles.welcome}><Tooth />Welcome to Bright Way Dental Clinic</p>
-          <h1 className={styles.heading}>Meet <em>Dr. Hasan Abdullah Mahdy</em></h1>
-          <p className={styles.intro}>
-            With a passion for transforming smiles and a dedication to excellence, Dr. Hasan Abdullah Mahdy stands at the forefront of cosmetic dentistry, dental implants, and dental surgery. With over
-            three decades of experience, Dr. Hasan has honed his skills to provide the highest quality dental care to patients seeking comprehensive treatments and rehabilitation.
-          </p>
-          <GoldButton href="/contact-us/">Contact Us Today</GoldButton>
+          <p className={styles.welcome}><Tooth />{t("Welcome to Bright Way Dental Clinic")}</p>
+          <h1 className={styles.heading}>{t("Meet")}{" "}<em>{t("Dr. Hasan Abdullah Mahdy")}</em></h1>
+          <p className={styles.intro}>{t("With a passion for transforming smiles and a dedication to excellence, Dr. Hasan Abdullah Mahdy stands at the forefront of cosmetic dentistry, dental implants, and dental surgery. With over three decades of experience, Dr. Hasan has honed his skills to provide the highest quality dental care to patients seeking comprehensive treatments and rehabilitation.")}</p>
+          <GoldButton href={l("/contact-us/")}>{t("Contact Us Today")}</GoldButton>
         </div>
 
         <figure className={styles.portrait}>
           <Image
             src="/images/doctors/dr-hasan.webp"
-            alt="Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic."
+            alt={t("Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic.")}
             width={816}
             height={816}
             unoptimized
             priority
           />
           <figcaption>
-            <blockquote>“Your smile is your signature; let us craft it to perfection.”</blockquote>
-            <cite>- Dr. Hasan Mahdy</cite>
+            <blockquote>{t("“Your smile is your signature; let us craft it to perfection.”")}</blockquote>
+            <cite>{t("- Dr. Hasan Mahdy")}</cite>
           </figcaption>
         </figure>
       </div>

@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { doctors } from "@/content/home";
@@ -10,25 +11,23 @@ export default function AboutDoctors() {
     <section id="doctors" aria-labelledby="about-doctors-heading" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <h2 id="about-doctors-heading" className={styles.heading}>
-            Our Specialized Doctors <span>at Bright Way Dental Clinic</span>
+          <h2 id="about-doctors-heading" className={styles.heading}>{t("Our Specialized Doctors")}{" "}<span>{t("at Bright Way Dental Clinic")}</span>
           </h2>
-          <p className={styles.intro}>Discover Our Best Dentists In Dubai</p>
+          <p className={styles.intro}>{t("Discover Our Best Dentists In Dubai")}</p>
         </header>
 
         <ul className={styles.team}>
           {doctors.map((doctor) => (
             <li key={doctor.name} className={styles.card}>
               <div className={styles.arch}>
-                <Image src={doctor.img} alt={doctor.name} fill unoptimized className={styles.photo} />
+                <Image src={doctor.img} alt={t(doctor.name)} fill unoptimized className={styles.photo} />
               </div>
               <div className={styles.info}>
-                <p className={styles.tag}>{doctor.tag}</p>
-                <h3 className={styles.name}>{doctor.href ? <Link href={doctor.href}>{doctor.name}</Link> : doctor.name}</h3>
-                <p className={styles.role}>{doctor.role}</p>
+                <p className={styles.tag}>{t(doctor.tag)}</p>
+                <h3 className={styles.name}>{doctor.href ? <Link href={l(doctor.href)}>{t(doctor.name)}</Link> : t(doctor.name)}</h3>
+                <p className={styles.role}>{t(doctor.role)}</p>
                 {doctor.href && (
-                  <Link href={doctor.href} className={styles.more}>
-                    Meet Dr. Hasan <Arrow />
+                  <Link href={l(doctor.href)} className={styles.more}>{t("Meet Dr. Hasan")}{" "}<Arrow />
                   </Link>
                 )}
               </div>

@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { whyPoints } from "@/content/home";
 import { pointIcons } from "@/components/home/WhyUs";
@@ -9,8 +10,7 @@ export default function AboutGoodChoice() {
   return (
     <section id="why-us" aria-labelledby="good-choice-heading" className={styles.section}>
       <div className={styles.inner}>
-        <h2 id="good-choice-heading" className={styles.heading}>
-          What Makes Bright Way Dental Clinic a <span>Good Choice?</span>
+        <h2 id="good-choice-heading" className={styles.heading}>{t("What Makes Bright Way Dental Clinic a")}{" "}<span>{t("Good Choice?")}</span>
         </h2>
 
         <div className={styles.orbit}>
@@ -25,7 +25,7 @@ export default function AboutGoodChoice() {
                         {pointIcons[i]}
                       </svg>
                     </span>
-                    <p>{point}</p>
+                    <p>{t(point)}</p>
                   </li>
                 );
               })}

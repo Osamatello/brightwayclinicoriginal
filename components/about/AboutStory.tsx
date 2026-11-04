@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { aboutDifference, aboutIntro, aboutProcess, aboutWhy } from "@/content/about";
@@ -17,10 +18,10 @@ export default function AboutStory() {
       <section className={styles.why}>
         <div className={styles.inner}>
           <div className={styles.intro}>
-            <p className={styles.introText}>{aboutIntro.text}</p>
+            <p className={styles.introText}>{t(aboutIntro.text)}</p>
           </div>
 
-          <h2 className={styles.heading}>{aboutWhy.title}</h2>
+          <h2 className={styles.heading}>{t(aboutWhy.title)}</h2>
           <ul className={styles.whyList}>
             {aboutWhy.items.map((item, i) => (
               <li key={item.title} className={styles.whyItem}>
@@ -29,8 +30,8 @@ export default function AboutStory() {
                     {whyIcons[i]}
                   </svg>
                 </span>
-                <h3 className={styles.whyTitle}>{item.title}</h3>
-                <p className={styles.whyText}>{item.text}</p>
+                <h3 className={styles.whyTitle}>{t(item.title)}</h3>
+                <p className={styles.whyText}>{t(item.text)}</p>
               </li>
             ))}
           </ul>
@@ -40,7 +41,7 @@ export default function AboutStory() {
       <section className={styles.process}>
         <div className={styles.inner}>
           <header className={styles.processHeader}>
-            <h2 className={styles.heading}>{aboutProcess.title}</h2>
+            <h2 className={styles.heading}>{t(aboutProcess.title)}</h2>
           </header>
           <ul className={styles.cards}>
             {aboutProcess.items.map((item) => (
@@ -49,8 +50,8 @@ export default function AboutStory() {
                   <Image src={item.img} alt="" fill sizes="(min-width: 1100px) 300px, (min-width: 640px) 45vw, 100vw" className={styles.cardPhoto} />
                 </div>
                 <div className={styles.cardBody}>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardText}>{item.text}</p>
+                  <h3 className={styles.cardTitle}>{t(item.title)}</h3>
+                  <p className={styles.cardText}>{t(item.text)}</p>
                 </div>
               </li>
             ))}
@@ -60,8 +61,8 @@ export default function AboutStory() {
 
       <section className={styles.difference}>
         <div className={styles.differenceInner}>
-          <h3 className={styles.differenceTitle}>{aboutDifference.title}</h3>
-          <p className={styles.differenceText}>{aboutDifference.text}</p>
+          <h3 className={styles.differenceTitle}>{t(aboutDifference.title)}</h3>
+          <p className={styles.differenceText}>{t(aboutDifference.text)}</p>
         </div>
       </section>
     </>

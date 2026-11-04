@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
@@ -14,7 +15,7 @@ const STOPS = [
   { picture: "/images/home-scene/stop-3.webp", hrefs: ["/teeth-cleaning-and-gum-treatment/", "/root-canal-treatment/", "/tooth-extraction/", "/pediatric-dentistry/"] },
 ].map((stop) => ({ picture: stop.picture, items: stop.hrefs.map((href) => services.find((s) => s.href === href)!) }));
 
-const INTRO_WORDS = "From a routine check-up to a complete smile makeover — eleven specialties under one roof. These are the treatments our patients ask for most.".split(" ");
+const INTRO = "From a routine check-up to a complete smile makeover — eleven specialties under one roof. These are the treatments our patients ask for most.";
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const between = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
@@ -24,9 +25,10 @@ const between = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
  * Phones and "reduce motion" show the normal Services section instead (this one stays hidden).
  */
 export default function SmileScene() {
+  const { l, t } = useI18n();
   const scene = useRef<HTMLElement>(null);
 
-  // Show one picture: the stop's own, or the treatment under the mouse
+  // Show one of the three stop pictures
   const showPhoto = (src: string) => {
     scene.current?.querySelectorAll<HTMLElement>("[data-photo]").forEach((el) => {
       el.dataset.on = el.dataset.photo === src ? "1" : "0";
@@ -105,7 +107,7 @@ export default function SmileScene() {
       if (!mq.matches) return;
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", measure);
-      // load every treatment photo now, so none is still blank when it fades in (phones never reach this line)
+      // load all three pictures now, so none is still blank when it fades in (phones never reach this line)
       photos.forEach((el) => {
         const img = el.querySelector("img");
         if (img) img.loading = "eager";
@@ -128,7 +130,7 @@ export default function SmileScene() {
       <div data-stage className={styles.stage}>
         <div className={styles.layout}>
           <div aria-hidden="true" className={styles.picture}>
-            {[...STOPS.map((stop) => stop.picture), ...services.map((s) => s.img)].map((src) => (
+            {STOPS.map((stop) => stop.picture).map((src) => (
               <div key={src} data-photo={src} data-on={src === STOPS[0].picture ? "1" : "0"} className={styles.photo}>
                 {/* the three stop pictures are served exactly as supplied, without the optimizer's recompression */}
                 <Image src={src} alt="" fill sizes="640px" unoptimized={src.startsWith("/images/home-scene/")} />
@@ -138,11 +140,10 @@ export default function SmileScene() {
 
           <div className={styles.copy}>
             <div data-intro className={styles.intro}>
-              <h2 className={styles.heading}>
-                Explore Our <em>Dental Services in Dubai</em>
+              <h2 className={styles.heading}>{t("Explore Our")}{" "}<em>{t("Dental Services in Dubai")}</em>
               </h2>
               <p className={styles.lead}>
-                {INTRO_WORDS.map((word, i) => (
+                {t(INTRO).split(" ").map((word, i) => (
                   <span key={i} data-word>
                     {word}{" "}
                   </span>
@@ -158,12 +159,11 @@ export default function SmileScene() {
                     data-panel
                     data-on={i === 0 ? "1" : "0"}
                     className={styles.panel}
-                    onMouseLeave={() => showPhoto(stop.picture)}
                   >
                     {stop.items.map((s) => (
                       <li key={s.href}>
-                        <Link href={s.href} className={styles.row} onMouseEnter={() => showPhoto(s.img)} onFocus={() => showPhoto(s.img)}>
-                          {s.title} <Arrow />
+                        <Link href={l(s.href)} className={styles.row}>
+                          {t(s.title)} <Arrow />
                         </Link>
                       </li>
                     ))}
@@ -173,8 +173,7 @@ export default function SmileScene() {
               <div className={styles.track}>
                 <span data-bar className={styles.bar} />
               </div>
-              <Link href="/services/" className={styles.all}>
-                View all {services.length} treatments <Arrow />
+              <Link href={l("/services/")} className={styles.all}>{t("View all")}{" "}{t(services.length)}{" "}{t("treatments")}{" "}<Arrow />
               </Link>
             </div>
           </div>

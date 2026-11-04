@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { BookingAside } from "@/components/treatment/TreatmentBody";
 import styles from "./PostBody.module.css";
@@ -26,12 +27,12 @@ export default function PostBody({
         <div className={styles.main}>
           {showFeatured && (
             <div className={styles.featured}>
-              <Image src={featured} alt={title} fill priority sizes="(min-width: 1024px) 720px, 100vw" className={styles.featuredImg} />
+              <Image src={featured} alt={t(title)} fill priority sizes="(min-width: 1024px) 720px, 100vw" className={styles.featuredImg} />
             </div>
           )}
           <article className={styles.article} dangerouslySetInnerHTML={{ __html: body }} />
         </div>
-        <BookingAside title={bookingTitle} />
+        <BookingAside title={t(bookingTitle)} />
       </div>
     </section>
   );

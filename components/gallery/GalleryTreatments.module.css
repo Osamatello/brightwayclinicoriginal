@@ -7,7 +7,7 @@
 
 .list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 2.75rem 0 0; padding: 0; list-style: none; }
 .item { padding-inline: 1.35rem; text-align: center; }
-.item + .item { border-left: 1px solid #e3d3ae; }
+.item + .item { border-inline-start: 1px solid #e3d3ae; }
 /* overflow hidden: the models are square white JPGs, their corners must not poke out of the circle */
 .model { position: relative; width: clamp(136px, 12vw, 184px); aspect-ratio: 1; margin-inline: auto; overflow: hidden; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1px #e8d8b4, 0 20px 34px -26px #3e2d0e73; }
 .img { padding: 1rem; object-fit: contain; transition: scale 500ms cubic-bezier(.22,.7,.25,1); }
@@ -18,7 +18,7 @@
 @media (max-width: 1023px) {
   .list { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 2.5rem; }
   .item { grid-column: span 2; }
-  .item:nth-child(4) { grid-column: 2 / span 2; border-left: 0; }
+  .item:nth-child(4) { grid-column: 2 / span 2; border-inline-start: 0; }
   .item:nth-child(5) { grid-column: 4 / span 2; }
 }
 /* Phone: model beside its text, one per row */
@@ -26,8 +26,8 @@
   .section { padding-block: 3rem 3.5rem; }
   .heading em { display: block; }
   .list { display: flex; flex-direction: column; row-gap: 0; margin-top: 1.75rem; }
-  .item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 0; text-align: left; }
-  .item + .item { border-top: 1px solid #e3d3ae; border-left: 0; }
+  .item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 0; text-align: start; }
+  .item + .item { border-top: 1px solid #e3d3ae; border-inline-start: 0; }
   .model { flex: none; width: 88px; }
   .img { padding: .6rem; }
   .title { margin-top: 0; font-size: 1.3rem; }

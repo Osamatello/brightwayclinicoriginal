@@ -1,5 +1,6 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n-client";
 import Image from "next/image";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 import { smileCases, type SmileCase } from "@/content/home";
@@ -14,6 +15,7 @@ const SWAY_SECONDS = 8; // one full trip left and right
 const RESUME_AFTER_MS = 2500; // pause after the visitor lets go
 
 function SmileCard({ smile, number, page }: { smile: SmileCase; number: number; page: boolean }) {
+  const { t } = useI18n();
   const [position, setPosition] = useState(50);
   const card = useRef<HTMLLIElement>(null);
   const beforeLayer = useRef<HTMLDivElement>(null);
@@ -80,14 +82,14 @@ function SmileCard({ smile, number, page }: { smile: SmileCase; number: number; 
 
   return (
     <li ref={card} className={styles.card}>
-      <figure className={styles.photos}>
+      <figure dir="ltr" className={styles.photos}>
         <div className={styles.layer}>
-          <Image src={smile.after} alt={smile.afterAlt} fill sizes={sizes} className={styles.photo} />
+          <Image src={smile.after} alt={t(smile.afterAlt)} fill sizes={sizes} className={styles.photo} />
         </div>
         <div ref={beforeLayer} className={styles.layer} style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-          <Image src={smile.before} alt={smile.beforeAlt} fill sizes={sizes} className={styles.photo} />
+          <Image src={smile.before} alt={t(smile.beforeAlt)} fill sizes={sizes} className={styles.photo} />
         </div>
-        <div className={styles.labels} aria-hidden="true"><span>Before</span><span>After</span></div>
+        <div className={styles.labels} aria-hidden="true"><span>{t("Before")}</span><span>{t("After")}</span></div>
         <div ref={divider} className={styles.divider} style={{ left: `${position}%` }} aria-hidden="true">
           <span className={styles.handle}>
             <svg viewBox="0 0 28 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -121,8 +123,8 @@ function SmileCard({ smile, number, page }: { smile: SmileCase; number: number; 
             held.current = false;
             resumeAt.current = performance.now() + RESUME_AFTER_MS;
           }}
-          aria-label={`Compare before and after, smile transformation ${number}`}
-          aria-valuetext={`${position}% before, ${100 - position}% after`}
+          aria-label={`${t("Compare before and after, smile transformation")} ${number}`}
+          aria-valuetext={`${position}% ${t("before")}, ${100 - position}% ${t("after")}`}
         />
       </figure>
     </li>
@@ -131,16 +133,16 @@ function SmileCard({ smile, number, page }: { smile: SmileCase; number: number; 
 
 /** Before/after gallery: framed cards whose lines move by themselves. `page` = the Smile Gallery page's version: no header, bigger cards. */
 export default function BeforeAfter({ page = false }: { page?: boolean }) {
+  const { t } = useI18n();
   return (
-    <section id="gallery" className={`${styles.section} ${page ? styles.page : ""}`} aria-labelledby={page ? undefined : "gallery-heading"} aria-label={page ? "Smile transformations" : undefined}>
+    <section id="gallery" className={`${styles.section} ${page ? styles.page : ""}`} aria-labelledby={page ? undefined : "gallery-heading"} aria-label={page ? t("Smile transformations") : undefined}>
       <div className={styles.inner}>
         {!page && (
           <header className={styles.header}>
-            <h2 id="gallery-heading" className={styles.heading}>
-              Before and After{" "}
-              <span>Dental Transformations</span>
+            <h2 id="gallery-heading" className={styles.heading}>{t("Before and After")}{" "}
+              <span>{t("Dental Transformations")}</span>
             </h2>
-            <p className={styles.intro}>Real smiles from our patients. Drag the handle on any photo to see the transformation.</p>
+            <p className={styles.intro}>{t("Real smiles from our patients. Drag the handle on any photo to see the transformation.")}</p>
           </header>
         )}
 

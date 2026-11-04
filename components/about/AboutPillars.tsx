@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import { aboutCards } from "@/content/home";
 import { pillarIcons } from "@/components/home/AboutInsurance";
 import styles from "./AboutPillars.module.css";
@@ -14,8 +15,8 @@ export default function AboutPillars() {
                 {pillarIcons[i]}
               </svg>
             </span>
-            <h2 className={styles.title}>{card.title}</h2>
-            <p className={styles.text}>{card.text}</p>
+            <h2 className={styles.title}>{t(card.title)}</h2>
+            <p className={styles.text}>{t(card.text)}</p>
           </article>
         ))}
       </div>

@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import { Arrow, GoldButton } from "@/components/ui";
 import HeroMedia from "@/components/home/HeroMedia";
 import { googleReviews } from "@/content/home";
@@ -17,32 +18,28 @@ export default function Hero({ videoSrc }: { videoSrc?: string }) {
     <section className="relative z-10 bg-white">
       <div className="relative isolate flex min-h-[640px] flex-col justify-end overflow-hidden lg:h-[calc(100svh-117px)] lg:max-h-[900px]">
         <div className="pointer-events-none absolute inset-0 bg-brown-dark">
-          <HeroMedia videoSrc={videoSrc} poster="/images/hero-bg.jpg" alt="Dr. Hasan A. Mahdy treating a patient at Bright Way Dental Clinic, Dubai" />
+          <HeroMedia videoSrc={videoSrc} poster="/images/hero-bg.jpg" alt={t("Dr. Hasan A. Mahdy treating a patient at Bright Way Dental Clinic, Dubai")} />
           {/* legibility: dark bottom-left where the text is, the picture stays clear top-right */}
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/5" />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-transparent" />
         </div>
 
         <div className="relative max-w-5xl px-6 pb-8 pt-40 text-white sm:px-10 sm:pt-56 lg:px-14 lg:pb-18">
-          <h1 className="font-display text-[3.25rem] font-medium leading-[0.92] tracking-[-0.01em] sm:text-7xl xl:text-[6.5rem]">
-            Bright Way Dental Clinic <em className="whitespace-nowrap font-normal text-gold-light">in Dubai</em>
+          <h1 className="font-display text-[3.25rem] font-medium leading-[0.92] tracking-[-0.01em] sm:text-7xl xl:text-[6.5rem]">{t("Bright Way Dental Clinic")}{" "}<em className="whitespace-nowrap font-normal text-gold-light">{t("in Dubai")}</em>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
-            <strong className="font-semibold text-white">Your Reliable Digital Dentistry in Dubai and Modern comforting smiles.</strong>{" "}
-            Specializing in both aesthetic and health-focused treatments, our clinic combines expert care with advanced technology for unmatched dental excellence.
-          </p>
-          <GoldButton href="/contact-us/" className="mt-8 px-8">
-            Get Dental Consultation <Arrow />
+            <strong className="font-semibold text-white">{t("Your Reliable Digital Dentistry in Dubai and Modern comforting smiles.")}</strong>{" "}{t("Specializing in both aesthetic and health-focused treatments, our clinic combines expert care with advanced technology for unmatched dental excellence.")}</p>
+          <GoldButton href={l("/contact-us/")} className="mt-8 px-8">{t("Get Dental Consultation")}{" "}<Arrow />
           </GoldButton>
         </div>
 
         {/* trust card: under the text on phones, bottom-right of the stage from lg */}
-        <div className="relative mx-6 mb-6 grid divide-y divide-line rounded-2xl sm:grid-cols-2 sm:divide-x sm:divide-y-0 bg-white shadow-2xl sm:mx-10 sm:max-w-md lg:absolute lg:bottom-9 lg:right-14 lg:m-0 lg:w-[480px] lg:max-w-none">
-          <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 p-4 sm:p-5">
+        <div className="relative mx-6 mb-6 grid divide-y divide-line rounded-2xl sm:grid-cols-2 sm:divide-x sm:divide-y-0 bg-white shadow-2xl sm:mx-10 sm:max-w-md lg:absolute lg:bottom-9 lg:end-14 lg:m-0 lg:w-[480px] lg:max-w-none">
+          <a href={l(GOOGLE_MAPS_URL)} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 p-4 sm:p-5">
             <GoogleIcon />
             <div>
               <p className="flex items-center gap-1.5 text-lg font-extrabold leading-none text-brown-dark">
-                {GOOGLE_RATING}
+                {t(GOOGLE_RATING)}
                 <span aria-hidden="true" className="flex text-gold">
                   {Array.from({ length: 5 }, (_, i) => (
                     <Star key={i} />
@@ -50,9 +47,8 @@ export default function Hero({ videoSrc }: { videoSrc?: string }) {
                 </span>
               </p>
               <p className="mt-1.5 text-xs text-ink group-hover:text-gold-dark">
-                <span className="sr-only">Rated {GOOGLE_RATING} out of 5 from </span>
-                {GOOGLE_REVIEWS} Google reviews
-              </p>
+                <span className="sr-only">{t("Rated")}{" "}{t(GOOGLE_RATING)}{" "}{t("out of 5 from")}{" "}</span>
+                {t(GOOGLE_REVIEWS)}{" "}{t("Google reviews")}</p>
             </div>
           </a>
           <div className="flex items-center gap-3 p-4 sm:p-5">
@@ -60,8 +56,8 @@ export default function Hero({ videoSrc }: { videoSrc?: string }) {
               <ShieldIcon />
             </span>
             <div>
-              <p className="font-extrabold leading-tight text-brown-dark">Modern &amp; safe</p>
-              <p className="mt-1 text-xs text-ink">Digital dentistry · DHA licensed</p>
+              <p className="font-extrabold leading-tight text-brown-dark">{t("Modern & safe")}</p>
+              <p className="mt-1 text-xs text-ink">{t("Digital dentistry · DHA licensed")}</p>
             </div>
           </div>
         </div>

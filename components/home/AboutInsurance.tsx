@@ -1,3 +1,4 @@
+import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { aboutCards, insurers } from "@/content/home";
 import { clinic } from "@/content/site";
@@ -20,30 +21,25 @@ export function About() {
 
       <div className={styles.inner}>
         <div className={styles.intro}>
-          <h2 id="about-heading" className={styles.heading}>
-            Your Trusted <span>Dental Clinic in Dubai</span>
+          <h2 id="about-heading" className={styles.heading}>{t("Your Trusted")}{" "}<span>{t("Dental Clinic in Dubai")}</span>
           </h2>
-          <p className={styles.copy}>
-            Need to find a reliable dental practice in Dubai around me? Looking for a dental clinic Dubai near me that is close enough and has the best technology and soft, close-knit treatment? Welcome to Bright Way Dental Clinic, where patient comfort and digital dentistry come together.
-          </p>
-          <p className={styles.copy}>
-            Our highly skilled team, led by the best dentists in Dubai, ensures that every patient receives personalized care in a comfortable and modern environment. As a top dental clinic in Dubai, we specialize in cosmetic dentistry, teeth cleaning, teeth whitening, orthodontics, dental implants, and more.
-          </p>
+          <p className={styles.copy}>{t("Need to find a reliable dental practice in Dubai around me? Looking for a dental clinic Dubai near me that is close enough and has the best technology and soft, close-knit treatment? Welcome to Bright Way Dental Clinic, where patient comfort and digital dentistry come together.")}</p>
+          <p className={styles.copy}>{t("Our highly skilled team, led by the best dentists in Dubai, ensures that every patient receives personalized care in a comfortable and modern environment. As a top dental clinic in Dubai, we specialize in cosmetic dentistry, teeth cleaning, teeth whitening, orthodontics, dental implants, and more.")}</p>
 
           <ul className={styles.visit}>
             <li>
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M19.5 10c0 6-7.5 12-7.5 12S4.5 16 4.5 10a7.5 7.5 0 1 1 15 0Z" /><circle cx="12" cy="10" r="2.6" /></svg>
-              <span>{clinic.address}</span>
+              <span>{t(clinic.address)}</span>
             </li>
             <li>
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7.5V12l3 2" /></svg>
-              <span>{clinic.hours}</span>
+              <span>{t(clinic.hours)}</span>
             </li>
           </ul>
         </div>
 
         <div className={styles.pillars}>
-          <p className={styles.discover}>Discover the best dental clinic in Dubai</p>
+          <p className={styles.discover}>{t("Discover the best dental clinic in Dubai")}</p>
           <ul>
             {aboutCards.map((card, i) => (
               <li key={card.title} className={styles.pillar}>
@@ -53,8 +49,8 @@ export function About() {
                   </svg>
                 </span>
                 <div>
-                  <h3 className={styles.pillarTitle}>{card.title}</h3>
-                  <p className={styles.pillarText}>{card.text}</p>
+                  <h3 className={styles.pillarTitle}>{t(card.title)}</h3>
+                  <p className={styles.pillarText}>{t(card.text)}</p>
                 </div>
               </li>
             ))}
@@ -71,26 +67,23 @@ export function Insurance() {
   return (
     <section id="insurance" aria-labelledby="insurance-heading" className={insuranceStyles.section}>
       <div className={insuranceStyles.header}>
-        <h2 id="insurance-heading" className={insuranceStyles.heading}>
-          Insurance <span>Companies</span>
+        <h2 id="insurance-heading" className={insuranceStyles.heading}>{t("Insurance")}{" "}<span>{t("Companies")}</span>
         </h2>
-        <p className={insuranceStyles.copy}>At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.</p>
+        <p className={insuranceStyles.copy}>{t("At Bright Way Dental Clinic, we simplify your access to exceptional dental care by accepting a wide range of insurance companies.")}</p>
       </div>
 
-      <div className={insuranceStyles.ribbon}>
+      <div dir="ltr" className={insuranceStyles.ribbon}>
         <ul className={insuranceStyles.track}>
           {ribbon.map((insurer, i) => (
             <li key={insurer.logo + i} className={insuranceStyles.logo} aria-hidden={i >= insurers.length || undefined}>
-              <Image src={insurer.logo} alt={i < insurers.length ? `${insurer.name} — insurance accepted at Bright Way Dental Clinic` : ""} width={180} height={90} loading="eager" />
+              <Image src={insurer.logo} alt={i < insurers.length ? `${insurer.name} — ${t("insurance accepted at Bright Way Dental Clinic")}` : ""} width={180} height={90} loading="eager" />
             </li>
           ))}
         </ul>
       </div>
 
-      <p className={insuranceStyles.ask}>
-        Not sure if your plan is covered?{" "}
-        <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer">
-          Ask us on WhatsApp <Arrow />
+      <p className={insuranceStyles.ask}>{t("Not sure if your plan is covered?")}{" "}
+        <a href={clinic.whatsapp} target="_blank" rel="noopener noreferrer">{t("Ask us on WhatsApp")}{" "}<Arrow />
         </a>
       </p>
     </section>

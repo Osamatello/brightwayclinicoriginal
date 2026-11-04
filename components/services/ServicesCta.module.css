@@ -11,10 +11,10 @@
 }
 
 .doodle { position: absolute; pointer-events: none; fill: none; stroke: #c39433; stroke-width: .9; stroke-linecap: round; stroke-linejoin: round; opacity: .28; }
-.mirror { top: 2.25rem; left: 2.5rem; width: 92px; rotate: -12deg; }
-.probe { bottom: 2rem; right: 2.75rem; width: 96px; rotate: 6deg; }
-.toothLeft { bottom: 2.5rem; left: 3.5rem; width: 64px; rotate: -14deg; }
-.toothRight { top: 2.5rem; right: 3.5rem; width: 70px; rotate: 12deg; }
+.mirror { top: 2.25rem; inset-inline-start: 2.5rem; width: 92px; rotate: -12deg; }
+.probe { bottom: 2rem; inset-inline-end: 2.75rem; width: 96px; rotate: 6deg; }
+.toothLeft { bottom: 2.5rem; inset-inline-start: 3.5rem; width: 64px; rotate: -14deg; }
+.toothRight { top: 2.5rem; inset-inline-end: 3.5rem; width: 70px; rotate: 12deg; }
 
 .medallion {
   position: relative; display: inline-grid; place-items: center; width: 72px; height: 72px;
@@ -38,10 +38,10 @@
 
 @media (max-width: 899px) {
   .section { padding-block: 4rem 5rem; }
-  .mirror { width: 64px; top: 1.5rem; left: 1.25rem; }
-  .toothRight { width: 48px; top: 1.75rem; right: 1.5rem; }
-  .probe { width: 64px; bottom: 1.25rem; right: 1.25rem; }
-  .toothLeft { width: 44px; bottom: 1.5rem; left: 1.5rem; }
+  .mirror { width: 64px; top: 1.5rem; inset-inline-start: 1.25rem; }
+  .toothRight { width: 48px; top: 1.75rem; inset-inline-end: 1.5rem; }
+  .probe { width: 64px; bottom: 1.25rem; inset-inline-end: 1.25rem; }
+  .toothLeft { width: 44px; bottom: 1.5rem; inset-inline-start: 1.5rem; }
 }
 @media (max-width: 539px) {
   .section { padding-inline: 16px; }

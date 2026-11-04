@@ -1,6 +1,6 @@
 /* Warm beige-white, clearly darker than the page, with a thin gold line on top */
 .footer { position: relative; background: #e7ddcd; color: #625a4e; }
-.footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, #e7ddcd00, #c39433 30%, #e8c77a 50%, #c39433 70%, #e7ddcd00); }
+.footer::before { content: ""; position: absolute; inset-inline-start: 0; inset-inline-end: 0; top: 0; height: 2px; background: linear-gradient(90deg, #e7ddcd00, #c39433 30%, #e8c77a 50%, #c39433 70%, #e7ddcd00); }
 
 .inner {
   max-width: 1280px; margin-inline: auto; padding: 2.75rem 24px 2.25rem;
@@ -8,7 +8,7 @@
 }
 
 .brand { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; }
-.logo { width: auto; height: 76px; margin-left: -6px; }
+.logo { width: auto; height: 76px; margin-inline-start: -6px; }
 .tagline { font-family: var(--font-display); font-size: 1.5rem; font-style: italic; font-weight: 500; line-height: 1.2; color: #a77d2a; }
 .blurb { max-width: 26rem; font-size: .9rem; line-height: 1.65; }
 
@@ -25,7 +25,7 @@
 
 .nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: .75rem 1.5rem; padding-top: .35rem; }
 .navLink { position: relative; justify-self: start; color: #3e2d0e; font-size: .92rem; font-weight: 600; transition: color 250ms ease; }
-.navLink::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: #c39433; transform: scaleX(0); transform-origin: left; transition: transform 300ms ease; }
+.navLink::after { content: ""; position: absolute; inset-inline-start: 0; bottom: -3px; width: 100%; height: 1px; background: #c39433; transform: scaleX(0); transform-origin: var(--start-edge, left); transition: transform 300ms ease; }
 .navLink:hover { color: #a77d2a; }
 .navLink:hover::after { transform: scaleX(1); }
 

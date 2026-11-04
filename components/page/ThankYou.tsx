@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import { clinic } from "@/content/site";
 import { Check, GoldButton, OutlineButton, WhatsAppIcon } from "@/components/ui";
 import { PixelEvents } from "@/components/tracking/MetaPixel";
@@ -16,18 +17,14 @@ export default function ThankYou({ message }: { message: string }) {
         <span className={styles.check}>
           <Check />
         </span>
-        <h1 className={styles.heading}>
-          Thank You for Choosing <em>Bright Way Dental Clinic!</em>
+        <h1 className={styles.heading}>{t("Thank You for Choosing")}{" "}<em>{t("Bright Way Dental Clinic!")}</em>
         </h1>
-        <p className={styles.message}>{message}</p>
-        <p className={styles.text}>
-          Our team will contact you shortly via WhatsApp or email with your personalized smile designs. In the meantime, if you have any questions or need further assistance, feel free to reach out to us.
-        </p>
+        <p className={styles.message}>{t(message)}</p>
+        <p className={styles.text}>{t("Our team will contact you shortly via WhatsApp or email with your personalized smile designs. In the meantime, if you have any questions or need further assistance, feel free to reach out to us.")}</p>
         <div className={styles.actions}>
-          <GoldButton href="/">Back to home page</GoldButton>
+          <GoldButton href={l("/")}>{t("Back to home page")}</GoldButton>
           <OutlineButton href={clinic.whatsapp}>
-            <WhatsAppIcon /> WhatsApp us
-          </OutlineButton>
+            <WhatsAppIcon />{" "}{t("WhatsApp us")}</OutlineButton>
         </div>
       </div>
     </section>

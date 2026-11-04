@@ -1,3 +1,4 @@
+import { l, t } from "@/lib/i18n";
 import Link from "next/link";
 import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./BlogHero.module.css";
@@ -7,30 +8,25 @@ export default function BlogHero() {
     <section className={styles.section}>
       <ScatteredTeeth />
       <div className={styles.inner}>
-        <nav aria-label="Breadcrumb" className={styles.crumbs}>
+        <nav aria-label={t("Breadcrumb")} className={styles.crumbs}>
           <ol>
             <li>
-              <Link href="/">Home</Link>
+              <Link href={l("/")}>{t("Home")}</Link>
             </li>
             <li aria-hidden="true" className={styles.chevron}>
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="m4.5 2.5 3.500 3.500-3.500 3.500" /></svg>
             </li>
-            <li aria-current="page">Blog</li>
+            <li aria-current="page">{t("Blog")}</li>
           </ol>
         </nav>
 
-        <h1 className={styles.heading}>
-          Bright Way Clinic <em>Blog</em>
+        <h1 className={styles.heading}>{t("Bright Way Clinic")}{" "}<em>{t("Blog")}</em>
         </h1>
         <p className={styles.topics}>
           <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">
             <path d="M24 8c-4-3-9-4-13-1-5 3-6 10-4 16 1 5 3 8 4 13 1 4 2 10 6 10 3 0 3-4 4-8 .6-3 1.500-5 3-5s2.400 2 3 5c1 4 1 8 4 8 4 0 5-6 6-10 1-5 3-8 4-13 2-6 1-13-4-16-4-3-9-2-13 1Z" />
-          </svg>
-          Dental tips &amp; digital dentistry insights
-        </p>
-        <p className={styles.intro}>
-          Advice from Dr. Hasan Mahdy and the Bright Way team — implants, veneers, aligners, children&apos;s dental care and the latest in digital dentistry.
-        </p>
+          </svg>{t("Dental tips & digital dentistry insights")}</p>
+        <p className={styles.intro}>{t("Advice from Dr. Hasan Mahdy and the Bright Way team — implants, veneers, aligners, children's dental care and the latest in digital dentistry.")}</p>
       </div>
     </section>
   );

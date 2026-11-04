@@ -5,7 +5,7 @@
 
 /* Heading left, Google score right, lined up with the card grid edges */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 3rem; margin-bottom: 3rem; }
-.score { display: flex; align-items: center; gap: 1.75rem; padding-left: 3rem; border-left: 1px solid #e3d3b2; }
+.score { display: flex; align-items: center; gap: 1.75rem; padding-inline-start: 3rem; border-inline-start: 1px solid #e3d3b2; }
 .scoreDetails { display: flex; flex-direction: column; align-items: flex-start; }
 .rating {
   margin: 0; font-family: var(--font-display); font-size: 5.25rem; font-weight: 600; line-height: .9;
@@ -21,7 +21,7 @@
 .allLink { display: inline-flex; align-items: center; gap: .55rem; margin-top: .9rem; padding: .7rem 1.2rem; border-radius: 999px; box-shadow: inset 0 0 0 1px #e6d4ad; color: #8a6a24; font-size: .9rem; font-weight: 700; border-bottom: 1px solid transparent; }
 .allLink:hover { color: #3e2d0e; }
 .allLink svg:last-child { transition: transform 300ms ease; }
-.allLink:hover svg:last-child { transform: translateX(4px); }
+.allLink:hover svg:last-child { transform: translateX(calc(4px * var(--dir, 1))); }
 .allLink:hover { box-shadow: inset 0 0 0 1px #c9962f; }
 
 /* Review cards: 3 across, centred when there are fewer */
@@ -34,10 +34,10 @@
   transition: transform 500ms cubic-bezier(.22,.7,.25,1), box-shadow 500ms ease;
 }
 .review:hover { transform: translateY(-5px); box-shadow: 0 32px 60px -34px #3e2d0e73, inset 0 0 0 1px #d9c28c; }
-.quoteMark { position: absolute; top: .25rem; right: 1.25rem; color: #e9d9b4; font-family: var(--font-display); font-size: 5rem; line-height: 1; pointer-events: none; }
+.quoteMark { position: absolute; top: .25rem; inset-inline-end: 1.25rem; color: #e9d9b4; font-family: var(--font-display); font-size: 5rem; line-height: 1; pointer-events: none; }
 .stars { display: flex; gap: 3px; color: #c9962f; }
 .stars svg { width: 15px; height: 15px; }
-.text[dir="rtl"] { font-family: var(--font-sans, inherit); font-style: normal; font-size: 1rem; line-height: 1.75; text-align: right; }
+.text[dir="rtl"] { font-family: var(--font-sans, inherit); font-style: normal; font-size: 1rem; line-height: 1.75; text-align: end; }
 .text {
   position: relative; flex: 1; margin-top: .9rem; color: #3e2d0e;
   font-family: var(--font-display); font-size: 1.35rem; font-style: normal; font-weight: 500; line-height: 1.4; letter-spacing: -.005em;
@@ -58,7 +58,7 @@ a.name:hover { color: #8a6a24; }
 }
 @media (max-width: 899px) {
   .top { flex-direction: column; text-align: center; gap: 2rem; margin-bottom: 2.5rem; }
-  .score { padding-left: 0; border-left: 0; }
+  .score { padding-inline-start: 0; border-inline-start: 0; }
   .section { padding-block: 4.5rem 5rem; }
   .inner { padding-inline: 24px; }
   .heading { font-size: clamp(2.6rem, 6.5vw, 4rem); }

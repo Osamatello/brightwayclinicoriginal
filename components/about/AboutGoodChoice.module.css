@@ -12,8 +12,8 @@
 
 .column { display: grid; gap: 1.1rem; }
 /* gentle arc: the middle card sits closer to the tooth */
-.left .point:nth-child(2) { translate: 1.75rem 0; }
-.right .point:nth-child(2) { translate: -1.75rem 0; }
+.left .point:nth-child(2) { translate: calc(1.75rem * var(--dir, 1)) 0; }
+.right .point:nth-child(2) { translate: calc(-1.75rem * var(--dir, 1)) 0; }
 
 .point {
   position: relative; display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.4rem;
@@ -21,11 +21,11 @@
   color: #3e2d0e; font-size: 1rem; font-weight: 600; line-height: 1.4;
   transition: box-shadow 350ms ease, scale 350ms ease;
 }
-.left .point { flex-direction: row-reverse; text-align: right; }
+.left .point { flex-direction: row-reverse; text-align: end; }
 /* thin gold line reaching toward the tooth */
 .point::after { content: ""; position: absolute; top: 50%; width: clamp(1.5rem, 3vw, 3rem); height: 1px; }
-.left .point::after { left: 100%; background: linear-gradient(90deg, #c39433, #c3943300); }
-.right .point::after { right: 100%; background: linear-gradient(270deg, #c39433, #c3943300); }
+.left .point::after { inset-inline-start: 100%; background: linear-gradient(calc(90deg * var(--dir, 1)), #c39433, #c3943300); }
+.right .point::after { inset-inline-end: 100%; background: linear-gradient(calc(270deg * var(--dir, 1)), #c39433, #c3943300); }
 .point:hover { scale: 1.03; box-shadow: 0 26px 46px -28px #3e2d0e80, inset 0 0 0 1px #d9c28c; }
 
 .icon {
@@ -52,7 +52,7 @@
   .left, .right { grid-row: 2; }
   .left { grid-column: 1; }
   .right { grid-column: 2; }
-  .left .point, .right .point, .left .point:nth-child(2), .right .point:nth-child(2) { flex-direction: row; text-align: left; translate: none; }
+  .left .point, .right .point, .left .point:nth-child(2), .right .point:nth-child(2) { flex-direction: row; text-align: start; translate: none; }
   .point::after { display: none; }
 }
 @media (max-width: 599px) {
