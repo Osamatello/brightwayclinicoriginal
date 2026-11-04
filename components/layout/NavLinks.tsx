@@ -7,6 +7,8 @@ import styles from "./NavLinks.module.css";
 
 /** Pages that count as being inside a menu item, e.g. treatment pages under "Services". */
 export type NavSections = Record<string, string[]>;
+/** Drop-down lists that come from the server, e.g. every blog article under "Blog". */
+export type NavLists = Record<string, { label: string; href: string }[]>;
 
 export function useActiveNav(sections: NavSections) {
   const pathname = usePathname();
@@ -14,8 +16,8 @@ export function useActiveNav(sections: NavSections) {
   return (href: string) => current === href || (sections[href]?.includes(current) ?? false);
 }
 
-/** Desktop menu; the page you are on is shown in gold with a gold underline. About and Services drop a list on hover or keyboard focus. */
-export default function NavLinks({ sections }: { sections: NavSections }) {
+/** Desktop menu; the page you are on is shown in gold with a gold underline. About, Services and Blog drop a list on hover or keyboard focus. */
+export default function NavLinks({ sections, lists }: { sections: NavSections; lists: NavLists }) {
   const isActive = useActiveNav(sections);
   const pathname = usePathname();
   return (
@@ -31,7 +33,9 @@ export default function NavLinks({ sections }: { sections: NavSections }) {
             {item.label}
           </Link>
         );
-        if (!item.children) return <span key={item.href}>{link}</span>;
+        const children = item.children ?? lists[item.href];
+        if (!children) return <span key={item.href}>{link}</span>;
+        const long = children.length > 12; // long lists (blog articles): wider, wrapped titles, scroll inside
         return (
           // key on the path: the list closes after choosing a page, even while the mouse is still over it
           <div key={`${item.href}${pathname}`} className={styles.item}>
@@ -40,8 +44,8 @@ export default function NavLinks({ sections }: { sections: NavSections }) {
               <path d="m2.500 4.500 3.500 3.500 3.500-3.500" />
             </svg>
             <div className={styles.dropdown}>
-              <ul className={`${styles.list} ${item.children.length > 6 ? styles.twoColumns : ""}`}>
-                {item.children.map((child) => (
+              <ul data-lenis-prevent={long || undefined} className={`${styles.list} ${long ? styles.longList : children.length > 6 ? styles.twoColumns : ""}`}>
+                {children.map((child) => (
                   <li key={child.href}>
                     <Link href={child.href}>{child.label}</Link>
                   </li>

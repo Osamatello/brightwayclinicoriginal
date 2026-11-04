@@ -12,6 +12,8 @@ export default function Header() {
     "/services/": servicesEn().map((e) => e.path),
     "/blog/": postsEn().map((e) => e.path),
   };
+  // Filled in here on the server, so the article list isn't added to the menu's browser code twice
+  const lists = { "/blog/": postsEn().map((e) => ({ label: e.title, href: e.path })) };
   return (
     <header className="sticky top-0 z-40">
       {/* top bar from lg up; below that the numbers and hours live in the menu (MobileMenu) */}
@@ -31,14 +33,14 @@ export default function Header() {
             {/* logo-trimmed.png = logo.png without its empty margin, so the mark itself shows larger */}
             <Image src="/images/logo-trimmed.png" alt={clinic.name} width={2636} height={774} priority sizes="200px" className="h-12 w-auto md:h-14" />
           </Link>
-          <NavLinks sections={sections} />
+          <NavLinks sections={sections} lists={lists} />
           <div className="hidden items-center gap-4 whitespace-nowrap xl:flex">
             <Link href="/ar/" lang="ar" className="text-sm font-bold text-gold-dark hover:text-brown-dark">
               العربية
             </Link>
             <GoldButton href="/contact-us/">Book an Appointment</GoldButton>
           </div>
-          <MobileMenu sections={sections} />
+          <MobileMenu sections={sections} lists={lists} />
         </div>
       </div>
     </header>

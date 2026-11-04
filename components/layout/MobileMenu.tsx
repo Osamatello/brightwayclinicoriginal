@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useEffect, useState, type MouseEvent } from "react";
 import { clinic, nav } from "@/content/site";
 import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
-import { useActiveNav, type NavSections } from "@/components/layout/NavLinks";
+import { useActiveNav, type NavLists, type NavSections } from "@/components/layout/NavLinks";
 
 const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 
 /** Below xl (1280px): call button + menu button that opens the full menu under the header. */
-export default function MobileMenu({ sections }: { sections: NavSections }) {
+export default function MobileMenu({ sections, lists }: { sections: NavSections; lists: NavLists }) {
   const [open, setOpen] = useState(false);
   const [openList, setOpenList] = useState<string | null>(null);
   const isActive = useActiveNav(sections);
@@ -54,7 +54,8 @@ export default function MobileMenu({ sections }: { sections: NavSections }) {
           <nav aria-label="Main" className="flex flex-col">
             {nav.map((item) => {
               const color = isActive(item.href) ? "text-gold-dark" : "text-brown-dark";
-              if (!item.children) {
+              const children = item.children ?? lists[item.href];
+              if (!children) {
                 return (
                   <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} className={`flex items-center justify-between border-b border-line py-4 text-lg font-bold ${color}`}>
                     {item.label} <Arrow className="h-4 w-4 text-gold-dark" />
@@ -82,7 +83,7 @@ export default function MobileMenu({ sections }: { sections: NavSections }) {
                   </div>
                   {expanded && (
                     <ul className="pb-3">
-                      {item.children.map((child) => (
+                      {children.map((child) => (
                         <li key={child.href}>
                           <Link href={child.href} aria-current={isActive(child.href) ? "page" : undefined} className={`block py-2.5 pl-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
                             {child.label}

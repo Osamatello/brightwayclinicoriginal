@@ -1,5 +1,5 @@
 /* All 11 treatments: white cards on a cream band, 3 per row, every row the same height, last row centred */
-.section { padding: 5rem 0 6rem; background: linear-gradient(#fbf7ef, #f7f0e3); }
+.section { padding: 5rem 0 6rem; background: #fff; }
 /* 6 half-columns so a short last row can sit centred; 1fr rows keep all cards equal */
 .grid {
   display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 1.75rem;
