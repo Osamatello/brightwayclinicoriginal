@@ -41,11 +41,11 @@ export default function DoctorHero() {
 
         <figure className={styles.portrait}>
           <Image
-            src="/images/dr-hasan.jpg"
+            src="/images/doctors/dr-hasan.webp"
             alt="Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic."
-            width={408}
-            height={408}
-            sizes="(max-width: 480px) calc(100vw - 48px), 408px"
+            width={816}
+            height={816}
+            unoptimized
             priority
           />
           <figcaption>

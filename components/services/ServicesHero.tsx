@@ -3,11 +3,11 @@ import Link from "next/link";
 import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./ServicesHero.module.css";
 
-// Generated as one set (same clinic, light and colours as the service photos); originals in design/services-hub-candidates/
+// Free Pexels photos chosen by Osama (5355723, 19976591, 19976568); originals in design/services-title-options/
 const photos = [
-  { src: "/images/services-hub/hero-consultation.webp", alt: "Dentist talking a patient through her treatment plan in a bright clinic overlooking Dubai", sizes: "(min-width: 900px) 420px, 60vw" },
-  { src: "/images/services-hub/hero-scan-a.webp", alt: "Dentist showing a patient a 3D digital scan of her teeth on screen", sizes: "(min-width: 900px) 340px, 45vw" },
-  { src: "/images/services-hub/hero-scan-b.webp", alt: "Patient reviewing her digital smile design with the dentist", sizes: "(min-width: 900px) 340px, 45vw" },
+  { src: "/images/services-hub/hero-dentist-model.webp", alt: "Smiling dentist showing a patient a dental model" },
+  { src: "/images/services-hub/hero-treatment-a.webp", alt: "Dentist in a face shield examining a patient in the dental chair" },
+  { src: "/images/services-hub/hero-treatment-b.webp", alt: "Dentist treating a patient under the dental light" },
 ];
 
 export default function ServicesHero() {
@@ -41,7 +41,7 @@ export default function ServicesHero() {
         <div className={styles.mosaic}>
           {photos.map((p, i) => (
             <div key={p.src} className={`${styles.tile} ${styles[`tile${i + 1}`]}`}>
-              <Image src={p.src} alt={p.alt} fill priority={i === 0} sizes={p.sizes} className={styles.photo} />
+              <Image src={p.src} alt={p.alt} fill priority unoptimized className={styles.photo} />
             </div>
           ))}
         </div>

@@ -6,13 +6,13 @@ const team = [
   {
     name: "Dr. Raghad K. Al-Harbawee",
     role: "Orthodontist and Dentofacial Orthopedic",
-    img: "/images/dr-raghad.jpg",
+    img: "/images/doctors/dr-raghad.webp",
     alt: "Dr. Raghad K. Al-Harbawee - Orthodontist & Dentofacial Orthopedic Specialist at Bright Way Dental Clinic.",
   },
   {
     name: "Dr. Ali M. Mahdy",
     role: "General Dentist specializing in Cosmetic Dentistry and Oral Care and Treatment of Dental and Oral Diseases.",
-    img: "/images/dr-ali.jpg",
+    img: "/images/doctors/dr-ali.webp",
     alt: "Dr. Ali M. Mahdy - General Dentist & Cosmetic Dentistry Specialist at Bright Way Dental Clinic.",
   },
 ];
@@ -25,7 +25,7 @@ export default function DoctorTeam() {
         {team.map((doctor) => (
           <li key={doctor.name} className={styles.card}>
             <div className={styles.ring}>
-              <Image src={doctor.img} alt={doctor.alt} fill sizes="168px" className={styles.photo} />
+              <Image src={doctor.img} alt={doctor.alt} fill unoptimized className={styles.photo} />
             </div>
             <div>
               <h3 className={styles.name}>{doctor.name}</h3>

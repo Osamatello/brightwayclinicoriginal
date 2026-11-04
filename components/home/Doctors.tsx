@@ -21,7 +21,7 @@ export default function Doctors() {
           <article className={styles.founder}>
             <Link href={founder.href!} className={styles.portraitLink} aria-label={"Meet " + founder.name}>
               <div className={styles.founderPortrait}>
-                <Image src={founder.img} alt={founder.name} fill sizes="(min-width: 1280px) 544px, (min-width: 760px) 45vw, 100vw" className={styles.photo} />
+                <Image src={founder.img} alt={founder.name} fill unoptimized className={styles.photo} />
               </div>
               <span className={styles.portraitCta} aria-hidden="true">Meet Dr. Hasan <Arrow /></span>
             </Link>
@@ -35,7 +35,7 @@ export default function Doctors() {
             {team.map((doctor) => (
               <article key={doctor.name} className={styles.profile}>
                 <div className={styles.teamPortrait}>
-                  <Image src={doctor.img} alt={doctor.name} fill sizes="(min-width: 1280px) 270px, (min-width: 760px) 22vw, (min-width: 540px) 40vw, 100vw" className={styles.photo} />
+                  <Image src={doctor.img} alt={doctor.name} fill unoptimized className={styles.photo} />
                 </div>
                 <div className={styles.profileInfo}>
                   <p className={styles.specialty}>{doctor.tag}</p>

@@ -20,7 +20,7 @@ export default function AboutDoctors() {
           {doctors.map((doctor) => (
             <li key={doctor.name} className={styles.card}>
               <div className={styles.arch}>
-                <Image src={doctor.img} alt={doctor.name} fill sizes="(min-width: 960px) 340px, (min-width: 600px) 45vw, 80vw" className={styles.photo} />
+                <Image src={doctor.img} alt={doctor.name} fill unoptimized className={styles.photo} />
               </div>
               <div className={styles.info}>
                 <p className={styles.tag}>{doctor.tag}</p>

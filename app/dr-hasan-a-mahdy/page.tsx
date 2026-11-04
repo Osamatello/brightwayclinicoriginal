@@ -22,7 +22,11 @@ export function generateMetadata(): Metadata {
 function articleOnly(html: string) {
   const start = html.indexOf('<img src="/wp-content/uploads/2024/05/WhatsApp-Image-2024-04-08-at-12.35.48');
   const end = html.indexOf('<img src="/wp-content/uploads/2024/03/254_1x.jpg"');
-  return html.slice(Math.max(0, start), end > 0 ? end : undefined);
+  const article = html.slice(Math.max(0, start), end > 0 ? end : undefined);
+  // The photo sits under the first paragraph (Osama, 2026-11-04), not above the first heading
+  const photo = article.match(/^<img\b[^>]*>\s*/)?.[0];
+  if (!photo) return article;
+  return article.slice(photo.length).replace("</p>", `</p>${photo}`);
 }
 
 export default function DoctorPage() {

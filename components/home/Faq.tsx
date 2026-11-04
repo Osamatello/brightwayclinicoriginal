@@ -4,7 +4,7 @@ import { clinic } from "@/content/site";
 import { GoldButton } from "@/components/ui";
 import styles from "./Faq.module.css";
 
-const HOME_PHOTO = { src: "/images/faq-dentist-explaining.webp", alt: "Dentist explaining a treatment to a patient using a dental model" };
+const HOME_PHOTO = { src: "/images/faq-consultation-screen.webp", alt: "Dentist explaining a digital 3D model of a patient's teeth on screen during a consultation" };
 
 export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { src: string; alt: string }; items?: { q: string; a: string }[] }) {
   return (
@@ -20,7 +20,7 @@ export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { sr
               src={photo.src}
               alt={photo.alt}
               fill
-              sizes="(min-width: 1280px) 500px, (min-width: 900px) 40vw, (min-width: 568px) 520px, calc(100vw - 48px)"
+              unoptimized
               className={styles.photo}
             />
           </div>

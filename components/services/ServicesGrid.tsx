@@ -31,7 +31,7 @@ export default function ServicesGrid({ services }: { services: Service[] }) {
           <li key={s.href} className={styles.item}>
             <Link href={s.href} className={styles.card}>
               <div className={styles.media}>
-                <Image src={s.img} alt={`${s.title} at Bright Way Dental Clinic, Dubai`} fill sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw" className={styles.photo} />
+                <Image src={s.img} alt={`${s.title} at Bright Way Dental Clinic, Dubai`} fill unoptimized className={styles.photo} />
               </div>
               <span className={styles.icon} aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">

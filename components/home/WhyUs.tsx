@@ -30,11 +30,10 @@ export default function WhyUs() {
           <div className={styles.photograph}>
             <div className={styles.photoFrame}>
               <Image
-                src="/images/why-us-consultation.webp"
-                alt="Illustration of a dentist discussing a digital dental scan with a patient in a sunlit treatment room"
+                src="/images/good-choice-happy-child.webp"
+                alt="Happy young patient giving a thumbs up with her dentist at the clinic"
                 fill
-                sizes="(min-width: 1280px) 440px, (min-width: 960px) 38vw, (min-width: 600px) 520px, 90vw"
-                quality={90}
+                unoptimized
                 className={styles.photo}
               />
             </div>

@@ -21,12 +21,12 @@ export default function AboutInsurance() {
           </p>
         </div>
 
-        {/* Logos on one "coverage card" with a tooth-and-shield emblem */}
+        {/* Logos on one "coverage card" with a shield-and-check emblem */}
         <div className={styles.card}>
           <span className={styles.emblem} aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M16 2.5 5 6.5v8.2c0 7 4.6 12.4 11 14.8 6.4-2.4 11-7.8 11-14.8V6.5Z" />
-              <path d="M12.6 10.6c-.8-2 .3-3.5 2-3.5.8 0 1.1.6 1.4.6s.6-.6 1.4-.6c1.7 0 2.8 1.5 2 3.5l-.7 3.6-.5 3.4c-.2 1-1.2 1-1.4 0l-.4-2.5h-.8l-.4 2.5c-.2 1-1.2 1-1.4 0l-.5-3.4Z" />
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M16 3 6 6.800v7.900c0 6.400 4.200 11.300 10 13.700 5.800-2.400 10-7.300 10-13.700V6.800Z" />
+              <path d="m11.200 15.800 3.400 3.400 6.200-6.600" />
             </svg>
           </span>
           <svg aria-hidden="true" focusable="false" viewBox="0 0 400 480" className={styles.watermark}>

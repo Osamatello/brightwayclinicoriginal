@@ -35,7 +35,7 @@ export default function AboutGoodChoice() {
           <div className={styles.core}>
             <span aria-hidden="true" className={styles.ringOuter} />
             <span aria-hidden="true" className={styles.ringInner} />
-            <Image src="/images/about/good-choice-tooth.webp" alt="" width={800} height={800} sizes="(min-width: 960px) 340px, 240px" className={styles.tooth} />
+            <Image src="/images/about/good-choice-tooth.webp" alt="" width={1024} height={1024} unoptimized loading="eager" className={styles.tooth} />
           </div>
         </div>
       </div>

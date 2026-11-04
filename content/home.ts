@@ -8,7 +8,7 @@ export const homeSeo = {
 };
 
 export const services = [
-  { title: "Dental Implants", text: "A long-lasting replacement for lost teeth, planned digitally and placed with computer guidance.", img: "/images/services/approved/dental-implants-real.webp", href: "/dentalimplants-en/" },
+  { title: "Dental Implants", text: "A long-lasting replacement for lost teeth, planned digitally and placed with computer guidance.", img: "/images/services/approved/dental-implants-card.webp", href: "/dentalimplants-en/" },
   { title: "Teeth Cleaning and Gum Treatment", text: "Maintain optimal oral health with our deep cleaning services that prevent gum disease and enhance overall dental hygiene.", img: "/images/services/approved/teeth-cleaning-real.webp", href: "/teeth-cleaning-and-gum-treatment/" },
   { title: "Teeth Whitening", text: "Brighten your smile with our professional whitening treatments, tailored to safely achieve a radiant and lasting shine.", img: "/images/services/approved/teeth-whitening-portrait.webp", href: "/teeth-whitening/" },
   { title: "Tooth Extraction", text: "Expert, gentle removal of problematic teeth to alleviate pain and prevent further dental issues.", img: "/images/services/approved/tooth-extraction.webp", href: "/tooth-extraction/" },
@@ -39,15 +39,15 @@ export const doctors = [
     name: "Dr. Hasan A. Mahdy",
     tag: "Founder",
     role: "Specializing in cosmetic dentistry, dental implants, oral surgery, prosthetics, and general comprehensive dental care.",
-    img: "/images/dr-hasan.jpg",
+    img: "/images/doctors/dr-hasan.webp",
     href: "/dr-hasan-a-mahdy/",
   },
-  { name: "Dr. Raghad K. Al-Harbawee", tag: "Orthodontist", role: "Orthodontist and Dentofacial Orthopedic.", img: "/images/dr-raghad.jpg" },
+  { name: "Dr. Raghad K. Al-Harbawee", tag: "Orthodontist", role: "Orthodontist and Dentofacial Orthopedic.", img: "/images/doctors/dr-raghad.webp" },
   {
     name: "Dr. Ali M. Mahdy",
     tag: "General Dentist",
     role: "General Dentist specializing in Cosmetic Dentistry and Oral Care and Treatment of Dental and Oral Diseases.",
-    img: "/images/dr-ali.jpg",
+    img: "/images/doctors/dr-ali.webp",
   },
 ];
 
@@ -126,11 +126,11 @@ export const offerPoints = [
   "Enjoying the benefits of restored chewing and speech.",
 ];
 
-// Google Business Profile figures, checked on Google Maps 2026-10-27 (4.9 from 157 reviews, 154 of them 5-star) — update when they change.
+// Google Business Profile figures. Count 160 per Osama 2026-11-04; rating and 5-star count last checked on Google Maps 2026-10-27 — update when they change.
 // Live reviews are pulled from the Google Places API when GOOGLE_PLACES_API_KEY is set (lib/googleReviews.ts); these numbers are the fallback.
 export const googleReviews = {
   rating: 4.9,
-  count: 157,
+  count: 160,
   fiveStar: 154,
   url: "https://www.google.com/maps?cid=4456386569709899538",
   topics: ["Dental implants", "Veneers", "Dr. Hasan", "Smile makeover", "Root canals"],
