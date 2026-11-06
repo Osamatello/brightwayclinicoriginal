@@ -6,6 +6,7 @@ import MetaPixel from "@/components/tracking/MetaPixel";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CookieNotice from "@/components/layout/CookieNotice";
 import { l, setLang, t } from "@/lib/i18n";
+import { SiteSchema } from "@/lib/schema";
 import type { Lang } from "@/lib/i18n-data";
 import "@/app/globals.css";
 
@@ -26,6 +27,7 @@ export default function SiteShell({ lang, fonts, children }: { lang: Lang; fonts
         <link rel="alternate" type="application/rss+xml" title={t("Bright Way Dental Clinic Blog")} href={l("/feed/")} />
       </head>
       <body className="antialiased">
+        <SiteSchema />
         <Header />
         <main>{children}</main>
         <Footer />

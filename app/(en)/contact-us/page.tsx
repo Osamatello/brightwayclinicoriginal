@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
 import { contactFaqs } from "@/content/contact";
+import { ldText } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import ContactHero from "@/components/contact/ContactHero";
 import Contact from "@/components/home/Contact";
@@ -20,7 +21,7 @@ export default function ContactPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: contactFaqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    mainEntity: contactFaqs.map((f) => ({ "@type": "Question", name: ldText(f.q), acceptedAnswer: { "@type": "Answer", text: ldText(f.a) } })),
   };
   return (
     <>

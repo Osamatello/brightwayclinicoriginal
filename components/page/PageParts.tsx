@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { clinic } from "@/content/site";
+import { ldText, ldUrl } from "@/lib/schema";
 import { Eyebrow, GoldButton, OutlineButton, WhatsAppIcon } from "@/components/ui";
 
 type Crumb = { label: string; href?: string };
@@ -94,8 +95,8 @@ export function BreadcrumbSchema({ items }: { items: { name: string; path: strin
     itemListElement: [{ name: "Home", path: "/" }, ...items].map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: it.name,
-      item: `${clinic.url}${it.path}`,
+      name: ldText(it.name),
+      item: ldUrl(it.path),
     })),
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;

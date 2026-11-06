@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
 import { smileCases } from "@/content/home";
 import { clinic } from "@/content/site";
+import { CLINIC_ID, ldText, ldUrl } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import BeforeAfter from "@/components/home/BeforeAfter";
 import CareAndOffer from "@/components/home/CareAndOffer";
@@ -24,12 +25,12 @@ export default function SmileGalleryPage() {
   const gallerySchema = {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    name: "Before and After Dental Transformations",
-    url: `${clinic.url}/smile-gallery/`,
-    provider: { "@id": `${clinic.url}/#clinic` },
+    name: ldText("Before and After Dental Transformations"),
+    url: ldUrl("/smile-gallery/"),
+    provider: { "@id": CLINIC_ID },
     image: smileCases.flatMap((c) => [
-      { "@type": "ImageObject", contentUrl: `${clinic.url}${c.before}`, description: c.beforeAlt },
-      { "@type": "ImageObject", contentUrl: `${clinic.url}${c.after}`, description: c.afterAlt },
+      { "@type": "ImageObject", contentUrl: `${clinic.url}${c.before}`, description: ldText(c.beforeAlt) },
+      { "@type": "ImageObject", contentUrl: `${clinic.url}${c.after}`, description: ldText(c.afterAlt) },
     ]),
   };
   return (

@@ -2,6 +2,7 @@ import { getLang, t } from "@/lib/i18n";
 import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
 import { clinic } from "@/content/site";
+import { CLINIC_ID, ldText, ldUrl } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import PostBody from "@/components/blog/PostBody";
 import DoctorHero from "@/components/doctor/DoctorHero";
@@ -41,12 +42,14 @@ export default function DoctorPage() {
   const page = getById(DOCTOR_ID);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Dentist",
-    name: "Dr. Hasan Abdullah Mahdy",
-    image: `${clinic.url}/images/dr-hasan.jpg`,
-    url: `${clinic.url}/dr-hasan-a-mahdy/`,
-    medicalSpecialty: ["Cosmetic dentistry", "Dental implants", "Oral surgery"],
-    worksFor: { "@id": `${clinic.url}/#clinic` },
+    "@type": "Person",
+    "@id": `${clinic.url}/dr-hasan-a-mahdy/#person`,
+    name: ldText("Dr. Hasan Abdullah Mahdy"),
+    jobTitle: ldText("Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic.").replace(/^[^-،]*[-،]\s*/, "").replace(/\.$/, ""),
+    image: `${clinic.url}/images/doctors/dr-hasan.webp`,
+    url: ldUrl("/dr-hasan-a-mahdy/"),
+    knowsAbout: ["Cosmetic dentistry", "Dental implants", "Oral surgery"].map(ldText),
+    worksFor: { "@id": CLINIC_ID },
   };
   return (
     <>

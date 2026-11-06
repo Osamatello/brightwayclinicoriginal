@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { services, topServiceHrefs } from "@/content/home";
-import { clinic } from "@/content/site";
+import { ldText, ldUrl } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import ServicesCta from "@/components/services/ServicesCta";
 import ServicesHero from "@/components/services/ServicesHero";
@@ -21,8 +21,8 @@ export default function ServicesPage() {
   const itemList = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Dental services at Bright Way Dental Clinic",
-    itemListElement: ordered.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s.title, url: `${clinic.url}${s.href}` })),
+    name: ldText("Dental services at Bright Way Dental Clinic"),
+    itemListElement: ordered.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: ldText(s.title), url: ldUrl(s.href) })),
   };
 
   return (

@@ -1,7 +1,8 @@
 import { formatDate, postsEn, readingMinutes, type Entry } from "@/lib/content";
 import { services as serviceCards } from "@/content/home";
 import { clinic } from "@/content/site";
-import { l, t } from "@/lib/i18n";
+import { CLINIC_ID } from "@/lib/schema";
+import { getLang, l, t } from "@/lib/i18n";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import BlogGrid from "@/components/blog/BlogGrid";
 import PostBody from "@/components/blog/PostBody";
@@ -23,7 +24,7 @@ export function ServicePage({ entry, enPath }: { entry: Entry; enPath: string })
     name: entry.title,
     description: entry.seo.description,
     url: `${clinic.url}${encodeURI(entry.path)}`,
-    provider: { "@id": `${clinic.url}/#clinic` },
+    provider: { "@id": CLINIC_ID },
   };
   return (
     <>
@@ -48,7 +49,10 @@ export function PostPage({ entry }: { entry: Entry }) {
     dateModified: entry.modified,
     image: entry.featured ? `${clinic.url}${entry.featured}` : undefined,
     url: `${clinic.url}${encodeURI(entry.path)}`,
-    publisher: { "@id": `${clinic.url}/#clinic` },
+    mainEntityOfPage: `${clinic.url}${encodeURI(entry.path)}`,
+    inLanguage: getLang(),
+    author: { "@id": CLINIC_ID },
+    publisher: { "@id": CLINIC_ID },
   };
   return (
     <>
