@@ -19,7 +19,7 @@ export function JsonLd({ data }: { data: object }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
 
-/** The clinic exactly as on its Google Business Profile (name, address, phone, hours checked 2026-11-06). */
+/** The clinic: name, phone and hours as on its Google Business Profile (checked 2026-11-06); address in the clinic's own wording, same as shown on the site (Osama, 2026-11-06). */
 export function SiteSchema() {
   const data = {
     "@context": "https://schema.org",
@@ -37,7 +37,7 @@ export function SiteSchema() {
         priceRange: "$$",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "Sheikh Rashid Road 13, Ithra Tower, 8 Floor, Office 802",
+          streetAddress: "Al Garhoud, Ithraa Tower, Office 802",
           addressLocality: "Dubai",
           addressRegion: "Dubai",
           addressCountry: "AE",
