@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { GoldButton } from "@/components/ui";
@@ -32,7 +32,7 @@ export default function DoctorHero() {
             </ol>
           </nav>
           <p className={styles.welcome}><Tooth />{t("Welcome to Bright Way Dental Clinic")}</p>
-          <h1 className={styles.heading}>{t("Meet")}{" "}<em>{t("Dr. Hasan Abdullah Mahdy")}</em></h1>
+          <h1 className={styles.heading}>{h1Part(0, "Meet")}{" "}<em>{h1Part(1, "Dr. Hasan Abdullah Mahdy")}</em></h1>
           <p className={styles.intro}>{t("With a passion for transforming smiles and a dedication to excellence, Dr. Hasan Abdullah Mahdy stands at the forefront of cosmetic dentistry, dental implants, and dental surgery. With over three decades of experience, Dr. Hasan has honed his skills to provide the highest quality dental care to patients seeking comprehensive treatments and rehabilitation.")}</p>
           <GoldButton href={l("/contact-us/")}>{t("Contact Us Today")}</GoldButton>
         </div>

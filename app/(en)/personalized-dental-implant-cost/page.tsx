@@ -1,4 +1,4 @@
-import { t } from "@/lib/i18n";
+import { t, h1Part } from "@/lib/i18n";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
@@ -35,7 +35,7 @@ export default function ImplantCostPage() {
         <div className={styles.heroInner}>
           <div>
             <p className={styles.brand}>{t("Bright Way Dental Clinic")}</p>
-            <h1 className={`${styles.heading} ${styles.headingSmaller}`}>{t("Get Your Personalized")}{" "}<em>{t("Dental Implant Cost")}</em>{" "}{t("Estimate – Instantly and for Free!")}</h1>
+            <h1 className={`${styles.heading} ${styles.headingSmaller}`}>{h1Part(0, "Get Your Personalized")}{" "}<em>{h1Part(1, "Dental Implant Cost")}</em>{" "}{h1Part(2, "Estimate – Instantly and for Free!")}</h1>
             <p className={styles.intro}>{t("Wondering how much it will cost to restore your smile? Find out now by entering a few simple details – no commitments, just clarity.")}</p>
             <div className={styles.actions}>
               <GoldButton href="#estimate">{t("Get Your Free Estimate Now")}{" "}<Arrow /></GoldButton>

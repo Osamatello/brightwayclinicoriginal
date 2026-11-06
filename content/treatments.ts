@@ -1,6 +1,6 @@
 // Extra explanatory photos inside each treatment article, placed right under the heading whose text starts with `after`.
 // Generated with Codex as one set per page; originals in design/treatment-photos/<page>/.
-// `afterAr`: the same place in the page's Arabic article.
+// `afterAr`: the same place in the page's Arabic article ("*end": after the last paragraph, when the Arabic article has no matching heading).
 export type TreatmentFigure = { after: string; afterAr?: string; src: string; alt: string };
 
 // Pages where the old WordPress article images are hidden so only the new photos show (content file left untouched).
@@ -44,7 +44,7 @@ export const treatmentFigures: Record<string, TreatmentFigure[]> = {
   ],
   "/teeth-whitening/": [
     { after: "Why Choose Professional Teeth Whitening?", afterAr: "ابتسامة هوليود في دبي", src: "/images/treatments/teeth-whitening/shade-change.webp", alt: "Stained and professionally whitened teeth on two dental models with a shade guide between them" },
-    { after: "Why is Bright Way Dental Clinic the Best", src: "/images/treatments/teeth-whitening/whitening-kit.webp", alt: "In-clinic LED whitening lamp beside take-home whitening trays and gel syringes" },
+    { after: "Why is Bright Way Dental Clinic the Best", afterAr: "*end", src: "/images/treatments/teeth-whitening/whitening-kit.webp", alt: "In-clinic LED whitening lamp beside take-home whitening trays and gel syringes" },
   ],
   // the article's original WordPress photo stays at the top (Osama); one new photo further down
   "/cosmetic-dentistry/": [

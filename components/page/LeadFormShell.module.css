@@ -1,4 +1,5 @@
-.trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+/* hidden anti-spam field: clipped in place (not pushed off-screen, which made right-to-left pages scroll sideways) */
+.trap { position: absolute; top: 0; left: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; opacity: 0; pointer-events: none; }
 .status, .failed { font-size: .95rem; font-weight: 600; line-height: 1.5; }
 .status:empty, .failed:empty { display: none; }
 .status { color: #7d6120; }

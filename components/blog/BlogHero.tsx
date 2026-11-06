@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Link from "next/link";
 import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./BlogHero.module.css";
@@ -20,7 +20,7 @@ export default function BlogHero() {
           </ol>
         </nav>
 
-        <h1 className={styles.heading}>{t("Bright Way Clinic")}{" "}<em>{t("Blog")}</em>
+        <h1 className={styles.heading}>{h1Part(0, "Bright Way Clinic")}{" "}<em>{h1Part(1, "Blog")}</em>
         </h1>
         <p className={styles.topics}>
           <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">

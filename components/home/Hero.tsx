@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import { Arrow, GoldButton } from "@/components/ui";
 import HeroMedia from "@/components/home/HeroMedia";
 import { googleReviews } from "@/content/home";
@@ -25,7 +25,7 @@ export default function Hero({ videoSrc }: { videoSrc?: string }) {
         </div>
 
         <div className="relative max-w-5xl px-6 pb-8 pt-40 text-white sm:px-10 sm:pt-56 lg:px-14 lg:pb-18">
-          <h1 className="font-display text-[3.25rem] font-medium leading-[0.92] tracking-[-0.01em] sm:text-7xl xl:text-[6.5rem]">{t("Bright Way Dental Clinic")}{" "}<em className="whitespace-nowrap font-normal text-gold-light">{t("in Dubai")}</em>
+          <h1 className="font-display text-[3.25rem] font-medium leading-[0.92] tracking-[-0.01em] sm:text-7xl xl:text-[6.5rem]">{h1Part(0, "Bright Way Dental Clinic")}{" "}<em className="whitespace-nowrap font-normal text-gold-light">{h1Part(1, "in Dubai")}</em>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
             <strong className="font-semibold text-white">{t("Your Reliable Digital Dentistry in Dubai and Modern comforting smiles.")}</strong>{" "}{t("Specializing in both aesthetic and health-focused treatments, our clinic combines expert care with advanced technology for unmatched dental excellence.")}</p>

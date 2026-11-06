@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Link from "next/link";
 import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "./GalleryHero.module.css";
@@ -20,7 +20,7 @@ export default function GalleryHero() {
           </ol>
         </nav>
 
-        <h1 className={styles.heading}>{t("Before and After")}{" "}<em>{t("Dental Transformations")}</em>
+        <h1 className={styles.heading}>{h1Part(0, "Before and After")}{" "}<em>{h1Part(1, "Dental Transformations")}</em>
         </h1>
         <p className={styles.topics}>
           <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">

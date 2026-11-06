@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import { GoldButton } from "@/components/ui";
@@ -24,7 +24,7 @@ export default function AboutHero() {
               <li aria-current="page">{t("About")}</li>
             </ol>
           </nav>
-          <h1 className={styles.title}>{t("About Bright Way Dental Clinic:")}{" "}<span>{t("Dubai’s Premier Dental Care Provider")}</span>
+          <h1 className={styles.title}>{h1Part(0, "About Bright Way Dental Clinic:")}{" "}<span>{h1Part(1, "Dubai’s Premier Dental Care Provider")}</span>
           </h1>
           <p className={styles.intro}>{t("Cutting-edge dental technology and expert care, together since 2013 — enhancing smiles with cosmetic dentistry, implants, teeth cleaning and whitening.")}</p>
           <GoldButton href={l("/contact-us/")}>{t("Book a consultation")}</GoldButton>

@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -60,7 +60,7 @@ export default function CareerPage() {
               <li aria-current="page">{t("Career")}</li>
             </ol>
           </nav>
-          <h1 className={styles.heading}>{t("Join Our Team")}{" "}<em>{t("at Bright Way Dental Clinic")}</em>
+          <h1 className={styles.heading}>{h1Part(0, "Join Our Team")}{" "}<em>{h1Part(1, "at Bright Way Dental Clinic")}</em>
           </h1>
           <p className={styles.intro}>{t("At Bright Way Dental Clinic, we’re always on the lookout for passionate and skilled professionals to join our best leading dental team in Dubai. As a center of dental excellence, we offer a dynamic work environment, opportunities for professional growth, and the chance to make a difference in our patients’ lives through top-tier dental care.")}</p>
         </div>

@@ -5,16 +5,20 @@ import type { TreatmentFigure } from "@/content/treatments";
 import styles from "./TreatmentBody.module.css";
 
 const escapeAttr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-const escapeRegExp = (v: string) => v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const plainText = (h: string) => h.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 
-/** Drops each extra photo in right after the closing tag of the heading whose text starts with `after`. */
+/** Drops each extra photo in right after the heading whose text starts with `after` (formatting tags inside the heading are ignored). */
 function withFigures(html: string, figures: TreatmentFigure[]) {
   return figures.reduce((out, f) => {
-    const heading = new RegExp(`<h([23])[^>]*>(?:\\s|<[^>]+>)*${escapeRegExp(getLang() === "ar" && f.afterAr ? f.afterAr : f.after)}[\\s\\S]*?</h\\1>`);
-    return out.replace(
-      heading,
-      (h) => `${h}<figure class="${styles.figure}"><img src="${f.src}" alt="${escapeAttr(t(f.alt))}" width="1536" height="1024" loading="lazy" decoding="async"></figure>`,
-    );
+    const start = getLang() === "ar" && f.afterAr ? f.afterAr : f.after;
+    const figure = `<figure class="${styles.figure}"><img src="${f.src}" alt="${escapeAttr(t(f.alt))}" width="1536" height="1024" loading="lazy" decoding="async"></figure>`;
+    if (start === "*end") return `${out}${figure}`;
+    let placed = false;
+    return out.replace(/<h([23])[^>]*>[\s\S]*?<\/h\1>/g, (h) => {
+      if (placed || !plainText(h).startsWith(start)) return h;
+      placed = true;
+      return `${h}${figure}`;
+    });
   }, html);
 }
 

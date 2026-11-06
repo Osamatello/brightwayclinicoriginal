@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Image from "next/image";
 import Link from "next/link";
 import ScatteredTeeth from "@/components/page/ScatteredTeeth";
@@ -28,7 +28,7 @@ export default function TreatmentHero({ title, intro, image }: { title: string; 
             </ol>
           </nav>
           <p className={styles.eyebrow}>{t("Our services")}</p>
-          <h1 className={styles.heading}>{t(title)}</h1>
+          <h1 className={styles.heading}>{h1Part(0, title)}</h1>
           {intro && <p className={styles.intro}>{t(intro)}</p>}
         </div>
 

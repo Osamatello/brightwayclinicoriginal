@@ -1,4 +1,4 @@
-import { l, t } from "@/lib/i18n";
+import { l, t, h1Part } from "@/lib/i18n";
 import Link from "next/link";
 import { clinic } from "@/content/site";
 import { OutlineButton, WhatsAppIcon } from "@/components/ui";
@@ -23,7 +23,7 @@ export default function ContactHero() {
           </ol>
         </nav>
 
-        <h1 className={styles.heading}>{t("Get In Touch")}{" "}<em>{t("with Our Team")}</em>
+        <h1 className={styles.heading}>{h1Part(0, "Get In Touch")}{" "}<em>{h1Part(1, "with Our Team")}</em>
         </h1>
         <p className={styles.topics}>
           <svg aria-hidden="true" viewBox="0 0 48 52" fill="none" stroke="currentColor" strokeWidth="3" strokeLinejoin="round">

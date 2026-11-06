@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import { entriesByLang, getByPath, languageLinks, seoMetadata } from "@/lib/content";
-import { setLang, t } from "@/lib/i18n";
+import { setLang, setPage, t } from "@/lib/i18n";
 import { arPathOf, enPathOf } from "@/lib/i18n-data";
 import { PostPage, ServicePage } from "@/components/page/EntryViews";
 import About from "@/app/(en)/about/page";
@@ -71,6 +71,7 @@ export default async function ArabicEntry({ params }: { params: Promise<{ slug: 
   setLang("ar");
   const path = pathOf((await params).slug);
   const en = enPathOf(path);
+  if (en) setPage(en);
   const Page = en ? PAGES[en] : undefined;
   if (Page) return <Page />;
   const entry = getByPath(path);
