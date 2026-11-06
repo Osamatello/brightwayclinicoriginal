@@ -24,7 +24,6 @@ export function ServicePage({ entry, enPath }: { entry: Entry; enPath: string })
     name: entry.title,
     description: entry.seo.description,
     url: `${clinic.url}${encodeURI(entry.path)}`,
-    provider: { "@id": CLINIC_ID },
   };
   return (
     <>

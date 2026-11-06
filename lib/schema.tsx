@@ -2,14 +2,14 @@ import { clinic } from "@/content/site";
 import { googleReviews } from "@/content/home";
 import { getLang, l, t } from "@/lib/i18n";
 
-// Structured data (schema.org JSON-LD) for Google. Every page carries the clinic and the website (site-wide graph);
-// pages add their own parts and point to the clinic by its @id.
+// Structured data (schema.org JSON-LD) for Google. The clinic is a schema.org `Dentist` (a dental practice); "DentalClinic", used by the old site, is not a schema.org type.
+// Every page carries the clinic and the website (site-wide graph); pages add their own parts and point to the clinic by its @id.
 
 export const CLINIC_ID = `${clinic.url}/#clinic`;
 export const WEBSITE_ID = `${clinic.url}/#website`;
 
 /** Text for structured data in the page's language, without the invisible direction marks used on screen. */
-export const ldText = (value: string) => t(value).replace(/[⁦-⁩‎‏]/g, "");
+export const ldText = (value: string) => t(value).replace(/[\u2066-\u2069\u200e\u200f]/g, "");
 
 /** Full address of a page in the page's language. */
 export const ldUrl = (path: string) => `${clinic.url}${encodeURI(decodeURI(l(path)))}`;
@@ -25,7 +25,7 @@ export function SiteSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "DentalClinic",
+        "@type": "Dentist",
         "@id": CLINIC_ID,
         name: clinic.name,
         alternateName: "عيادة برايت واي لطب الأسنان",
