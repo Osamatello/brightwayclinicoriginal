@@ -1,9 +1,7 @@
-import strings from "@/content/ar/strings.json";
 import { AR_PATHS } from "@/content/ar/paths";
 
 export type Lang = "en" | "ar";
 
-const dict = strings as Record<string, string>;
 const toEn = Object.fromEntries(Object.entries(AR_PATHS).map(([en, ar]) => [ar, en]));
 
 // Phone numbers, emails and @handles read left to right inside Arabic text
@@ -12,9 +10,11 @@ export const isolateLtr = (text: string) => text.replace(LTR_RUN, "\u2066$1\u206
 /** The same for an article's HTML: text only, never inside a tag. */
 export const isolateLtrHtml = (html: string) => html.split(/(<[^>]+>)/).map((part, i) => (i % 2 ? part : isolateLtr(part))).join("");
 
-/** Arabic for a fixed English string; anything without a translation (or not a string) passes through. */
-export function translate<T>(lang: Lang, value: T): T {
-  if (lang !== "ar" || typeof value !== "string") return value;
+export type Dictionary = Record<string, string>;
+
+/** Arabic for a fixed English string (dict = null on English pages); anything without a translation (or not a string) passes through. */
+export function translate<T>(dict: Dictionary | null, value: T): T {
+  if (!dict || typeof value !== "string") return value;
   return isolateLtr(dict[value.trim()] ?? value) as T;
 }
 

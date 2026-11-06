@@ -41,8 +41,21 @@ export function middleware(req: NextRequest) {
   if (redirects[path]) return moved(req, redirects[path]);
   if (gone.has(path)) return removed();
   for (const [prefix, to] of map.prefixes) if (path.startsWith(prefix)) return moved(req, to);
+  if (path === "/home") return moved(req, "/");
+  for (const [base, to] of WP_BASES) {
+    if (path.startsWith(base) && path.length > base.length) return moved(req, encodeURI(`${to}${path.slice(base.length)}/`));
+  }
   return NextResponse.next();
 }
+
+// Old WordPress permalink bases, which the old site redirected by itself (checked 2026-11-06), e.g.
+// /portfolio-item-en/root-canal-treatment/ → /root-canal-treatment/ · /blog-ar/<post>/ → /ar/<post>/. Old articles still link to them.
+const WP_BASES: [string, string][] = [
+  ["/portfolio-item-en/", "/"],
+  ["/blog-en/", "/"],
+  ["/portfolio-item/", "/ar/"],
+  ["/blog-ar/", "/ar/"],
+];
 
 export const config = {
   matcher: ["/((?!_next/|favicon.ico).*)"],

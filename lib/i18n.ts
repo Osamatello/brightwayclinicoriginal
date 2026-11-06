@@ -1,5 +1,6 @@
 import { cache } from "react";
-import { localPath, translate, type Lang } from "./i18n-data";
+import { localPath, translate, type Dictionary, type Lang } from "./i18n-data";
+import strings from "@/content/ar/strings.json";
 import oldH1s from "@/content/ar/old-h1.json";
 
 // The language of the page being rendered on the server. Each Arabic layout and page calls setLang("ar") first.
@@ -20,6 +21,8 @@ export const h1Part = <T,>(index: number, value: T): T => {
 };
 
 /** Server components: translate a fixed string. */
-export const t = <T,>(value: T): T => translate(getLang(), value);
+/** The Arabic dictionary, server side. Client components receive it through I18nProvider, on Arabic pages only. */
+export const arabicStrings = strings as Dictionary;
+export const t = <T,>(value: T): T => translate(getLang() === "ar" ? arabicStrings : null, value);
 /** Server components: the address of a page in the current language. */
 export const l = <T,>(value: T): T => localPath(getLang(), value);

@@ -8,7 +8,7 @@ import Contact from "@/components/home/Contact";
 import Faq from "@/components/home/Faq";
 
 const CONTACT_ID = 622;
-const OLD_SHARE_IMAGE = "/wp-content/uploads/2024/03/logo-Bright-Way-01.png"; // the old page's og:image
+const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(CONTACT_ID);

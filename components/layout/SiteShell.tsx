@@ -5,7 +5,8 @@ import Footer from "@/components/layout/Footer";
 import MetaPixel from "@/components/tracking/MetaPixel";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CookieNotice from "@/components/layout/CookieNotice";
-import { l, setLang, t } from "@/lib/i18n";
+import { arabicStrings, l, setLang, t } from "@/lib/i18n";
+import { I18nProvider } from "@/lib/i18n-client";
 import { SiteSchema } from "@/lib/schema";
 import type { Lang } from "@/lib/i18n-data";
 import "@/app/globals.css";
@@ -28,12 +29,14 @@ export default function SiteShell({ lang, fonts, children }: { lang: Lang; fonts
       </head>
       <body className="antialiased">
         <SiteSchema />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <MetaPixel />
-        <SmoothScroll />
-        <CookieNotice />
+        <I18nProvider dict={lang === "ar" ? arabicStrings : null}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <MetaPixel />
+          <SmoothScroll />
+          <CookieNotice />
+        </I18nProvider>
       </body>
     </html>
   );

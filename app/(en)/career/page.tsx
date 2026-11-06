@@ -12,7 +12,7 @@ import styles from "@/components/career/Career.module.css";
 
 const CAREER_ID = 620;
 const CAREER_EMAIL = "info@brightway.clinic";
-const OLD_SHARE_IMAGE = "/wp-content/uploads/2024/03/logo-Bright-Way-01.png"; // the old page's og:image
+const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(CAREER_ID);

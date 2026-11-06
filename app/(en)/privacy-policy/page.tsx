@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/privacy-policy/", languages: { en: "/privacy-policy/", ar: "/ar/privacy-policy/", "x-default": "/privacy-policy/" } },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "/privacy-policy/", images: ["/images/logo.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/privacy-policy/", images: ["/images/share-default.jpg"], locale: "en_AE" },
 };
 
 // Draft for the clinic's approval (see CLINIC_REQUIRED_DOCUMENTS.md). Keep it matching what the site really does.

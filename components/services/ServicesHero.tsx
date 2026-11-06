@@ -38,7 +38,7 @@ export default function ServicesHero() {
         <div className={styles.mosaic}>
           {photos.map((p, i) => (
             <div key={p.src} className={`${styles.tile} ${styles[`tile${i + 1}`]}`}>
-              <Image src={p.src} alt={t(p.alt)} fill priority unoptimized className={styles.photo} />
+              <Image src={p.src} alt={t(p.alt)} fill priority quality={90} sizes="(min-width: 900px) 300px, 45vw" className={styles.photo} />
             </div>
           ))}
         </div>

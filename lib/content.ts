@@ -111,7 +111,7 @@ export function seoMetadata(e: Entry): Metadata {
       description,
       url: e.seo.canonical || e.path,
       type: e.kind === "post" ? "article" : "website",
-      images: e.featured ? [e.featured] : ["/images/logo.png"],
+      images: e.featured ? [e.featured] : ["/images/share-default.jpg"],
       locale: e.lang === "ar" ? "ar_AE" : "en_AE",
     },
   };

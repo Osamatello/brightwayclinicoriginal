@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: homeSeo.title,
   description: homeSeo.description,
   alternates: { canonical: "/", languages: { en: "/", ar: "/ar/" } },
-  openGraph: { title: homeSeo.title, description: homeSeo.description, url: "/", images: ["/images/logo.png"], type: "website" },
+  openGraph: { title: homeSeo.title, description: homeSeo.description, url: "/", images: ["/images/share-default.jpg"], type: "website", locale: "en_AE" },
 };
 
 
