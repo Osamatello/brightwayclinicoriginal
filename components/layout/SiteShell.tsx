@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Fragment, type ComponentType, type ReactNode } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MetaPixel from "@/components/tracking/MetaPixel";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CookieNotice from "@/components/layout/CookieNotice";
-import { arabicStrings, l, setLang, t } from "@/lib/i18n";
-import { I18nProvider } from "@/lib/i18n-client";
+import { l, setLang, t } from "@/lib/i18n";
 import { SiteSchema } from "@/lib/schema";
 import type { Lang } from "@/lib/i18n-data";
 import "@/app/globals.css";
@@ -19,7 +18,18 @@ export const siteMetadata: Metadata = {
 };
 
 /** The page frame for one language: `<html>`, header, footer and everything around the page. */
-export default function SiteShell({ lang, fonts, children }: { lang: Lang; fonts: string; children: ReactNode }) {
+export default function SiteShell({
+  lang,
+  fonts,
+  dictionary: Dictionary = Fragment,
+  children,
+}: {
+  lang: Lang;
+  fonts: string;
+  /** Arabic layout only: gives client components the dictionary (see ArabicDictionary) */
+  dictionary?: ComponentType<{ children: ReactNode }>;
+  children: ReactNode;
+}) {
   setLang(lang);
   return (
     <html lang={lang} dir={lang === "ar" ? "rtl" : "ltr"} className={fonts}>
@@ -29,14 +39,14 @@ export default function SiteShell({ lang, fonts, children }: { lang: Lang; fonts
       </head>
       <body className="antialiased">
         <SiteSchema />
-        <I18nProvider dict={lang === "ar" ? arabicStrings : null}>
+        <Dictionary>
           <Header />
           <main>{children}</main>
           <Footer />
           <MetaPixel />
           <SmoothScroll />
           <CookieNotice />
-        </I18nProvider>
+        </Dictionary>
       </body>
     </html>
   );
