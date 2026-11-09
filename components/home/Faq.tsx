@@ -20,7 +20,8 @@ export default function Faq({ photo = HOME_PHOTO, items = faqs }: { photo?: { sr
               src={photo.src}
               alt={t(photo.alt)}
               fill
-              unoptimized
+              quality={90}
+              sizes="(min-width: 1024px) 540px, 90vw"
               className={styles.photo}
             />
           </div>

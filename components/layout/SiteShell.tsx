@@ -36,6 +36,8 @@ export default function SiteShell({
       <head>
         {/* here, not in metadata: each page's own `alternates` (canonical) would replace it */}
         <link rel="alternate" type="application/rss+xml" title={t("Bright Way Dental Clinic Blog")} href={l("/feed/")} />
+        {/* the heading font's regular Arabic file only (the hero heading); bold and Latin load when used */}
+        {lang === "ar" && <link rel="preload" href="/fonts/amiri-400-arabic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />}
       </head>
       <body className="antialiased">
         <SiteSchema />

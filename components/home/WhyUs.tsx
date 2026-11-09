@@ -33,7 +33,8 @@ export default function WhyUs() {
                 src="/images/good-choice-happy-child.webp"
                 alt={t("Happy young patient giving a thumbs up with her dentist at the clinic")}
                 fill
-                unoptimized
+                quality={90}
+                sizes="(min-width: 960px) 480px, 90vw"
                 className={styles.photo}
               />
             </div>
