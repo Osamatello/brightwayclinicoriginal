@@ -24,7 +24,10 @@ function withFigures(html: string, figures: TreatmentFigure[]) {
 
 /** Treatment page article (WordPress HTML, restyled) with a light, sticky booking card beside it. Text unchanged. */
 export default function TreatmentBody({ html, figures = [], hideOldImages = false }: { html: string; figures?: TreatmentFigure[]; hideOldImages?: boolean }) {
-  const body = hideOldImages ? html.replace(/<img\b[^>]*>\s*/g, "") : html;
+  const withoutOld = hideOldImages ? html.replace(/<img\b[^>]*>\s*/g, "") : html;
+  // The opening paragraph is styled as the article's title (English articles open with their title as a paragraph);
+  // the old Arabic articles open with a long body paragraph instead, which keeps the normal text style
+  const body = withoutOld.replace(/^(\s*)<p>([\s\S]*?)<\/p>/, (m, space: string, inner: string) => (plainText(inner).length > 160 ? `${space}<p data-body>${inner}</p>` : m));
   return (
     <section className={styles.section}>
       <div className={styles.inner}>

@@ -9,7 +9,9 @@ import { WhatsAppIcon } from "@/components/ui";
 /** Floating WhatsApp button. On the homepage it waits until the hero is scrolled past (it would cover the hero's trust card). */
 export default function FloatingWhatsApp() {
   const { t } = useI18n();
-  const isHome = usePathname() === "/";
+  const pathname = usePathname();
+  // the English and the Arabic home page
+  const isHome = pathname === "/" || pathname === "/ar" || pathname === "/ar/";
   const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function FloatingWhatsApp() {
       aria-label={t("Chat on WhatsApp")}
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
-      className={`fixed bottom-5 end-5 z-30 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#25D366] px-5 text-sm font-bold text-white shadow-xl transition duration-300 hover:scale-105 ${
+      className={`fixed bottom-5 end-5 z-30 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#188741] px-5 text-sm font-bold text-white shadow-xl transition duration-300 hover:scale-105 ${
         hidden ? "pointer-events-none translate-y-4 opacity-0" : "opacity-100"
       }`}
     >

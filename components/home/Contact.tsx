@@ -45,21 +45,21 @@ export default function Contact({ page = false }: { page?: boolean }) {
 
   // Clinic details: one wide strip, four columns
   const details = (
-    <dl className={styles.info}>
+    <div className={styles.info}>
       {info.map((item) => (
         <div key={item.label} className={styles.infoItem}>
           <span className={styles.infoIcon}>{item.icon}</span>
           <div>
-            <dt className={styles.infoLabel}>{t(item.label)}</dt>
+            <p className={styles.infoLabel}>{t(item.label)}</p>
             {item.lines.map((line) => (
-              <dd key={line.text} className={styles.infoValue}>
+              <p key={line.text} className={styles.infoValue}>
                 {line.href ? <a href={l(line.href)}>{t(line.text)}</a> : t(line.text)}
-              </dd>
+              </p>
             ))}
           </div>
         </div>
       ))}
-    </dl>
+    </div>
   );
 
   return (

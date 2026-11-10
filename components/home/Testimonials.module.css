@@ -51,7 +51,7 @@
 .avatar { width: 44px; height: 44px; flex: 0 0 44px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; box-shadow: 0 0 0 2px #fff, 0 0 0 3px #d6a748; }
 .name { display: block; color: #3e2d0e; font-size: 1rem; font-weight: 700; }
 a.name:hover { color: #8a6a24; }
-.meta { display: flex; align-items: center; gap: .35rem; margin-top: .2rem; color: #8b8172; font-size: .8125rem; }
+.meta { display: flex; align-items: center; gap: .35rem; margin-top: .2rem; color: #7d7467; font-size: .8125rem; }
 
 @media (max-width: 1023px) {
   .grid { --cols: 2; }

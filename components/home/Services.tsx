@@ -12,7 +12,7 @@ export default function Services() {
     <section data-home-grid className="scroll-mt-28 bg-white py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
-          <h2 className="max-w-2xl font-display text-5xl font-medium leading-[0.95] text-brown-dark md:text-6xl">{t("Explore Our")}{" "}<em className="text-gold">{t("Dental Services in Dubai")}</em>
+          <h2 className="max-w-2xl font-display text-5xl font-medium leading-[0.95] text-brown-dark md:text-6xl">{t("Explore Our")}{" "}<em className="text-[#ba8b2e]">{t("Dental Services in Dubai")}</em>
           </h2>
           <p className="max-w-sm leading-relaxed">{t("From a routine check-up to a complete smile makeover — eleven specialties under one roof. These are the treatments our patients ask for most.")}</p>
         </div>

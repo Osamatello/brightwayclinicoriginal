@@ -13,8 +13,20 @@ export type NavLists = Record<string, { label: string; href: string }[]>;
 
 export function useActiveNav(sections: NavSections) {
   const pathname = usePathname();
-  const current = pathname.endsWith("/") ? pathname : `${pathname}/`;
-  return (href: string) => current === href || (sections[href]?.includes(current) ?? false);
+  const { l } = useI18n();
+  // Arabic addresses arrive percent-encoded; menu items are English paths, compared in the page's language
+  const decoded = (() => {
+    try {
+      return decodeURI(pathname);
+    } catch {
+      return pathname;
+    }
+  })();
+  const current = decoded.endsWith("/") ? decoded : `${decoded}/`;
+  return (href: string) => {
+    const local = l(href);
+    return current === local || (sections[local]?.includes(current) ?? false);
+  };
 }
 
 /** Desktop menu; the page you are on is shown in gold with a gold underline. About, Services and Blog drop a list on hover or keyboard focus. */

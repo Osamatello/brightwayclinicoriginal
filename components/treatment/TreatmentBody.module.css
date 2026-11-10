@@ -16,7 +16,7 @@
 .article h2 + h2, .article h2 + h3 { margin-top: 1.25rem; }
 .article > h2:first-child { margin-top: 0; }
 /* most WordPress articles open with their title as a plain paragraph — style it exactly like the article's H2 headings */
-.article > p:first-child {
+.article > p:first-child:not([data-body]) {
   color: #3e2d0e; font-family: var(--font-display); font-size: clamp(1.85rem, 2.6vw, 2.25rem);
   font-weight: 500; line-height: 1.15; letter-spacing: -.015em;
 }

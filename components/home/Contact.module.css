@@ -23,7 +23,7 @@
 }
 .infoIcon svg { width: 20px; height: 20px; }
 .infoItem:hover .infoIcon { background: #c39433; color: #fff; }
-.infoLabel { color: #a77d2a; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.infoLabel { color: #956f25; font-size: .72rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .infoValue { margin-top: .3rem; color: #3e2d0e; font-size: 1rem; font-weight: 600; line-height: 1.5; }
 .infoValue + .infoValue { margin-top: .1rem; }
 .infoValue a { white-space: nowrap; }
