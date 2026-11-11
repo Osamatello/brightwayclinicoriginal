@@ -40,6 +40,9 @@ export function middleware(req: NextRequest) {
   }
   if (redirects[path]) return moved(req, redirects[path]);
   if (gone.has(path)) return removed();
+  // anything below a spam address (/<spam-post>/2, /<spam-post>/amp) is spam too; Google has some of these indexed
+  const top = path.match(/^(?:\/ar)?\/[^/]+/)?.[0];
+  if (top && top !== path && gone.has(top)) return removed();
   for (const [prefix, to] of map.prefixes) if (path.startsWith(prefix)) return moved(req, to);
   if (path === "/home") return moved(req, "/");
   // WordPress gave every article and category its own feed (/<slug>/feed/); send it to the page itself
