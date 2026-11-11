@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { entriesByLang } from "@/lib/content";
+import { entriesByLang, languageLinks } from "@/lib/content";
 import { arPathOf } from "@/lib/i18n-data";
 
 const SITE = "https://brightway.clinic";
@@ -14,6 +14,12 @@ const NEW_PAGES = [
 const HIDDEN_PATHS = new Set(["/transform-your-smile/", "/transform-your-smile-typ/"]);
 const hiddenAr = new Set([...HIDDEN_PATHS].map((p) => arPathOf(p)));
 
+// English ↔ Arabic pairs in the sitemap too (same pairs as the pages' hreflang tags)
+function alternates(path: string) {
+  const links = languageLinks(path);
+  return links ? { languages: Object.fromEntries(Object.entries(links).map(([lang, href]) => [lang, `${SITE}${href.startsWith("/ar/") ? href : encodeURI(href)}`])) } : undefined;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = (lang: "en" | "ar") =>
     entriesByLang(lang)
@@ -22,10 +28,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${SITE}${encodeURI(e.path)}`,
         lastModified: e.modified || e.date,
         priority: e.path === "/" || e.path === "/ar/" ? 1 : e.kind === "post" ? 0.6 : 0.8,
+        alternates: alternates(e.path),
       }));
   const extra = NEW_PAGES.flatMap((p) => {
     const ar = arPathOf(p.path);
-    return [p.path, ...(ar ? [ar] : [])].map((path) => ({ url: `${SITE}${encodeURI(path)}`, lastModified: p.lastModified, priority: 0.9 }));
+    return [p.path, ...(ar ? [ar] : [])].map((path) => ({ url: `${SITE}${encodeURI(path)}`, lastModified: p.lastModified, priority: 0.9, alternates: alternates(path) }));
   });
   return [...pages("en"), ...pages("ar"), ...extra];
 }

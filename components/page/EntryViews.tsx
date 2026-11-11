@@ -1,7 +1,7 @@
 import { formatDate, postsEn, readingMinutes, type Entry } from "@/lib/content";
 import { services as serviceCards } from "@/content/home";
 import { clinic } from "@/content/site";
-import { CLINIC_ID } from "@/lib/schema";
+import { CLINIC_ID, JsonLd, faqFromHtml } from "@/lib/schema";
 import { getLang, l, t } from "@/lib/i18n";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import BlogGrid from "@/components/blog/BlogGrid";
@@ -29,6 +29,7 @@ export function ServicePage({ entry, enPath }: { entry: Entry; enPath: string })
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <BreadcrumbSchema items={[{ name: t("Services"), path: l("/services/") }, { name: entry.title, path: entry.path }]} />
+      <FaqSchema html={entry.html} />
       <TreatmentHero title={entry.title} intro={card?.text} image={heroImages[enPath] || card?.img || entry.featured} />
       <TreatmentBody html={entry.html} figures={treatmentFigures[enPath]} hideOldImages={hideOldImages.has(enPath)} />
       <MoreTreatments services={others} total={serviceCards.length} />
@@ -57,9 +58,16 @@ export function PostPage({ entry }: { entry: Entry }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <BreadcrumbSchema items={[{ name: t("Blog"), path: l("/blog/") }, { name: entry.title, path: entry.path }]} />
+      <FaqSchema html={entry.html} />
       <PostHero title={entry.title} meta={`${formatDate(entry.date)} · ${readingMinutes(entry.html)} ${t("min read")}`} />
       <PostBody title={entry.title} html={entry.html} featured={entry.featured} />
       <BlogGrid posts={related} keepReading />
     </>
   );
+}
+
+/** FAQ markup from the article's own question headings (nothing is added on screen). */
+function FaqSchema({ html }: { html: string }) {
+  const faq = faqFromHtml(html);
+  return faq ? <JsonLd data={faq} /> : null;
 }
