@@ -42,6 +42,12 @@ export function middleware(req: NextRequest) {
   if (gone.has(path)) return removed();
   for (const [prefix, to] of map.prefixes) if (path.startsWith(prefix)) return moved(req, to);
   if (path === "/home") return moved(req, "/");
+  // WordPress gave every article and category its own feed (/<slug>/feed/); send it to the page itself
+  if (path.endsWith("/feed") && path !== "/feed" && path !== "/ar/feed") {
+    const parent = path.slice(0, -"/feed".length);
+    if (gone.has(parent)) return removed();
+    return moved(req, redirects[parent] ?? encodeURI(`${parent}/`));
+  }
   for (const [base, to] of WP_BASES) {
     if (path.startsWith(base) && path.length > base.length) return moved(req, encodeURI(`${to}${path.slice(base.length)}/`));
   }
