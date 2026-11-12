@@ -37,7 +37,8 @@ export default function SiteShell({
         {/* here, not in metadata: each page's own `alternates` (canonical) would replace it */}
         <link rel="alternate" type="application/rss+xml" title={t("Bright Way Dental Clinic Blog")} href={l("/feed/")} />
         {/* the heading font's regular Arabic file only (the hero heading); bold and Latin load when used */}
-        {lang === "ar" && <link rel="preload" href="/fonts/amiri-400-arabic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />}
+        {/* low priority since the hero video (2026-11-12): the poster picture is now the largest paint and must not wait behind this font; the heading shows in the fallback font until it arrives (font-display: swap) */}
+        {lang === "ar" && <link rel="preload" href="/fonts/amiri-400-arabic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" fetchPriority="low" />}
       </head>
       <body className="antialiased">
         <SiteSchema />
