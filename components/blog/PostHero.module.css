@@ -15,6 +15,8 @@
 }
 .meta { display: flex; align-items: center; gap: .6rem; margin-top: 1rem; color: #8a6a24; font-size: .95rem; font-weight: 700; }
 .meta svg { flex: none; width: 18px; height: 20px; color: #c39433; }
+.reviewer { text-decoration: underline; text-decoration-color: #d9c28c; text-underline-offset: 3px; }
+.reviewer:hover { color: #3e2d0e; }
 
 @media (max-width: 539px) {
   .section { padding-block: 2rem; }

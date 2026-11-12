@@ -1,29 +1,29 @@
 "use client";
 
 import { useI18n } from "@/lib/i18n-client";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+/** Phones (narrow screens) get the vertical cut of the clinic video, wider screens the landscape cut. */
+const PHONE = "(max-width: 767px)";
+
+export type HeroVideo = { portrait: string; landscape: string; portraitPoster: string; landscapePoster: string };
+
 /**
- * Full-frame hero background: the clinic video (muted, looping) with a pause button,
- * or — until the video file exists — the poster photo with a slow zoom.
+ * Full-frame hero background: the clinic video (muted, looping) with a pause button.
+ * The poster sits underneath as a normal picture (it is the first thing visitors see), the video plays over it.
  */
-export default function HeroMedia({ videoSrc, poster, alt }: { videoSrc?: string; poster: string; alt: string }) {
+export default function HeroMedia({ video: clip, alt }: { video: HeroVideo; alt: string }) {
   const { t } = useI18n();
   const video = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
     // respect "reduce motion": start paused, the visitor can still press play
-    if (videoSrc && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       video.current?.pause();
       setPlaying(false);
     }
-  }, [videoSrc]);
-
-  if (!videoSrc) {
-    return <Image src={poster} alt={t(alt)} fill priority sizes="100vw" className="animate-hero-zoom object-cover object-[35%_center]" />;
-  }
+  }, []);
 
   const toggle = () => {
     const v = video.current;
@@ -39,7 +39,15 @@ export default function HeroMedia({ videoSrc, poster, alt }: { videoSrc?: string
 
   return (
     <>
-      <video ref={video} src={videoSrc} poster={poster} autoPlay muted loop playsInline aria-label={t(alt)} className="absolute inset-0 h-full w-full object-cover" />
+      <picture>
+        <source media={PHONE} srcSet={clip.portraitPoster} />
+        {/* eslint-disable-next-line @next/next/no-img-element -- art-directed poster (two crops), not resizable by next/image */}
+        <img src={clip.landscapePoster} alt="" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
+      </picture>
+      <video ref={video} autoPlay muted loop playsInline aria-label={t(alt)} className="absolute inset-0 h-full w-full object-cover">
+        <source media={PHONE} src={clip.portrait} type="video/mp4" />
+        <source src={clip.landscape} type="video/mp4" />
+      </video>
       <button
         type="button"
         onClick={toggle}

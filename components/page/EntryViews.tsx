@@ -1,7 +1,7 @@
 import { formatDate, postsEn, readingMinutes, type Entry } from "@/lib/content";
 import { services as serviceCards } from "@/content/home";
 import { clinic } from "@/content/site";
-import { CLINIC_ID, JsonLd, faqFromHtml } from "@/lib/schema";
+import { CLINIC_ID, DOCTOR_ID, JsonLd, faqFromHtml } from "@/lib/schema";
 import { getLang, l, t } from "@/lib/i18n";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
 import BlogGrid from "@/components/blog/BlogGrid";
@@ -49,7 +49,8 @@ export function PostPage({ entry }: { entry: Entry }) {
     dateModified: entry.modified,
     image: entry.featured ? `${clinic.url}${entry.featured}` : undefined,
     url: `${clinic.url}${encodeURI(entry.path)}`,
-    mainEntityOfPage: `${clinic.url}${encodeURI(entry.path)}`,
+    // the page itself, reviewed by Dr. Hasan (shown under the title)
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${clinic.url}${encodeURI(entry.path)}`, reviewedBy: { "@id": DOCTOR_ID } },
     inLanguage: getLang(),
     author: { "@id": CLINIC_ID },
     publisher: { "@id": CLINIC_ID },

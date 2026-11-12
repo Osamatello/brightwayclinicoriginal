@@ -11,14 +11,22 @@ const GOOGLE_MAPS_URL = googleReviews.url;
 /**
  * Hero (v3, 2026-10-26): the clinic video fills the full width of the first screen,
  * one serif headline bottom-left, a trust card bottom-right.
- * Pass `videoSrc` (e.g. "/videos/hero.mp4" in public/) when the client's video is ready — hosted elsewhere → add the domain to media-src in next.config.ts.
+ * The clinic's own video (2026-11-12): 0–21.8 s of the 27 s clip (its end card with contact details is left out, the hero has its own),
+ * vertical cut for phones, landscape crop for wider screens, both muted. Source: Osama's "1111 (1).mp4".
  */
-export default function Hero({ videoSrc }: { videoSrc?: string }) {
+const HERO_VIDEO = {
+  portrait: "/videos/hero-portrait.mp4",
+  landscape: "/videos/hero-landscape.mp4",
+  portraitPoster: "/videos/hero-portrait.jpg",
+  landscapePoster: "/videos/hero-landscape.jpg",
+};
+
+export default function Hero() {
   return (
     <section className="relative z-10 bg-white">
       <div className="relative isolate flex min-h-[640px] flex-col justify-end overflow-hidden lg:h-[calc(100svh-117px)] lg:max-h-[900px]">
         <div className="pointer-events-none absolute inset-0 bg-brown-dark">
-          <HeroMedia videoSrc={videoSrc} poster="/images/hero-bg.jpg" alt={t("Dr. Hasan A. Mahdy treating a patient at Bright Way Dental Clinic, Dubai")} />
+          <HeroMedia video={HERO_VIDEO} alt={t("Dr. Hasan A. Mahdy treating a patient at Bright Way Dental Clinic, Dubai")} />
           {/* legibility: dark bottom-left where the text is, the picture stays clear top-right */}
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/5" />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-transparent" />
