@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import entriesJson from "@/content/entries.json";
 import articlesJson from "@/content/ar/articles.json";
 import oldTextFixes from "@/content/ar/old-text-fixes.json";
+import oldEnglishFixes from "@/content/old-text-fixes-en.json";
 import { AR_PATHS } from "@/content/ar/paths";
 import { arPathOf, enPathOf, isolateLtrHtml } from "@/lib/i18n-data";
 import { getLang } from "@/lib/i18n";
@@ -28,9 +29,11 @@ const articles = articlesJson as Record<string, ArticleOverride>;
 
 // English image descriptions and summaries the old Arabic posts carried, in Arabic
 const fixOldText = (text: string) => Object.entries(oldTextFixes).reduce((out, [en, ar]) => out.split(en).join(ar), text);
+// Broken sentences in the old English articles, fixed with Osama's OK (2026-11-12)
+const fixOldEnglish = (html: string) => Object.entries(oldEnglishFixes).reduce((out, [from, to]) => out.split(from).join(to), html);
 
 const allEntries = entriesJson as Entry[];
-const englishEntries = allEntries.filter((e) => e.lang === "en");
+const englishEntries = allEntries.filter((e) => e.lang === "en").map((e) => ({ ...e, html: fixOldEnglish(e.html) }));
 const oldArabic = new Map(
   allEntries
     .filter((e) => e.lang === "ar")
