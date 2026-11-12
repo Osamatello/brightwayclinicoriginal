@@ -3,6 +3,7 @@ import entriesJson from "@/content/entries.json";
 import articlesJson from "@/content/ar/articles.json";
 import oldTextFixes from "@/content/ar/old-text-fixes.json";
 import oldEnglishFixes from "@/content/old-text-fixes-en.json";
+import { improveLinks } from "@/lib/article-links";
 import { AR_PATHS } from "@/content/ar/paths";
 import { arPathOf, enPathOf, isolateLtrHtml } from "@/lib/i18n-data";
 import { getLang } from "@/lib/i18n";
@@ -33,7 +34,7 @@ const fixOldText = (text: string) => Object.entries(oldTextFixes).reduce((out, [
 const fixOldEnglish = (html: string) => Object.entries(oldEnglishFixes).reduce((out, [from, to]) => out.split(from).join(to), html);
 
 const allEntries = entriesJson as Entry[];
-const englishEntries = allEntries.filter((e) => e.lang === "en").map((e) => ({ ...e, html: fixOldEnglish(e.html) }));
+const englishEntries = allEntries.filter((e) => e.lang === "en").map((e) => ({ ...e, html: improveLinks(fixOldEnglish(e.html), "en", e.path) }));
 const oldArabic = new Map(
   allEntries
     .filter((e) => e.lang === "ar")
@@ -71,7 +72,7 @@ const arabicEntries: Entry[] = (() => {
   });
   const used = new Set(made.map((e) => e.path));
   const onlyArabic = [...oldArabic.values()].filter((e) => !used.has(decodeURI(e.path))).map((e) => ({ ...e, html: isolateLtrHtml(e.html), path: decodeURI(e.path), slug: decodeURI(e.path).split("/").filter(Boolean).pop() ?? "" }));
-  return [...made, ...onlyArabic].sort((a, b) => b.date.localeCompare(a.date));
+  return [...made, ...onlyArabic].map((e) => ({ ...e, html: improveLinks(e.html, "ar", e.path) })).sort((a, b) => b.date.localeCompare(a.date));
 })();
 
 /** Entries in the language of the page being rendered. */
