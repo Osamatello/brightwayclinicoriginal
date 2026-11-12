@@ -76,18 +76,13 @@ const TARGETS: { en: string; words: string[]; arWords: string[] }[] = [
 const MAX_PER_ARTICLE = 6;
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-/** 2. First mention of each treatment in the article's paragraphs and lists → link to its page (never in headings or existing links, never to the page itself). */
-function treatmentLinks(html: string, lang: "en" | "ar", selfPath: string) {
-  const self = decodeURI(selfPath);
-  const targets = TARGETS.map((t) => ({ path: lang === "ar" ? arPathOf(t.en) : t.en, words: lang === "ar" ? t.arWords : t.words }))
-    .filter((t): t is { path: string; words: string[] } => !!t.path && decodeURI(t.path) !== self)
-    // a treatment the article already links to keeps its existing link only
-    .filter((t) => !html.includes(`href="${href(t.path)}"`) && !html.includes(`href="${t.path}"`))
-    .map((t) => ({
-      path: t.path,
-      // English: whole words, any case · Arabic: not glued to another Arabic letter (و / ب / ال prefixes are left alone)
-      re: new RegExp(lang === "ar" ? `(?<![\\u0600-\\u06FF])(${t.words.map(escape).join("|")})(?![\\u0600-\\u06FF])` : `\\b(${t.words.map(escape).join("|")})\\b`, lang === "ar" ? "" : "i"),
-    }));
+const wordsRe = (words: string[], lang: "en" | "ar") =>
+  // English: whole words, any case · Arabic: not glued to another Arabic letter (و / ب / ال prefixes are left alone)
+  new RegExp(lang === "ar" ? `(?<![\\u0600-\\u06FF])(${words.map(escape).join("|")})(?![\\u0600-\\u06FF])` : `\\b(${words.map(escape).join("|")})\\b`, lang === "ar" ? "" : "i");
+
+/** Wraps the first match of each target (in paragraphs and lists only; never in headings or existing links) in that target's link tag. */
+function linkFirstMentions(html: string, targets: { open: string; re: RegExp }[], max: number) {
+  const left = targets.map((t) => ({ ...t, used: false }));
   let added = 0;
   let inLink = 0;
   let inHeading = 0;
@@ -106,19 +101,19 @@ function treatmentLinks(html: string, lang: "en" | "ar", selfPath: string) {
         }
         return part;
       }
-      if (!inText || inLink || inHeading || added >= MAX_PER_ARTICLE) return part;
+      if (!inText || inLink || inHeading || added >= max) return part;
       let text = part;
       // the same text with links added here blanked out, so a later word never matches inside one of them
       let free = part;
-      for (const t of targets) {
-        if (added >= MAX_PER_ARTICLE) break;
-        if (!t.path) continue;
+      for (const t of left) {
+        if (added >= max) break;
+        if (t.used) continue;
         const m = free.match(t.re);
         if (!m || m.index === undefined) continue;
-        const link = `<a href="${href(t.path)}">${text.slice(m.index, m.index + m[0].length)}</a>`;
+        const link = `${t.open}${text.slice(m.index, m.index + m[0].length)}</a>`;
         text = `${text.slice(0, m.index)}${link}${text.slice(m.index + m[0].length)}`;
         free = `${free.slice(0, m.index)}${"\u0000".repeat(link.length)}${free.slice(m.index + m[0].length)}`;
-        t.path = ""; // once per linked page
+        t.used = true; // once per linked page
         added++;
       }
       return text;
@@ -126,7 +121,29 @@ function treatmentLinks(html: string, lang: "en" | "ar", selfPath: string) {
     .join("");
 }
 
-/** Both link fixes for one article. */
+/** 2. First mention of each treatment or topic → link to its page (never to the page itself, nor to a page the article already links to). */
+function treatmentLinks(html: string, lang: "en" | "ar", selfPath: string) {
+  const self = decodeURI(selfPath);
+  const targets = TARGETS.map((t) => ({ path: lang === "ar" ? arPathOf(t.en) : t.en, words: lang === "ar" ? t.arWords : t.words }))
+    .filter((t): t is { path: string; words: string[] } => !!t.path && decodeURI(t.path) !== self)
+    .filter((t) => !html.includes(`href="${href(t.path)}"`) && !html.includes(`href="${t.path}"`))
+    .map((t) => ({ open: `<a href="${href(t.path)}">`, re: wordsRe(t.words, lang) }));
+  return linkFirstMentions(html, targets, MAX_PER_ARTICLE);
+}
+
+// 3. Official bodies the articles already name → their own site, in a new tab (Osama's OK, 2026-11-12)
+const OFFICIAL: { url: string; arUrl: string; words: string[]; arWords: string[] }[] = [
+  { url: "https://www.dha.gov.ae/en", arUrl: "https://www.dha.gov.ae/ar", words: ["Dubai Health Authority", "DHA"], arWords: ["هيئة الصحة بدبي"] },
+];
+function officialLinks(html: string, lang: "en" | "ar") {
+  const targets = OFFICIAL.map((o) => ({
+    open: `<a href="${lang === "ar" ? o.arUrl : o.url}" target="_blank" rel="noopener">`,
+    re: wordsRe(lang === "ar" ? o.arWords : o.words, lang),
+  }));
+  return linkFirstMentions(html, targets, targets.length);
+}
+
+/** All link fixes for one article. */
 export function improveLinks(html: string, lang: "en" | "ar", path: string) {
-  return treatmentLinks(directLinks(html), lang, path);
+  return officialLinks(treatmentLinks(directLinks(html), lang, path), lang);
 }
