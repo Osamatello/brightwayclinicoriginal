@@ -67,7 +67,7 @@ export default function HeroMedia({ video: clip, alt }: { video: HeroVideo; alt:
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause video" : "Play video"}
-        className="absolute end-5 top-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white backdrop-blur-md transition hover:bg-white/30 md:end-7 md:top-7"
+        className="absolute end-5 top-24 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white backdrop-blur-md transition hover:bg-white/30 md:end-7 md:top-28 lg:top-36"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
           {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13l11-6.5z" />}

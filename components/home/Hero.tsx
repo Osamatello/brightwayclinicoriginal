@@ -28,8 +28,8 @@ export default function Hero() {
   preload(HERO_VIDEO.portraitPoster, { as: "image", type: "image/webp", fetchPriority: "high", media: "(max-width: 767px)" });
   preload(HERO_VIDEO.landscapePoster, { as: "image", type: "image/webp", fetchPriority: "high", media: "(min-width: 768px)" });
   return (
-    <section className="relative z-10 bg-white">
-      <div className="relative isolate flex min-h-[640px] flex-col justify-end overflow-hidden lg:h-[calc(100svh-117px)] lg:max-h-[900px]">
+    <section id="hero" className="relative z-10 bg-white">
+      <div className="relative isolate flex min-h-[640px] flex-col justify-end overflow-hidden lg:h-svh lg:max-h-[1017px]">
         <div className="pointer-events-none absolute inset-0 bg-brown-dark">
           <HeroMedia video={HERO_VIDEO} alt={t("Dr. Hasan A. Mahdy treating a patient at Bright Way Dental Clinic, Dubai")} />
           {/* legibility: dark bottom-left where the text is, the picture stays clear top-right */}

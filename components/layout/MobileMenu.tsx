@@ -33,7 +33,7 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
 
   return (
     <div className="flex items-center gap-2 xl:hidden">
-      <a href={`tel:${clinic.phone}`} aria-label={`${t("Call")} ${clinic.phoneDisplay}`} className={`${iconButton} border border-line text-gold-dark`}>
+      <a href={`tel:${clinic.phone}`} aria-label={`${t("Call")} ${clinic.phoneDisplay}`} data-part="call" className={`${iconButton} border border-line text-gold-dark`}>
         <PhoneIcon />
       </a>
       <button

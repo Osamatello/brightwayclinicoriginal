@@ -1,0 +1,17 @@
+/* ---- Home page header over the hero video (components/layout/HeaderFrame.tsx) ----
+   Fixed on the home page so the video starts at the very top; see-through (data-clear) until the hero has scrolled past. */
+header[data-home] { position: fixed; inset-inline: 0; }
+header[data-clear] { background: linear-gradient(to bottom, rgb(0 0 0 / .55), rgb(0 0 0 / .18) 70%, transparent); }
+header[data-clear] [data-part="topbar"] { background: transparent; color: rgb(255 255 255 / .85); border-bottom: 1px solid rgb(255 255 255 / .14); }
+header[data-clear] [data-part="bar"] { background: transparent; border-color: transparent; }
+header[data-clear] [data-part="logo"] { filter: brightness(0) invert(1); }
+header[data-clear] [data-part="nav"] > span > a, header[data-clear] [data-part="nav"] > div > a { color: #fff; }
+header[data-clear] [data-part="nav"] > span > a:hover, header[data-clear] [data-part="nav"] > div > a:hover { color: var(--color-gold-light, #e9cf8f); }
+header[data-clear] [data-part="nav"] > div > svg { color: rgb(255 255 255 / .8); }
+header[data-clear] [data-part="lang"] a { color: #fff; }
+header[data-clear] [data-part="call"] { border-color: rgb(255 255 255 / .55); color: #fff; }
+/* the phone menu opens under the bar: show the normal cream bar while it is open */
+header[data-clear]:has([aria-expanded="true"]) { background: none; }
+header[data-clear]:has([aria-expanded="true"]) [data-part="bar"] { background: var(--color-cream, #fffaf0); border-color: var(--color-line, #eadfc8); }
+header[data-clear]:has([aria-expanded="true"]) [data-part="logo"] { filter: none; }
+header[data-clear]:has([aria-expanded="true"]) [data-part="call"] { border-color: var(--color-line, #eadfc8); color: var(--color-gold-dark, #8a6a24); }

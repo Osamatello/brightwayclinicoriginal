@@ -35,7 +35,7 @@ export default function NavLinks({ sections, lists }: { sections: NavSections; l
   const isActive = useActiveNav(sections);
   const pathname = usePathname();
   return (
-    <nav aria-label={t("Main")} className="hidden gap-x-6 whitespace-nowrap text-sm font-semibold text-brown-dark xl:flex">
+    <nav data-part="nav" aria-label={t("Main")} className="hidden gap-x-6 whitespace-nowrap text-sm font-semibold text-brown-dark xl:flex">
       {nav.map((item) => {
         const active = isActive(item.href);
         const link = (
