@@ -22,6 +22,9 @@ const HERO_VIDEO = {
   landscapePoster: "/videos/hero-landscape.webp",
 };
 
+// frosted glass card: the video shows through, a light blur keeps the text readable
+const GLASS = "flex items-center gap-2.5 rounded-xl border border-white/25 bg-white/10 p-2.5 backdrop-blur-md transition hover:bg-white/15 sm:gap-3 sm:p-3";
+
 export default function Hero() {
   // The poster is the biggest thing on the first screen (what PageSpeed times as "largest paint"): ask for the right one
   // straight from the <head>, ahead of fonts and scripts (Arabic home went 89 → 75 without this, 2026-11-12)
@@ -46,31 +49,31 @@ export default function Hero() {
           </GoldButton>
         </div>
 
-        {/* trust card: under the text on phones, bottom-right of the stage from lg */}
-        <div className="relative mx-6 mb-6 grid divide-y divide-line rounded-2xl sm:grid-cols-2 sm:divide-x sm:divide-y-0 bg-white shadow-2xl sm:mx-10 sm:max-w-md lg:absolute lg:bottom-9 lg:end-14 lg:m-0 lg:w-[480px] lg:max-w-none">
-          <a href={l(GOOGLE_MAPS_URL)} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 p-4 sm:p-5">
+        {/* two small see-through (frosted glass) cards over the video (Osama, 2026-11-12): side by side under the text on phones, bottom-right from lg */}
+        <div className="relative mx-6 mb-6 grid grid-cols-2 gap-2 text-white sm:mx-10 sm:max-w-sm lg:absolute lg:bottom-9 lg:end-14 lg:m-0 lg:w-[400px] lg:max-w-none lg:gap-3">
+          <a href={l(GOOGLE_MAPS_URL)} target="_blank" rel="noopener noreferrer" className={`group ${GLASS}`}>
             <GoogleIcon />
-            <div>
-              <p className="flex items-center gap-1.5 text-lg font-extrabold leading-none text-brown-dark">
+            <div className="min-w-0">
+              <p className="flex items-center gap-1 text-base font-extrabold leading-none">
                 {t(GOOGLE_RATING)}
-                <span aria-hidden="true" className="flex text-gold">
+                <span aria-hidden="true" className="flex text-gold-light">
                   {Array.from({ length: 5 }, (_, i) => (
                     <Star key={i} />
                   ))}
                 </span>
               </p>
-              <p className="mt-1.5 text-xs text-ink group-hover:text-gold-dark">
+              <p className="mt-1 text-[11px] leading-tight text-white/80 group-hover:text-gold-light">
                 <span className="sr-only">{t("Rated")}{" "}{t(GOOGLE_RATING)}{" "}{t("out of 5 from")}{" "}</span>
                 {t(GOOGLE_REVIEWS)}{" "}{t("Google reviews")}</p>
             </div>
           </a>
-          <div className="flex items-center gap-3 p-4 sm:p-5">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold-dark">
+          <div className={GLASS}>
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/15 text-gold-light">
               <ShieldIcon />
             </span>
-            <div>
-              <p className="font-extrabold leading-tight text-brown-dark">{t("Modern & safe")}</p>
-              <p className="mt-1 text-xs text-ink">{t("Digital dentistry · DHA licensed")}</p>
+            <div className="min-w-0">
+              <p className="text-sm font-extrabold leading-tight">{t("Modern & safe")}</p>
+              <p className="mt-0.5 text-[11px] leading-tight text-white/80">{t("Digital dentistry · DHA licensed")}</p>
             </div>
           </div>
         </div>
@@ -81,7 +84,7 @@ export default function Hero() {
 
 function Star() {
   return (
-    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
+    <svg viewBox="0 0 20 20" fill="currentColor" className="h-3 w-3">
       <path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z" />
     </svg>
   );
@@ -89,7 +92,7 @@ function Star() {
 
 function GoogleIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 48 48" className="h-9 w-9 shrink-0">
+    <svg aria-hidden="true" viewBox="0 0 48 48" className="h-7 w-7 shrink-0">
       <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2.1 5.1-4.4 6.7v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.2z" />
       <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 41.1 15.5 46 24 46z" />
       <path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.8-.7-4.3s.3-3 .7-4.3V14H4.5C3 17 2.2 20.4 2.2 24s.8 7 2.3 10l7.3-5.7z" />
@@ -100,7 +103,7 @@ function GoogleIcon() {
 
 function ShieldIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
       <path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z" />
       <path d="M8.8 12.2l2.2 2.2 4.2-4.4" />
     </svg>
