@@ -76,7 +76,7 @@ export function Insurance() {
         <ul className={insuranceStyles.track}>
           {ribbon.map((insurer, i) => (
             <li key={insurer.logo + i} className={insuranceStyles.logo} aria-hidden={i >= insurers.length || undefined}>
-              <Image src={insurer.logo} alt={i < insurers.length ? `${insurer.name} — ${t("insurance accepted at Bright Way Dental Clinic")}` : ""} width={180} height={90} loading="eager" />
+              <Image src={insurer.logo} alt={i < insurers.length ? `${insurer.name} — ${t("insurance accepted at Bright Way Dental Clinic")}` : ""} width={180} height={90} />
             </li>
           ))}
         </ul>

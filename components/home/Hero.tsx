@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { l, t, h1Part } from "@/lib/i18n";
 import { Arrow, GoldButton } from "@/components/ui";
 import HeroMedia from "@/components/home/HeroMedia";
@@ -17,11 +18,15 @@ const GOOGLE_MAPS_URL = googleReviews.url;
 const HERO_VIDEO = {
   portrait: "/videos/hero-portrait.mp4",
   landscape: "/videos/hero-landscape.mp4",
-  portraitPoster: "/videos/hero-portrait.jpg",
-  landscapePoster: "/videos/hero-landscape.jpg",
+  portraitPoster: "/videos/hero-portrait.webp",
+  landscapePoster: "/videos/hero-landscape.webp",
 };
 
 export default function Hero() {
+  // The poster is the biggest thing on the first screen (what PageSpeed times as "largest paint"): ask for the right one
+  // straight from the <head>, ahead of fonts and scripts (Arabic home went 89 → 75 without this, 2026-11-12)
+  preload(HERO_VIDEO.portraitPoster, { as: "image", type: "image/webp", fetchPriority: "high", media: "(max-width: 767px)" });
+  preload(HERO_VIDEO.landscapePoster, { as: "image", type: "image/webp", fetchPriority: "high", media: "(min-width: 768px)" });
   return (
     <section className="relative z-10 bg-white">
       <div className="relative isolate flex min-h-[640px] flex-col justify-end overflow-hidden lg:h-[calc(100svh-117px)] lg:max-h-[900px]">
