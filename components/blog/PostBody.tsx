@@ -2,6 +2,8 @@ import { t } from "@/lib/i18n";
 import Image from "next/image";
 import { BookingAside } from "@/components/treatment/TreatmentBody";
 import styles from "./PostBody.module.css";
+import Sources from "@/components/page/Sources";
+import type { Source } from "@/content/seo-answers";
 
 /** Blog post article (WordPress HTML, restyled like the treatment pages) with the light booking card beside it. Text unchanged. */
 export default function PostBody({
@@ -9,11 +11,13 @@ export default function PostBody({
   html,
   featured,
   bookingTitle = "Have a question about your teeth?",
+  sources = [],
 }: {
   title: string;
   html: string;
   featured?: string;
   bookingTitle?: string;
+  sources?: Source[];
 }) {
   // Some posts open with a copy of the featured photo under another file name: show one, not both
   const opensWithImage = /^\s*(<figure[^>]*>\s*)?<img\b/i.test(html);
@@ -31,6 +35,7 @@ export default function PostBody({
             </div>
           )}
           <article className={styles.article} dangerouslySetInnerHTML={{ __html: body }} />
+          <Sources sources={sources} />
         </div>
         <BookingAside title={t(bookingTitle)} />
       </div>

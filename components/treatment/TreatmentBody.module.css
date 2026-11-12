@@ -5,6 +5,9 @@
   max-width: 1200px; margin-inline: auto; padding-inline: 24px;
 }
 
+/* left column: direct answer, article, sources */
+.main { min-width: 0; }
+
 /* ---- article (WordPress HTML) ---- */
 .article { max-width: 720px; color: #5f584c; font-size: 1.06rem; line-height: 1.85; }
 .article > * + * { margin-top: 1.1rem; }

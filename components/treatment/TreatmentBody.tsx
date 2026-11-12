@@ -2,6 +2,8 @@ import { getLang, l, t } from "@/lib/i18n";
 import { clinic } from "@/content/site";
 import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
 import type { TreatmentFigure } from "@/content/treatments";
+import type { Source } from "@/content/seo-answers";
+import Sources, { DirectAnswer } from "@/components/page/Sources";
 import styles from "./TreatmentBody.module.css";
 
 const escapeAttr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
@@ -23,7 +25,7 @@ function withFigures(html: string, figures: TreatmentFigure[]) {
 }
 
 /** Treatment page article (WordPress HTML, restyled) with a light, sticky booking card beside it. Text unchanged. */
-export default function TreatmentBody({ html, figures = [], hideOldImages = false }: { html: string; figures?: TreatmentFigure[]; hideOldImages?: boolean }) {
+export default function TreatmentBody({ html, figures = [], hideOldImages = false, answer, sources = [] }: { html: string; figures?: TreatmentFigure[]; hideOldImages?: boolean; answer?: string; sources?: Source[] }) {
   const withoutOld = hideOldImages ? html.replace(/<img\b[^>]*>\s*/g, "") : html;
   // The opening paragraph is styled as the article's title (English articles open with their title as a paragraph);
   // the old Arabic articles open with a long body paragraph instead, which keeps the normal text style
@@ -31,7 +33,11 @@ export default function TreatmentBody({ html, figures = [], hideOldImages = fals
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <article className={styles.article} dangerouslySetInnerHTML={{ __html: withFigures(body, figures) }} />
+        <div className={styles.main}>
+          {answer && <DirectAnswer text={answer} />}
+          <article className={styles.article} dangerouslySetInnerHTML={{ __html: withFigures(body, figures) }} />
+          <Sources sources={sources} />
+        </div>
 
         <BookingAside />
       </div>

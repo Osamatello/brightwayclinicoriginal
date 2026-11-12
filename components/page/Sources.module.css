@@ -1,0 +1,15 @@
+/* Sources list: quiet, small, after the article — same colours as the article text */
+.sources { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #eadfc8; max-width: 720px; }
+.heading { color: #3e2d0e; font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.sources ul { margin-top: .75rem; display: grid; gap: .45rem; }
+.sources li { position: relative; padding-inline-start: 1rem; color: #685f55; font-size: .92rem; line-height: 1.5; }
+.sources li::before { content: ""; position: absolute; inset-inline-start: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: #c39433; }
+.sources a { color: #8a6a24; text-decoration: underline; text-decoration-color: #d9c28c; text-underline-offset: 3px; }
+.sources a:hover { color: #3e2d0e; }
+
+/* Direct answer: light cream box with a gold edge, above the article */
+.answer {
+  max-width: 720px; margin-bottom: 2.5rem; padding: 1.25rem 1.5rem; border-radius: 16px;
+  border-inline-start: 3px solid #c39433; background: #fbf6ec;
+  color: #3e2d0e; font-size: 1.08rem; line-height: 1.75;
+}
