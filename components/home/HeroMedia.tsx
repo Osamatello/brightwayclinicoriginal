@@ -18,11 +18,26 @@ export default function HeroMedia({ video: clip, alt }: { video: HeroVideo; alt:
   const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
-    // respect "reduce motion": start paused, the visitor can still press play
+    // respect "reduce motion": stay on the poster, the visitor can still press play
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      video.current?.pause();
       setPlaying(false);
+      return;
     }
+    // Start the video only after the page has loaded and the browser is idle: downloading and decoding it
+    // together with the page's own files blocked phones for ~3 s (Lighthouse 87 → 60, 2026-11-12). The poster shows meanwhile.
+    let cancelled = false;
+    const start = () => {
+      if (cancelled || !video.current) return;
+      video.current.load();
+      void video.current.play().catch(() => setPlaying(false));
+    };
+    const whenIdle = () => ("requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 2500 }) : globalThis.setTimeout(start, 1200));
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle, { once: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", whenIdle);
+    };
   }, []);
 
   const toggle = () => {
@@ -44,7 +59,7 @@ export default function HeroMedia({ video: clip, alt }: { video: HeroVideo; alt:
         {/* eslint-disable-next-line @next/next/no-img-element -- art-directed poster (two crops), not resizable by next/image */}
         <img src={clip.landscapePoster} alt="" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
-      <video ref={video} autoPlay muted loop playsInline aria-label={t(alt)} className="absolute inset-0 h-full w-full object-cover">
+      <video ref={video} preload="none" muted loop playsInline aria-label={t(alt)} className="absolute inset-0 h-full w-full object-cover">
         <source media={PHONE} src={clip.portrait} type="video/mp4" />
         <source src={clip.landscape} type="video/mp4" />
       </video>
