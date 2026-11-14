@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { nav } from "@/content/site";
 import styles from "./NavLinks.module.css";
+import ServicesMenu from "./ServicesMenu";
 
 /** Pages that count as being inside a menu item, e.g. treatment pages under "Services". */
 export type NavSections = Record<string, string[]>;
@@ -50,6 +51,20 @@ export default function NavLinks({ sections, lists }: { sections: NavSections; l
         const children = item.children ?? lists[item.href];
         if (!children) return <span key={item.href}>{link}</span>;
         const long = children.length > 12; // long lists (blog articles): wider, wrapped titles, scroll inside
+        // Services: one wide panel with the treatments in five groups (ServicesMenu)
+        if (item.href === "/services/") {
+          return (
+            <div key={`${item.href}${pathname}`} className={`${styles.item} ${styles.megaItem}`}>
+              {link}
+              <svg aria-hidden="true" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={styles.chevron}>
+                <path d="m2.500 4.500 3.500 3.500 3.500-3.500" />
+              </svg>
+              <div className={`${styles.dropdown} ${styles.megaDropdown}`}>
+                <ServicesMenu />
+              </div>
+            </div>
+          );
+        }
         return (
           // key on the path: the list closes after choosing a page, even while the mouse is still over it
           <div key={`${item.href}${pathname}`} className={styles.item}>

@@ -22,6 +22,15 @@ export const clinic = {
   },
 };
 
+/** The Services drop-down on large screens: the 11 treatments in 5 groups (Osama, 2026-11-14, after the Lux Dental reference). */
+export const serviceGroups: { label: string; hrefs: string[] }[] = [
+  { label: "General dentistry", hrefs: ["/teeth-cleaning-and-gum-treatment/", "/root-canal-treatment/", "/pediatric-dentistry/"] },
+  { label: "Cosmetic dentistry", hrefs: ["/veneer-en/", "/teeth-whitening/", "/cosmetic-dentistry/"] },
+  { label: "Implants and prosthodontics", hrefs: ["/dentalimplants-en/", "/prosthodontics/"] },
+  { label: "Orthodontics", hrefs: ["/orthodontics-en/"] },
+  { label: "Oral surgery", hrefs: ["/oral-surgery/", "/tooth-extraction/"] },
+];
+
 type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
 
 export const nav: NavItem[] = [

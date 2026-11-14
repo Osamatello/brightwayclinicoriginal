@@ -21,6 +21,32 @@
 .list a { display: block; padding: .55rem .75rem; border-radius: 8px; color: #3e2d0e; font-weight: 600; transition: background 180ms ease, color 180ms ease; }
 .list a:hover, .list a:focus-visible { background: #fbf4e4; color: #8a6a24; }
 
+/* Services: one wide panel under the whole header bar, treatments in five groups with icons (Osama, 2026-11-14) */
+.megaItem { position: static; }
+/* placed against the header bar; its invisible top padding reaches up to the menu word, so the mouse never "falls off" */
+.megaDropdown { top: calc(100% - 26px); padding-top: calc(26px + .5rem); }
+.mega {
+  width: min(1180px, calc(100vw - 48px)); padding: 1.9rem 2.1rem 1.15rem; white-space: normal;
+  border-radius: 16px; border-top: 3px solid #c39433; background: #fff;
+  box-shadow: 0 0 0 1px #eadfc8, 0 34px 70px -34px #3e2d0e80;
+}
+.megaGroups { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.25rem; }
+.megaHeading { margin-bottom: .75rem; color: #3e2d0e; font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; line-height: 1.15; letter-spacing: -.01em; }
+.megaGroups ul { display: grid; gap: .15rem; margin: 0; padding: 0; list-style: none; }
+.megaLink {
+  display: flex; align-items: center; gap: .6rem; padding: .5rem .55rem; margin-inline-start: -.55rem; border-radius: 8px;
+  color: #5f584c; font-size: .9rem; font-weight: 600; line-height: 1.3; transition: background 180ms ease, color 180ms ease;
+}
+.megaLink:hover, .megaLink:focus-visible { background: #fbf4e4; color: #8a6a24; }
+.megaIcon { flex: none; width: 22px; height: 22px; color: #a77d2a; }
+.megaFoot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.35rem; padding-top: 1rem; border-top: 1px solid #efe5d1; }
+.megaAll { display: inline-flex; align-items: center; gap: .45rem; color: #8a6a24; font-size: .9rem; font-weight: 700; }
+.megaAll svg { width: 16px; height: 16px; transition: translate 250ms ease; }
+.megaAll:hover svg { translate: calc(4px * var(--dir, 1)) 0; }
+.megaBooking { color: #7d7467; font-size: .9rem; }
+.megaBooking strong { color: #3e2d0e; font-weight: 700; }
+.megaBooking:hover strong { color: #8a6a24; }
+
 @media (prefers-reduced-motion: reduce) {
   .chevron, .dropdown { transition: none; }
 }

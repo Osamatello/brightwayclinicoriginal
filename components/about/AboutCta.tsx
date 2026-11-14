@@ -25,7 +25,7 @@ export default function AboutCta() {
               </linearGradient>
             </defs>
             <g clipPath="url(#about-cta-tooth)">
-              <image href={l("/images/about/cta-patient-chair.webp")} width="400" height="460" preserveAspectRatio="xMidYMid slice" className={styles.photo} />
+              <image href="/images/about/cta-patient-chair.webp" width="400" height="460" preserveAspectRatio="xMidYMid slice" className={styles.photo} />
             </g>
             <path d={TOOTH} fill="none" stroke="url(#about-cta-gold)" strokeWidth="4" />
           </svg>

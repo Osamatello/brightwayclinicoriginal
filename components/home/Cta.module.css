@@ -55,3 +55,14 @@
   .copy { font-size: 1.05rem; }
   .actions > * { flex: 1 1 100%; justify-content: center; }
 }
+
+/* Desktop fix (Osama, 2026-11-14): the section's gold divider lines ran into the photo's curve and the cream page showed
+   above and below the band. The band now runs edge to edge on white with room above and below the photo, and the gold
+   edge follows only the curve, thinning out at both ends instead of ending in a straight tail. */
+@media (min-width: 900px) {
+  .section:not(.aligned) { margin-block: 0; padding-block: 5rem 5.5rem; min-height: calc(560px + 10.5rem); }
+  .photoWrap::after {
+    box-shadow: none;
+    border: 3px solid #c9a45c; border-inline-end: 0; border-top-color: transparent; border-bottom-color: transparent;
+  }
+}
