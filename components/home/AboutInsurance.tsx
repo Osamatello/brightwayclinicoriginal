@@ -4,6 +4,7 @@ import { aboutCards, insurers } from "@/content/home";
 import { clinic } from "@/content/site";
 import { Arrow } from "@/components/ui";
 import styles from "./About.module.css";
+import ReadMoreArea from "./ReadMoreArea";
 import insuranceStyles from "./Insurance.module.css";
 
 export const pillarIcons = [
@@ -19,7 +20,8 @@ export function About() {
         <path d="M95 150C80 90 120 55 160 70c20 8 30 18 40 18s20-10 40-18c40-15 80 20 65 80-7 35-15 60-20 90-7 50-13 100-23 155-6 33-34 35-38 3l-10-78c-3-24-25-24-28 0l-10 78c-4 32-32 30-38-3-10-55-16-105-23-155-5-30-13-55-20-90Z" />
       </svg>
 
-      <div className={styles.inner}>
+      {/* phones: shortened until "Read more" (About.module.css, [data-open]); larger screens show everything */}
+      <ReadMoreArea className={styles.inner} buttonClassName={styles.more}>
         <div className={styles.intro}>
           <h2 id="about-heading" className={styles.heading}>{t("Your Trusted")}{" "}<span>{t("Dental Clinic in Dubai")}</span>
           </h2>
@@ -56,7 +58,7 @@ export function About() {
             ))}
           </ul>
         </div>
-      </div>
+      </ReadMoreArea>
     </section>
   );
 }
