@@ -105,3 +105,17 @@
   .ambient, .screen, .play::before { animation: none; }
   .row, .row::before, .thumbImg, .play, .screenImg { transition: none; }
 }
+/* Phones (2026-11-14): smaller player, smaller video cards and titles */
+@media (max-width: 767px) {
+  .section { padding-block: 3.25rem 3.5rem; }
+  .heading { font-size: clamp(2.1rem, 8.6vw, 2.8rem); }
+  .header { gap: 1rem; margin-bottom: 1.5rem; }
+  .stage { aspect-ratio: 16 / 10; }
+  .play { width: 48px; height: 48px; }
+  .playIcon { width: 20px; height: 20px; }
+  .caption { margin-top: .9rem; gap: .45rem; }
+  .list > li { flex-basis: min(44vw, 180px); }
+  .row { padding: .4rem .4rem .7rem; }
+  .rowText { gap: .3rem; padding-inline: .2rem; }
+  .rowTitle { font-size: .8rem; line-height: 1.3; }
+}

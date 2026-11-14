@@ -100,3 +100,13 @@
 @media (prefers-reduced-motion: reduce) {
   .frame, .play, .handle > svg:last-child { transition: none; }
 }
+/* Phones (2026-11-14): smaller reel cards, about two on screen at once */
+@media (max-width: 767px) {
+  .section { padding-block: 3.25rem 2.75rem; }
+  .heading { font-size: clamp(2.1rem, 8.6vw, 2.8rem); }
+  .header { gap: 1rem; margin-bottom: 1.25rem; }
+  .deck { --w: min(42vw, 175px); gap: 10px; padding-bottom: 1.5rem; }
+  .play { width: 34px; height: 34px; bottom: 10px; }
+  .playIcon { width: 14px; height: 14px; }
+  .reelBadge { width: 18px; height: 18px; top: 8px; inset-inline-end: 8px; }
+}

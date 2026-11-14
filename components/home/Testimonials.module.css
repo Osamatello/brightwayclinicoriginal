@@ -102,3 +102,8 @@ a.name:hover { color: #8a6a24; }
   .name { font-size: .8rem; }
   .meta { font-size: .68rem; }
 }
+/* Phones (2026-11-14): the 4.9 a little bigger so it reads at a glance */
+@media (max-width: 639px) {
+  .rating { font-size: 4.25rem; }
+  .scoreStars svg { width: 18px; height: 18px; }
+}

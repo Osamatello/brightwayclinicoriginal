@@ -129,3 +129,32 @@
 @media (prefers-reduced-motion: reduce) {
   .infoIcon, .send, .send::after, .sendArrow, .map iframe, .field input, .field textarea, .socialLink, .socialLink svg { transition: none; }
 }
+/* Phones (2026-11-14): a tidier, shorter contact section */
+@media (max-width: 767px) {
+  .section { padding-block: 3.25rem 3.5rem; }
+  .heading { font-size: clamp(2.1rem, 8.6vw, 2.8rem); }
+  .header { margin-bottom: 1.5rem; }
+  .intro { font-size: .95rem; }
+  /* contact details two by two */
+  .info { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-inline: .5rem; }
+  .infoItem { flex-direction: column; gap: .5rem; padding: 1rem .75rem; }
+  .infoItem + .infoItem { border-top: 0; border-inline-start: 0; }
+  .infoItem:nth-child(even) { border-inline-start: 1px solid #efe5d2; }
+  .infoItem:nth-child(n+3) { border-top: 1px solid #efe5d2; }
+  .infoIcon { width: 34px; height: 34px; }
+  .infoIcon svg { width: 16px; height: 16px; }
+  .infoLabel { font-size: .62rem; letter-spacing: .14em; }
+  .infoValue { font-size: .85rem; line-height: 1.4; overflow-wrap: anywhere; }
+  .infoValue a { white-space: normal; }
+  /* form: names side by side, phone and email side by side */
+  .form { gap: .7rem; padding: 1.4rem 1.1rem 1.3rem; }
+  .formTitle { font-size: 1.7rem; }
+  .formNote { font-size: .85rem; }
+  .pair { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .field { gap: .3rem; }
+  .field > span { font-size: .62rem; letter-spacing: .1em; }
+  .map { aspect-ratio: 16 / 10; }
+  .reach { margin-top: 2.25rem; }
+  .reachHeading { margin-bottom: 1.1rem; font-size: 1.9rem; }
+  .stay { margin-top: 1.1rem; font-size: .92rem; }
+}
