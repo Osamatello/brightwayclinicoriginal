@@ -21,8 +21,9 @@ const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const between = (p: number, a: number, b: number) => clamp((p - a) / (b - a));
 
 /**
- * Homepage services on large screens: the section pins, the intro's words sharpen, then three stops fade through the treatments.
- * Phones and "reduce motion" show the normal Services section instead (this one stays hidden).
+ * Homepage services: the section pins, the intro's words sharpen, then three stops fade through the treatments.
+ * Large screens: picture beside the text · phones and tablets (since 2026-11-14): picture above the text.
+ * "Reduce motion" shows the normal Services section instead (this one stays hidden).
  */
 export default function SmileScene() {
   const { l, t } = useI18n();
@@ -47,7 +48,8 @@ export default function SmileScene() {
     const panels = q<HTMLElement>("[data-panel]");
     const words = q<HTMLElement>("[data-word]");
 
-    const mq = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
+    const mq = window.matchMedia("(prefers-reduced-motion: no-preference)");
+    const wide = window.matchMedia("(min-width: 1024px)");
     let geo = { h: 0, stuckAt: 0 };
     let lastP = -1;
     let active = -1;
@@ -107,8 +109,9 @@ export default function SmileScene() {
       if (!mq.matches) return;
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", measure);
-      // load all three pictures now, so none is still blank when it fades in (phones never reach this line)
-      photos.forEach((el) => {
+      // large screens: load all three pictures now, so none is still blank when it fades in
+      // (phones keep them lazy: they load together as the section comes near, without slowing the first screen)
+      if (wide.matches) photos.forEach((el) => {
         const img = el.querySelector("img");
         if (img) img.loading = "eager";
       });

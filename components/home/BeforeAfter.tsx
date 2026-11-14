@@ -132,6 +132,99 @@ function SmileCard({ smile, number, page }: { smile: SmileCase; number: number; 
 }
 
 /** Before/after gallery: framed cards whose lines move by themselves. `page` = the Smile Gallery page's version: no header, bigger cards. */
+/**
+ * Phones, home page only (2026-11-14, after Osama's reference): the section pins under the header and scrolling down
+ * slides the cases sideways, "before" above "after", until the last one is shown; then the page carries on.
+ * Larger screens, the Smile Gallery page and "reduce motion" keep the cards with the drag handle (CSS hides one or the other).
+ */
+function PhoneStrip() {
+  const { t } = useI18n();
+  const wrap = useRef<HTMLDivElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const box = wrap.current;
+    const pin = stage.current;
+    const row = track.current;
+    if (!box || !pin || !row) return;
+    const mq = window.matchMedia("(max-width: 767px) and (prefers-reduced-motion: no-preference)");
+    const rtl = document.documentElement.dir === "rtl";
+    let distance = 0;
+    let frame = 0;
+
+    const measure = () => {
+      distance = Math.max(0, row.scrollWidth - row.clientWidth);
+      // one pixel of scrolling down moves the cards one pixel sideways
+      box.style.height = `${pin.offsetHeight + distance}px`;
+      draw();
+    };
+    const draw = () => {
+      frame = 0;
+      const top = parseFloat(getComputedStyle(pin).top) || 0;
+      const p = Math.min(1, Math.max(0, (top - box.getBoundingClientRect().top) / Math.max(1, box.offsetHeight - pin.offsetHeight)));
+      row.style.transform = `translate3d(${(rtl ? 1 : -1) * p * distance}px, 0, 0)`;
+      setActive(Math.round(p * (smileCases.length - 1)));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(draw);
+    };
+    const sync = () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      if (!mq.matches) {
+        box.style.height = "";
+        return;
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", measure);
+      measure();
+    };
+    mq.addEventListener("change", sync);
+    sync();
+    // pictures arriving can change nothing in size (fixed 4:3 boxes), but fonts can move the header: measure once more after load
+    window.addEventListener("load", measure, { once: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      mq.removeEventListener("change", sync);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("load", measure);
+    };
+  }, []);
+
+  return (
+    <div ref={wrap} className={styles.strip}>
+      <div ref={stage} className={styles.stripStage}>
+        <h2 className={styles.stripHeading}>{t("Before and After")}{" "}
+          <span>{t("Dental Transformations")}</span>
+        </h2>
+        <ul ref={track} className={styles.stripTrack}>
+          {smileCases.map((smile, i) => (
+            <li key={smile.after} className={styles.stripCard}>
+              <figure className={styles.stripPhoto}>
+                <Image src={smile.before} alt={t(smile.beforeAlt)} fill sizes="80vw" className={styles.photo} />
+                <figcaption>{t("Before")}</figcaption>
+              </figure>
+              <figure className={styles.stripPhoto}>
+                <Image src={smile.after} alt={t(smile.afterAlt)} fill sizes="80vw" className={styles.photo} />
+                <figcaption>{t("After")}</figcaption>
+              </figure>
+              <p className={styles.stripNumber}>{String(i + 1).padStart(2, "0")}</p>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.stripDots} aria-hidden="true">
+          {smileCases.map((smile, i) => (
+            <span key={smile.after} data-on={i === active ? "1" : undefined} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BeforeAfter({ page = false }: { page?: boolean }) {
   const { t } = useI18n();
   return (
@@ -146,6 +239,7 @@ export default function BeforeAfter({ page = false }: { page?: boolean }) {
           </header>
         )}
 
+        {!page && <PhoneStrip />}
         <ul className={styles.grid}>
           {smileCases.map((smile, index) => (
             <SmileCard key={smile.after} smile={smile} number={index + 1} page={page} />

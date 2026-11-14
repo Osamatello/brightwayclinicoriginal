@@ -17,6 +17,37 @@ export default function Doctors() {
           </h2>
           <p className={styles.intro}>{t("Discover Our Best Dentists In Dubai")}</p>
         </header>
+        {/* phones (2026-11-14): the three doctors together in one group, Dr. Hasan in the middle, names under the photos;
+            their descriptions follow underneath, so no text is lost. The layout below this is for larger screens. */}
+        <div className={styles.group}>
+          <ul className={styles.groupPhotos}>
+            {[team[0], founder, team[1]].map((doctor) => (
+              <li key={doctor.name} className={doctor === founder ? styles.groupFounder : undefined}>
+                {doctor.href ? (
+                  <Link href={l(doctor.href)} className={styles.groupPortrait} aria-label={`${t("Meet")} ${t(doctor.name)}`}>
+                    <Image src={doctor.img} alt={t(doctor.name)} fill unoptimized sizes="40vw" className={styles.photo} />
+                  </Link>
+                ) : (
+                  <div className={styles.groupPortrait}>
+                    <Image src={doctor.img} alt={t(doctor.name)} fill unoptimized sizes="30vw" className={styles.photo} />
+                  </div>
+                )}
+                <p className={styles.groupTag}>{t(doctor.tag)}</p>
+                <h3 className={styles.groupName}>{doctor.href ? <Link href={l(doctor.href)}>{t(doctor.name)}</Link> : t(doctor.name)}</h3>
+              </li>
+            ))}
+          </ul>
+          <dl className={styles.groupRoles}>
+            {doctors.map((doctor) => (
+              <div key={doctor.name}>
+                <dt>{t(doctor.name)}</dt>
+                <dd>{t(doctor.role)}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link href={l(founder.href!)} className={styles.groupCta}>{t("Meet Dr. Hasan")}{" "}<Arrow /></Link>
+        </div>
+
         <div className={styles.gallery}>
           <article className={styles.founder}>
             <Link href={l(founder.href!)} className={styles.portraitLink} aria-label={`${t("Meet")} ${t(founder.name)}`}>
