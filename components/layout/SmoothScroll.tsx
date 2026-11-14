@@ -4,10 +4,12 @@ import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { useEffect } from "react";
 
-/** Smooth mouse-wheel scrolling on every page (Lenis, same as the reference site). Off for visitors who ask for reduced motion. */
+/** Smooth mouse-wheel scrolling on every page (Lenis, same as the reference site). Off on touch screens and for visitors who ask for reduced motion. */
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // touch screens (phones, tablets) keep the device's own scrolling: smoothing it there made pages pull and jump (Osama, 2026-11-14)
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
     // started once the page has loaded and the browser is idle, so it never competes with loading the page
     let lenis: Lenis | undefined;
     let idle = 0;

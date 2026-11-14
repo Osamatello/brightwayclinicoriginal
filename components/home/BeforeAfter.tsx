@@ -153,12 +153,20 @@ function PhoneStrip() {
     const rtl = document.documentElement.dir === "rtl";
     let distance = 0;
     let frame = 0;
+    let width = 0;
 
     const measure = () => {
       distance = Math.max(0, row.scrollWidth - row.clientWidth);
-      // one pixel of scrolling down moves the cards one pixel sideways
-      box.style.height = `${pin.offsetHeight + distance}px`;
+      // one pixel of scrolling down moves the cards one pixel sideways. The height is set against the *small* screen height
+      // (svh), which does not change while the phone's address bar slides in and out, so nothing below jumps when it does.
+      box.style.height = `calc(100svh - 73px + ${distance}px)`;
       draw();
+    };
+    // phones fire "resize" whenever the address bar shows or hides: only re-measure when the width really changed (rotation)
+    const onResize = () => {
+      if (window.innerWidth === width) return draw();
+      width = window.innerWidth;
+      measure();
     };
     const draw = () => {
       frame = 0;
@@ -172,13 +180,14 @@ function PhoneStrip() {
     };
     const sync = () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", onResize);
       if (!mq.matches) {
         box.style.height = "";
         return;
       }
       window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", measure);
+      window.addEventListener("resize", onResize);
+      width = window.innerWidth;
       measure();
     };
     mq.addEventListener("change", sync);
@@ -201,7 +210,7 @@ function PhoneStrip() {
       near.disconnect();
       mq.removeEventListener("change", sync);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", onResize);
       window.removeEventListener("load", measure);
     };
   }, []);

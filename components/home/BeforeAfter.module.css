@@ -106,7 +106,8 @@
 
   .stripTrack { display: flex; gap: 12px; margin: 1.25rem 0 0; padding: 0 20px; list-style: none; will-change: transform; }
   /* each card fits the screen height: two 4:3 photos stacked + its number */
-  .stripCard { flex: none; width: min(86vw, calc((100svh - 73px - 11.5rem) / 1.55)); width: min(86vw, calc((100dvh - 73px - 11.5rem) / 1.55)); }
+  /* svh (not dvh): the card size, and so the strip length, must not change while the address bar slides */
+  .stripCard { flex: none; width: min(86vw, calc((100svh - 73px - 11.5rem) / 1.55)); }
   .stripPhoto { position: relative; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: #efe7d8; }
   .stripPhoto:first-child { border-radius: 14px 14px 0 0; }
   .stripPhoto + .stripPhoto { border-radius: 0 0 14px 14px; border-top: 2px solid #fff; }

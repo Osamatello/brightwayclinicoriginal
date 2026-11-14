@@ -86,3 +86,14 @@
   .patient { order: 3; margin-top: 1.75rem; }
   .focus { order: 4; margin-top: 1.75rem; }
 }
+/* Phones (2026-11-14): a smaller special-offer box */
+@media (max-width: 767px) {
+  .offer { gap: 1rem; margin-top: 2.5rem; padding: 1.25rem 1.15rem; }
+  .label { font-size: .68rem; }
+  .offerHeading { margin-top: .45rem; font-size: 1.4rem; }
+  .save { margin-top: .4rem; font-size: 2.1rem; }
+  .points { gap: .45rem; padding-top: .9rem; }
+  .points li { font-size: .88rem; line-height: 1.45; }
+  .check { flex-basis: 14px; width: 14px; height: 14px; }
+  .cta { min-height: 2.75rem; padding-inline: 1.4rem; font-size: .88rem; }
+}
