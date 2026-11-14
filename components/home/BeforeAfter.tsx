@@ -183,10 +183,22 @@ function PhoneStrip() {
     };
     mq.addEventListener("change", sync);
     sync();
+    // the cases further along the strip would only load when they slide in (empty for a moment on a fast scroll):
+    // load all of them once the section is about a screen away
+    const near = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        row.querySelectorAll("img").forEach((img) => (img.loading = "eager"));
+        near.disconnect();
+      },
+      { rootMargin: "100% 0px" },
+    );
+    near.observe(box);
     // pictures arriving can change nothing in size (fixed 4:3 boxes), but fonts can move the header: measure once more after load
     window.addEventListener("load", measure, { once: true });
     return () => {
       cancelAnimationFrame(frame);
+      near.disconnect();
       mq.removeEventListener("change", sync);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);

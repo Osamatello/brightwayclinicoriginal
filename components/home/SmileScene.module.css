@@ -55,17 +55,20 @@
   .scene ~ :global([data-home-grid]) { display: none; }
 
   .stage {
-    position: sticky; top: 73px; height: calc(100svh - 73px); min-height: 560px; overflow: hidden;
+    /* dvh: follows the phone's address bar, so no empty strip shows under the pinned scene when the bar hides */
+    position: sticky; top: 73px; height: calc(100svh - 73px); height: calc(100dvh - 73px); min-height: 520px; overflow: hidden;
     background: linear-gradient(180deg, #fff9ec 0%, #fffcf6 100%);
   }
+  .scene { background: #fffcf6; }
   .layout {
-    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.6rem;
-    height: 100%; max-width: 560px; margin-inline: auto; padding: 1.5rem 1.5rem 1.75rem;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.25rem;
+    height: 100%; max-width: 560px; margin-inline: auto; padding: 1rem 1.25rem 1.25rem;
   }
 
   /* portrait, like the large-screen picture */
   .picture {
-    position: relative; flex: none; aspect-ratio: 4 / 5; height: min(44%, 380px); max-width: 100%; overflow: hidden;
+    /* as tall as the screen allows after the text below it (about 21rem) */
+    position: relative; flex: none; aspect-ratio: 4 / 5; height: max(220px, min(calc(100% - 21rem), 560px)); max-width: 100%; overflow: hidden;
     border-radius: 18px; box-shadow: 0 0 0 1px #c39433a6, 0 26px 46px -30px #6e5219b3;
   }
   .photo { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease; }
@@ -98,5 +101,5 @@
   .all { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; color: #6f675b; font-size: .875rem; font-weight: 700; }
 }
 @media (min-width: 768px) and (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
-  .stage { top: 81px; height: calc(100svh - 81px); }
+  .stage { top: 81px; height: calc(100svh - 81px); height: calc(100dvh - 81px); }
 }

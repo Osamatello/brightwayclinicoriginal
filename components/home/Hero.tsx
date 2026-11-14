@@ -23,7 +23,7 @@ const HERO_VIDEO = {
 };
 
 // frosted glass card: the video shows through, a light blur keeps the text readable
-const GLASS = "flex items-center gap-2 rounded-lg border border-white/25 bg-white/10 px-2.5 py-2 backdrop-blur-md transition hover:bg-white/15 sm:gap-3 sm:rounded-xl sm:p-3";
+const GLASS = "flex items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-2.5 py-2.5 backdrop-blur-md transition hover:bg-white/15 sm:justify-start sm:gap-3 sm:rounded-xl sm:p-3";
 
 export default function Hero() {
   // The poster is the biggest thing on the first screen (what PageSpeed times as "largest paint"): ask for the right one
@@ -51,7 +51,7 @@ export default function Hero() {
         </div>
 
         {/* two small see-through (frosted glass) cards over the video (Osama, 2026-11-12): side by side under the text on phones, bottom-right from lg */}
-        <div className="relative mx-6 mb-5 grid max-w-[320px] grid-cols-2 gap-2 text-white sm:mx-10 sm:mb-6 sm:max-w-sm lg:absolute lg:bottom-9 lg:end-14 lg:m-0 lg:w-[400px] lg:max-w-none lg:gap-3">
+        <div className="relative mx-6 mb-5 grid grid-cols-2 gap-2 text-white sm:mx-10 sm:mb-6 sm:max-w-sm lg:absolute lg:bottom-9 lg:end-14 lg:m-0 lg:w-[400px] lg:max-w-none lg:gap-3">
           <a href={l(GOOGLE_MAPS_URL)} target="_blank" rel="noopener noreferrer" className={`group ${GLASS}`}>
             <GoogleIcon />
             <div className="min-w-0">

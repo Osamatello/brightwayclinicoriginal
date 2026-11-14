@@ -77,3 +77,12 @@
 @media (prefers-reduced-motion: reduce) {
   .save { animation: none; background-position: 50% 0; }
 }
+/* Phones (2026-11-14): heading, text, picture, then the list */
+@media (max-width: 767px) {
+  .care { gap: 0; }
+  .careText { display: contents; }
+  .care .heading { order: 1; }
+  .care .lede { order: 2; margin-top: 1rem; }
+  .patient { order: 3; margin-top: 1.75rem; }
+  .focus { order: 4; margin-top: 1.75rem; }
+}

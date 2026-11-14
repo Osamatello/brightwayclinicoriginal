@@ -85,3 +85,12 @@
 @media (prefers-reduced-motion: reduce) {
   .icon, .photo { transition: none; }
 }
+/* Phones (2026-11-14): heading, text, picture, then the feature list */
+@media (max-width: 767px) {
+  .inner { gap: 0; }
+  .copy { display: contents; }
+  .heading { order: 1; }
+  .lede { order: 2; margin-top: 1.25rem; }
+  .stage { order: 3; margin-top: 2rem; }
+  .features { order: 4; margin-top: 2rem; }
+}
