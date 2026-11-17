@@ -41,6 +41,8 @@
 .save {
   margin-top: .6rem; font-family: var(--font-display); font-size: clamp(2.6rem, 3.6vw, 3.4rem);
   font-weight: 600; line-height: 1; letter-spacing: -.02em; font-variant-numeric: lining-nums;
+  /* the gold is painted only inside the box: room below and at the sides so tails like the Arabic م are not cut (same layout) */
+  padding: 0 .12em .3em; margin: 0 -.12em -.3em;
   /* gold with a slow light sweep across it */
   background: linear-gradient(110deg, #8a6a24 0%, #c9962f 30%, #fff1c4 46%, #d9a640 54%, #8a6a24 80%, #c9962f 100%);
   background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;

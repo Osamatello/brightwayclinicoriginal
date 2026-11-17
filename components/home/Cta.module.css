@@ -22,7 +22,8 @@
 
 .photoWrap {
   position: relative; overflow: hidden;
-  border-radius: 280px 0 0 280px; background: #f1ebe0;
+  /* curve on the side facing the text: left in English, right in Arabic */
+  border-start-start-radius: 280px; border-end-start-radius: 280px; background: #f1ebe0;
 }
 .photoWrap::after {
   /* thin gold edge following the curve */
@@ -41,11 +42,11 @@
 }
 
 @media (max-width: 1100px) and (min-width: 900px) {
-  .photoWrap { border-radius: 220px 0 0 220px; }
+  .photoWrap { border-start-start-radius: 220px; border-end-start-radius: 220px; }
 }
 @media (max-width: 899px) {
   .section { grid-template-columns: 1fr; min-height: 0; margin-block: 3rem 4rem; }
-  .photoWrap { order: -1; aspect-ratio: 3 / 2; border-radius: 0 0 160px 160px / 0 0 70px 70px; }
+  .photoWrap { order: -1; aspect-ratio: 3 / 2; border-start-start-radius: 0; border-end-start-radius: 0; border-radius: 0 0 160px 160px / 0 0 70px 70px; }
   .photoWrap::after { box-shadow: inset 0 -3px 0 #c9a45c; }
   .content { width: 100%; max-width: 640px; margin-inline: auto; padding: 2.5rem 24px 0; }
   .heading { font-size: clamp(2.4rem, 7vw, 3.4rem); }

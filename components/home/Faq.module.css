@@ -9,6 +9,8 @@
 
 .heading { font-family: var(--font-display); font-size: clamp(2.8rem, 4.3vw, 4.3rem); font-weight: 500; line-height: 1.02; letter-spacing: -.035em; color: #3e2d0e; }
 .heading span { display: block; color: #a77d2a; font-style: italic; }
+/* Arabic: "الأسئلة الشائعة" is short, so it sits on one line (Osama, 17 Nov 2026) */
+:global([dir="rtl"]) .heading span { display: inline; }
 
 /* Fixed photo shape: opening a question grows the list, never the photo */
 .photoFrame { position: relative; flex: none; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 6px; background: #eee9df; }
