@@ -10,14 +10,13 @@ import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "@/components/landing/Landing.module.css";
 
 const PAGE_ID = 2341;
-const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(PAGE_ID);
   // Hidden for now (Osama, 2026-11-04): no search listing, not in the sitemap (HIDDEN_PATHS in app/sitemap.ts), no links to it.
   if (!page) return { title: "Transform Your Smile for Just $5!", robots: { index: false, follow: false } };
   const seo = seoMetadata(page);
-  return { ...seo, robots: { index: false, follow: false }, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
+  return { ...seo, robots: { index: false, follow: false } };
 }
 
 const Tooth = () => (

@@ -8,13 +8,12 @@ import Contact from "@/components/home/Contact";
 import Faq from "@/components/home/Faq";
 
 const CONTACT_ID = 622;
-const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(CONTACT_ID);
   if (!page) return { title: "Contact us" };
   const seo = seoMetadata(page);
-  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
+  return { ...seo };
 }
 
 export default function ContactPage() {

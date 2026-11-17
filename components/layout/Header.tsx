@@ -15,8 +15,8 @@ export default function Header() {
     [l("/services/")]: servicesEn().map((e) => e.path),
     [l("/blog/")]: postsEn().map((e) => e.path),
   };
-  // Filled in here on the server, so the article list isn't added to the menu's browser code twice
-  const lists = { "/blog/": postsEn().map((e) => ({ label: e.title, href: e.path })) };
+  // Blog is a plain link, no drop-down list of articles (review feedback, 17 Nov 2026)
+  const lists = {};
   return (
     <HeaderFrame>
       {/* top bar from lg up; below that the numbers and hours live in the menu (MobileMenu) */}

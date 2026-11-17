@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGES } from "@/lib/content";
 import Hero from "@/components/home/Hero";
 import Services from "@/components/home/Services";
 import SmileScene from "@/components/home/SmileScene";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   title: homeSeo.title,
   description: homeSeo.description,
   alternates: { canonical: "/", languages: { en: "/", ar: "/ar/" } },
-  openGraph: { title: homeSeo.title, description: homeSeo.description, url: "/", images: ["/images/share-default.jpg"], type: "website", locale: "en_AE" },
+  openGraph: { title: homeSeo.title, description: homeSeo.description, url: "/", images: SHARE_IMAGES, type: "website", locale: "en_AE" },
 };
 
 

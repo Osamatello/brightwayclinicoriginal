@@ -12,13 +12,12 @@ import styles from "@/components/career/Career.module.css";
 
 const CAREER_ID = 620;
 const CAREER_EMAIL = "info@brightway.clinic";
-const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(CAREER_ID);
   if (!page) return { title: "Career" };
   const seo = seoMetadata(page);
-  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
+  return { ...seo };
 }
 
 const icon = (d: ReactNode) => (

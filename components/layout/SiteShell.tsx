@@ -3,7 +3,6 @@ import { Fragment, type ComponentType, type ReactNode } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MetaPixel from "@/components/tracking/MetaPixel";
-import SmoothScroll from "@/components/layout/SmoothScroll";
 import CookieNotice from "@/components/layout/CookieNotice";
 import { l, setLang, t } from "@/lib/i18n";
 import { SiteSchema } from "@/lib/schema";
@@ -47,7 +46,6 @@ export default function SiteShell({
           <main>{children}</main>
           <Footer />
           <MetaPixel />
-          <SmoothScroll />
           <CookieNotice />
         </Dictionary>
       </body>

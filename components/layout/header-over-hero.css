@@ -1,6 +1,6 @@
 /* ---- Home page header over the hero video (components/layout/HeaderFrame.tsx) ----
-   Fixed on the home page so the video starts at the very top; see-through (data-clear) until the hero has scrolled past. */
-header[data-home] { position: fixed; inset-inline: 0; }
+   Laid over the top of the hero on the home page so the video starts at the very top, and scrolls away with it (not sticky, 17 Nov 2026). */
+header[data-home] { position: absolute; inset-inline: 0; }
 header[data-clear] { background: linear-gradient(to bottom, rgb(0 0 0 / .55), rgb(0 0 0 / .18) 70%, transparent); }
 header[data-clear] [data-part="topbar"] { background: transparent; color: rgb(255 255 255 / .85); border-bottom: 1px solid rgb(255 255 255 / .14); }
 header[data-clear] [data-part="bar"] { background: transparent; border-color: transparent; }

@@ -12,13 +12,12 @@ import GalleryTreatments from "@/components/gallery/GalleryTreatments";
 import TreatmentCta from "@/components/treatment/TreatmentCta";
 
 const GALLERY_ID = 617;
-const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(GALLERY_ID);
   if (!page) return { title: "Smile Gallery" };
   const seo = seoMetadata(page);
-  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
+  return { ...seo };
 }
 
 export default function SmileGalleryPage() {

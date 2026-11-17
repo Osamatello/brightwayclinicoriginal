@@ -113,6 +113,9 @@ function pageTitle(e: Entry): string {
   return title;
 }
 
+/** The one link-preview picture for every page, EN + AR (review feedback, 17 Nov 2026). */
+export const SHARE_IMAGES = [{ url: "/images/share-bright-way.jpg", width: 1200, height: 630, alt: "Bright Way Dental Clinic, Al Garhoud, Dubai" }];
+
 /** Old SEO (Yoast) to Next.js metadata, so titles, descriptions and canonicals stay identical. */
 export function seoMetadata(e: Entry): Metadata {
   const noindex = e.seo.robots?.index === "noindex";
@@ -128,7 +131,7 @@ export function seoMetadata(e: Entry): Metadata {
       description,
       url: e.seo.canonical || e.path,
       type: e.kind === "post" ? "article" : "website",
-      images: e.featured ? [e.featured] : ["/images/share-default.jpg"],
+      images: SHARE_IMAGES,
       locale: e.lang === "ar" ? "ar_AE" : "en_AE",
     },
   };

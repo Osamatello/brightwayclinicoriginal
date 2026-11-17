@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGES } from "@/lib/content";
 import { services, topServiceHrefs } from "@/content/home";
 import { ldText, ldUrl } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Dental implants, veneers, orthodontics, teeth whitening and more — all 11 treatments at Bright Way Dental Clinic in Al Garhoud, Dubai, with digital dentistry and DHA-licensed dentists.",
   alternates: { canonical: "/services/", languages: { en: "/services/", ar: "/ar/services/", "x-default": "/services/" } },
-  openGraph: { title: "Dental Services in Dubai | Bright Way Dental Clinic", url: "/services/", images: ["/images/services/approved/dental-implants-card.webp"], locale: "en_AE" },
+  openGraph: { title: "Dental Services in Dubai | Bright Way Dental Clinic", url: "/services/", images: SHARE_IMAGES, locale: "en_AE" },
 };
 
 export default function ServicesPage() {

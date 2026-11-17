@@ -3,9 +3,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { services } from "@/content/home";
 import { clinic } from "@/content/site";
+import { SHARE_IMAGES } from "@/lib/content";
 import { Arrow, GoldButton, OutlineButton, WhatsAppIcon } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Page not found | Bright Way Dental Clinic", robots: { index: false, follow: true } };
+export const metadata: Metadata = { title: "Page not found | Bright Way Dental Clinic", robots: { index: false, follow: true }, openGraph: { images: SHARE_IMAGES } };
 
 /** Custom 404 — any URL that is not a page and not in the redirect / 410 map (middleware.ts). */
 export default function NotFound() {

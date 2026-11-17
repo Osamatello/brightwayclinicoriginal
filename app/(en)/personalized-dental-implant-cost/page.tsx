@@ -10,13 +10,12 @@ import ScatteredTeeth from "@/components/page/ScatteredTeeth";
 import styles from "@/components/landing/Landing.module.css";
 
 const PAGE_ID = 2652;
-const OLD_SHARE_IMAGE = "/images/share-default.jpg"; // clinic photo for link previews (the old page used the wide logo, which crops badly)
 
 export function generateMetadata(): Metadata {
   const page = getById(PAGE_ID);
   if (!page) return { title: "Personalized Dental Implant Cost" };
   const seo = seoMetadata(page);
-  return { ...seo, openGraph: { ...seo.openGraph, images: [OLD_SHARE_IMAGE] } };
+  return { ...seo };
 }
 
 // All text and pictures from the old page (ad campaigns and SEO depend on them)

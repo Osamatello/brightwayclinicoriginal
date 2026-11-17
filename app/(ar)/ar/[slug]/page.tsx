@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
-import { entriesByLang, getByPath, languageLinks, seoMetadata } from "@/lib/content";
+import { SHARE_IMAGES, entriesByLang, getByPath, languageLinks, seoMetadata } from "@/lib/content";
 import { setLang, setPage, t } from "@/lib/i18n";
 import { arPathOf, enPathOf } from "@/lib/i18n-data";
 import { PostPage, ServicePage } from "@/components/page/EntryViews";
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const robots = en && HIDDEN.has(en) ? { index: false, follow: false } : undefined;
   const seo = en ? NEW_PAGE_SEO[en] : undefined;
   if (seo) {
-    return { title: t(seo.title), description: t(seo.description), alternates: { canonical: encodeURI(path), languages: languageLinks(path) }, robots, openGraph: { title: t(seo.title), url: encodeURI(path), images: [en === "/services/" ? "/images/services/approved/dental-implants-card.webp" : "/images/share-default.jpg"], locale: "ar_AE" } };
+    return { title: t(seo.title), description: t(seo.description), alternates: { canonical: encodeURI(path), languages: languageLinks(path) }, robots, openGraph: { title: t(seo.title), url: encodeURI(path), images: SHARE_IMAGES, locale: "ar_AE" } };
   }
   const entry = getByPath(path);
   if (!entry) return {};
