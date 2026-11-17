@@ -193,12 +193,12 @@ export const faqs = [
   { q: "Where are you located and when are you open?", a: "Al Garhoud, Ithraa Tower, Office 802, Dubai — Saturday to Thursday, 11:00 AM to 8:00 PM. Call +971 55 497 1986 or message us on WhatsApp." },
 ];
 
-// Photos used as Instagram tiles until the live feed is connected
-// Real reels from @dr.hasanmahdy, picked so no two covers look alike (covers saved 28 Oct 2026 in /images/instagram/).
-// Order = left to right in the fan; the 4th one sits in the middle.
-export const instagramPosts = ["DabFJFLMatd", "DervZhiMwWM", "DadjQjdsKFN", "Dd4XMAfsBGV", "DcWhFKAMMBW", "DayFyVJsS5m", "DdE86giM3i5"].map((code) => ({
+// Dr. Hasan's reels (@dr.hasanmahdy), shared by Osama on 17 Nov 2026.
+// Each card plays a 10-second silent loop from /videos/reels/<code>.mp4 (poster <code>.webp) and opens the full reel on Instagram.
+export const instagramPosts = ["DeZvZgfseJ_", "DfupkuFMBVX", "Dfkmd5Eslyo", "DfIFdp4sGVK", "Dew5hpRMLNr", "DecWcvPMtJ3", "DekLAj9sjFZ"].map((code) => ({
   code,
-  src: `/images/instagram/${code}.webp`,
+  video: `/videos/reels/${code}.mp4`,
+  poster: `/videos/reels/${code}.webp`,
   href: `https://www.instagram.com/reel/${code}/`,
 }));
 

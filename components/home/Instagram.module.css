@@ -25,7 +25,7 @@
 
 /* Reels fanned out like a hand of cards: --o is the card's place from the middle (-3 … 3) */
 .deck {
-  --w: min(200px, 16.4vw);
+  --w: min(212px, 12.6vw);
   position: relative; display: flex; justify-content: center; align-items: flex-start;
   padding: 1.5rem 0 4.5rem;
 }
@@ -36,10 +36,10 @@
 }
 .card {
   position: relative; z-index: calc(10 - var(--abs)); flex: 0 0 var(--w); width: var(--w);
-  margin-inline-start: calc(var(--w) * -.14);
+  margin-inline-start: clamp(10px, 1.1vw, 18px);
   translate: 0 calc(var(--abs) * var(--abs) * 7px);
-  rotate: calc(var(--o) * 5deg);
-  scale: calc(1.08 - var(--abs) * .03);
+  rotate: calc(var(--o) * 3deg);
+  scale: calc(1.04 - var(--abs) * .03);
   transform-origin: 50% 100%;
 }
 .card:first-child { margin-inline-start: 0; }
@@ -58,7 +58,7 @@
   box-shadow: 0 40px 60px -30px #3e2d0eb3, 0 0 0 6px #c3943333;
 }
 .frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#0000 55%, #3e2d0e8c); pointer-events: none; }
-.photo { object-fit: cover; border-radius: 15px; }
+.photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
 
 .reelBadge { position: absolute; top: 10px; inset-inline-end: 10px; z-index: 1; width: 22px; height: 22px; color: #fff; filter: drop-shadow(0 1px 3px #0009); }
 .play {

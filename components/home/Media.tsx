@@ -1,10 +1,10 @@
-import { l, t } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 import type { CSSProperties } from "react";
-import Image from "next/image";
 import { instagramPosts } from "@/content/home";
 import { clinic } from "@/content/site";
-import { Arrow, PlayIcon } from "@/components/ui";
+import { Arrow } from "@/components/ui";
 import ig from "./Instagram.module.css";
+import ReelsAutoplay from "./ReelsAutoplay";
 
 function InstagramGlyph({ className }: { className?: string }) {
   return (
@@ -37,22 +37,21 @@ export function Instagram() {
             <span className={ig.ring}><InstagramGlyph className={ig.ringIcon} /></span>{t("@dr.hasanmahdy")}{" "}<Arrow />
           </a>
         </header>
-        {/* Real reels fanned like a hand of cards; each opens its own reel */}
-        <div dir="ltr" className={ig.deck}>
+        {/* Real reels fanned like a hand of cards, all playing silently while on screen; each opens its own reel */}
+        <ReelsAutoplay dir="ltr" className={ig.deck}>
           {instagramPosts.map((p, i) => {
             const offset = i - (instagramPosts.length - 1) / 2; // -3 … 3
             const style = { "--o": offset, "--abs": Math.abs(offset) } as CSSProperties;
             return (
-              <a key={p.code} href={l(p.href)} target="_blank" rel="noopener noreferrer" className={ig.card} style={style}>
+              <a key={p.code} href={p.href} target="_blank" rel="noopener noreferrer" aria-label={t("Dr. Hasan Mahdy reel on Instagram")} className={ig.card} style={style}>
                 <span className={ig.frame}>
-                  <Image src={p.src} alt={t("Dr. Hasan Mahdy reel on Instagram")} fill sizes="(min-width: 900px) 230px, 62vw" className={ig.photo} />
+                  <video src={p.video} poster={p.poster} muted loop playsInline preload="none" aria-hidden="true" className={ig.photo} />
                   <ReelGlyph className={ig.reelBadge} />
-                  <span className={ig.play}><PlayIcon className={ig.playIcon} /></span>
                 </span>
               </a>
             );
           })}
-        </div>
+        </ReelsAutoplay>
       </div>
     </section>
   );
