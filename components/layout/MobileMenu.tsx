@@ -7,6 +7,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { clinic, nav } from "@/content/site";
 import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
 import { useActiveNav, type NavLists, type NavSections } from "@/components/layout/NavLinks";
+import { ICONS as SERVICE_ICONS } from "@/components/layout/ServicesMenu";
 
 const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 
@@ -88,7 +89,12 @@ export default function MobileMenu({ sections, lists }: { sections: NavSections;
                     <ul className="pb-3">
                       {children.map((child) => (
                         <li key={child.href}>
-                          <Link href={l(child.href)} aria-current={isActive(child.href) ? "page" : undefined} className={`block py-2.5 ps-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
+                          <Link href={l(child.href)} aria-current={isActive(child.href) ? "page" : undefined} className={`flex items-center gap-3 py-2.5 ps-4 text-base font-semibold ${isActive(child.href) ? "text-gold-dark" : "text-ink"}`}>
+                            {SERVICE_ICONS[child.href] && (
+                              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 shrink-0 text-gold-dark">
+                                {SERVICE_ICONS[child.href]}
+                              </svg>
+                            )}
                             {t(child.label)}
                           </Link>
                         </li>

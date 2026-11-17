@@ -9,7 +9,7 @@ import styles from "./NavLinks.module.css";
 
 // Small line icons, one per treatment (24 × 24, drawn in the menu's gold)
 const tooth = "M8 3.5c-2.6 0-4.2 2.3-3.5 5.3.5 2.3 1.1 4.2 1.4 6.7.3 2.8.8 5 2.1 5 1.3 0 1.5-2.2 1.9-4.2.3-1.4.8-2 2.1-2s1.8.6 2.1 2c.4 2 .6 4.2 1.9 4.2s1.8-2.2 2.1-5c.3-2.5.9-4.4 1.4-6.7.7-3-.9-5.3-3.5-5.3-1.7 0-2.4 1-4 1s-2.3-1-4-1Z";
-const ICONS: Record<string, ReactNode> = {
+export const ICONS: Record<string, ReactNode> = {
   "/teeth-cleaning-and-gum-treatment/": (
     <>
       <path d={tooth} />
