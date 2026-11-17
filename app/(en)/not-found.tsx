@@ -5,7 +5,7 @@ import { services } from "@/content/home";
 import { clinic } from "@/content/site";
 import { Arrow, GoldButton, OutlineButton, WhatsAppIcon } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Page not found", robots: { index: false, follow: true } };
+export const metadata: Metadata = { title: "Page not found | Bright Way Dental Clinic", robots: { index: false, follow: true } };
 
 /** Custom 404 — any URL that is not a page and not in the redirect / 410 map (middleware.ts). */
 export default function NotFound() {

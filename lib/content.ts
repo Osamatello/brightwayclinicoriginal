@@ -3,6 +3,7 @@ import entriesJson from "@/content/entries.json";
 import articlesJson from "@/content/ar/articles.json";
 import oldTextFixes from "@/content/ar/old-text-fixes.json";
 import oldEnglishFixes from "@/content/old-text-fixes-en.json";
+import seoTitleFixes from "@/content/seo-title-fixes.json";
 import { improveLinks } from "@/lib/article-links";
 import { AR_PATHS } from "@/content/ar/paths";
 import { arPathOf, enPathOf, isolateLtrHtml } from "@/lib/i18n-data";
@@ -101,17 +102,29 @@ export function languageLinks(path: string): Record<string, string> | undefined 
   return { en, ar: encodeURI(ar), "x-default": en };
 }
 
+/**
+ * Google title: the old SEO title, with fixes approved by Osama (17 Nov 2026): a duplicate title and a run-together Arabic one
+ * (content/seo-title-fixes.json), and the clinic's name added to Arabic titles that were a single word or two ("حول", "تواصل معنا").
+ */
+function pageTitle(e: Entry): string {
+  const fixed = (seoTitleFixes as Record<string, string>)[decodeURI(e.path)];
+  const title = fixed ?? (e.seo.title || e.title);
+  if (e.lang === "ar" && !title.includes("|") && !/برايت واي|Bright\s?Way|Brightway/i.test(title)) return `${title} | عيادة برايت واي لطب الأسنان في دبي`;
+  return title;
+}
+
 /** Old SEO (Yoast) to Next.js metadata, so titles, descriptions and canonicals stay identical. */
 export function seoMetadata(e: Entry): Metadata {
   const noindex = e.seo.robots?.index === "noindex";
   const description = e.seo.description || e.excerpt;
+  const title = pageTitle(e);
   return {
-    title: e.seo.title || e.title,
+    title,
     description,
     alternates: { canonical: e.seo.canonical || e.path, languages: languageLinks(e.path) },
     robots: noindex ? { index: false, follow: true } : undefined,
     openGraph: {
-      title: e.seo.title || e.title,
+      title,
       description,
       url: e.seo.canonical || e.path,
       type: e.kind === "post" ? "article" : "website",
