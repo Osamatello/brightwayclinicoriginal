@@ -32,7 +32,7 @@ export default function AboutCta() {
         </div>
 
         <div className={styles.panel}>
-          <h2 id="about-cta-heading" className={styles.heading}>{t("Become The Next")}{" "}<span>{t("Our Happy Client")}</span>
+          <h2 id="about-cta-heading" className={styles.heading}>{t("Become Our Next")}{" "}<span>{t("Happy Patient in Dubai")}</span>
           </h2>
           <p className={styles.copy}>{t("Our best dentists in Dubai are ready to provide you with top-tier care tailored to your needs.")}</p>
 

@@ -19,7 +19,7 @@ export default function Digital() {
     <section id="digital-dentistry" aria-labelledby="digital-heading" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.copy}>
-          <h2 id="digital-heading" className={styles.heading}>{t("Smarter, Faster,")}{" "}<span>{t("More Accurate in Dubai.")}</span>
+          <h2 id="digital-heading" className={styles.heading}>{t("Smarter, Faster,")}{" "}<span>{t("More Accurate Dentistry in Dubai.")}</span>
           </h2>
           <p className={styles.lede}>{t("We are proud of specializing in digital dentistry where the traditional methods will be converted to faster and more comfortable procedures.")}</p>
 

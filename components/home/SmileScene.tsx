@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { services } from "@/content/home";
 import { Arrow } from "@/components/ui";
+import { ICONS } from "@/components/layout/serviceIcons";
 import styles from "./SmileScene.module.css";
 
 // The three scroll stops, each with its own picture
@@ -166,7 +167,13 @@ export default function SmileScene() {
                     {stop.items.map((s) => (
                       <li key={s.href}>
                         <Link href={l(s.href)} className={styles.row}>
-                          {t(s.title)} <Arrow />
+                          <span className={styles.name}>
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
+                              {ICONS[s.href]}
+                            </svg>
+                            {t(s.title)}
+                          </span>{" "}
+                          <Arrow />
                         </Link>
                       </li>
                     ))}

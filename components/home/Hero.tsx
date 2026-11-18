@@ -41,11 +41,12 @@ export default function Hero() {
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent sm:from-black/45" />
         </div>
 
-        <div className="relative max-w-5xl px-6 pb-5 pt-28 text-white max-sm:[text-shadow:0_1px_12px_rgb(0_0_0/0.35)] sm:px-10 sm:pb-8 sm:pt-56 lg:px-14 lg:pb-18">
+        {/* desktop (lg up) only: text raised from the bottom (review feedback, 18 Nov 2026); phones and tablets keep it at the bottom (Osama) */}
+        <div className="relative max-w-5xl px-6 pb-5 pt-28 text-white max-sm:[text-shadow:0_1px_12px_rgb(0_0_0/0.35)] sm:px-10 sm:pb-8 sm:pt-56 lg:flex lg:flex-1 lg:flex-col lg:items-start lg:justify-center lg:px-14 lg:pb-14 lg:pt-52">
           <h1 className="font-display text-[2.4rem] font-medium leading-[0.95] tracking-[-0.01em] sm:text-7xl sm:leading-[0.92] xl:text-[6.5rem]">{h1Part(0, "Bright Way Dental Clinic")}{" "}<em className="whitespace-nowrap font-normal text-gold-light">{h1Part(1, "in Dubai")}</em>
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/85 sm:mt-6 sm:text-base md:text-lg">
-            <strong className="font-semibold text-white">{t("Your Reliable Digital Dentistry in Dubai and Modern comforting smiles.")}</strong>{" "}{t("Specializing in both aesthetic and health-focused treatments, our clinic combines expert care with advanced technology for unmatched dental excellence.")}</p>
+            <strong className="font-semibold text-white">{t("Trusted digital dentistry in Al Garhoud, Dubai.")}</strong>{" "}{t("From routine check-ups to dental implants, veneers and complete smile makeovers, our DHA-licensed dentists plan every treatment with digital scans for precise, comfortable results.")}</p>
           <GoldButton href={l("/contact-us/")} className="mt-6 px-7 sm:mt-8 sm:px-8">{t("Get Dental Consultation")}{" "}<Arrow />
           </GoldButton>
         </div>

@@ -22,7 +22,7 @@ export default function TreatmentCta({ copy = "Our best dentists in Dubai are re
         </div>
 
         <div className={styles.copyCol}>
-          <h2 id="treatment-cta-heading" className={styles.heading}>{t("Become The Next")}{" "}<span>{t("Our Happy Client")}</span>
+          <h2 id="treatment-cta-heading" className={styles.heading}>{t("Become Our Next")}{" "}<span>{t("Happy Patient in Dubai")}</span>
           </h2>
           <p className={styles.copy}>{t(copy)}</p>
           <div className={styles.actions}>

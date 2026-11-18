@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui";
 
+import { ICONS } from "@/components/layout/serviceIcons";
 type Service = { title: string; text: string; img: string; href: string };
 
 /** Treatment card (homepage "Services" and the /services/ page). */
@@ -19,7 +20,14 @@ export default function ServiceCard({ service: s, number, sizes }: { service: Se
         </span>
       </div>
       <div className="flex flex-1 flex-col px-3 pb-3 pt-5">
-        <h3 className="text-xl font-extrabold text-brown-dark">{t(s.title)}</h3>
+        <h3 className="flex items-center gap-2.5 text-xl font-extrabold text-brown-dark">
+          {ICONS[s.href] && (
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 shrink-0 text-gold-dark">
+              {ICONS[s.href]}
+            </svg>
+          )}
+          {t(s.title)}
+        </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed">{t(s.text)}</p>
         <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-gold-dark transition-all group-hover:gap-3">{t("Learn more")}{" "}<Arrow />
         </span>

@@ -4,6 +4,7 @@ import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
 import type { TreatmentFigure } from "@/content/treatments";
 import type { Source } from "@/content/seo-answers";
 import Sources, { DirectAnswer } from "@/components/page/Sources";
+import ArticleFold from "./ArticleFold";
 import styles from "./TreatmentBody.module.css";
 
 const escapeAttr = (v: string) => v.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
@@ -35,8 +36,10 @@ export default function TreatmentBody({ html, figures = [], hideOldImages = fals
       <div className={styles.inner}>
         <div className={styles.main}>
           {answer && <DirectAnswer text={answer} />}
-          <article className={styles.article} dangerouslySetInnerHTML={{ __html: withFigures(body, figures) }} />
-          <Sources sources={sources} />
+          <ArticleFold>
+            <article className={styles.article} dangerouslySetInnerHTML={{ __html: withFigures(body, figures) }} />
+            <Sources sources={sources} />
+          </ArticleFold>
         </div>
 
         <BookingAside />

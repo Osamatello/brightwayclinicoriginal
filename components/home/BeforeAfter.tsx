@@ -3,7 +3,7 @@
 import { useI18n } from "@/lib/i18n-client";
 import Image from "next/image";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { smileCases, type SmileCase } from "@/content/home";
+import { homeSmileCases as smileCases, type SmileCase } from "@/content/home";
 import styles from "./BeforeAfter.module.css";
 
 const SIZES = "(min-width: 1100px) 400px, (min-width: 540px) 50vw, 100vw";
@@ -159,7 +159,7 @@ function PhoneStrip() {
       distance = Math.max(0, row.scrollWidth - row.clientWidth);
       // one pixel of scrolling down moves the cards one pixel sideways. The height is set against the *small* screen height
       // (svh), which does not change while the phone's address bar slides in and out, so nothing below jumps when it does.
-      box.style.height = `calc(100svh - 73px + ${distance}px)`;
+      box.style.height = `calc(100svh + ${distance}px)`;
       draw();
     };
     // phones fire "resize" whenever the address bar shows or hides: only re-measure when the width really changed (rotation)

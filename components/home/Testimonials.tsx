@@ -21,7 +21,7 @@ export default async function Testimonials() {
     <section aria-labelledby="testimonials-heading" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.top}>
-          <h2 id="testimonials-heading" className={styles.heading}>{t("The Honest")}{" "}<span>{t("Patient Testimonials")}</span>
+          <h2 id="testimonials-heading" className={styles.heading}>{t("What Our Patients in Dubai")}{" "}<span>{t("Say About Us")}</span>
           </h2>
 
           <div className={styles.score} role="group" aria-label={t("Google rating")}>

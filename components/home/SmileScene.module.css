@@ -6,7 +6,7 @@
   .scene ~ :global([data-home-grid]) { display: none; }
 
   .stage {
-    position: sticky; top: 117px; height: calc(100svh - 117px); min-height: 560px; overflow: hidden;
+    position: sticky; top: 0; height: 100svh; /* the header no longer sticks (18 Nov 2026): the scene pins to the very top */ min-height: 560px; overflow: hidden;
     background: linear-gradient(180deg, #fff9ec 0%, #fffcf6 100%);
   }
 
@@ -56,7 +56,7 @@
 
   .stage {
     /* dvh: follows the phone's address bar, so no empty strip shows under the pinned scene when the bar hides */
-    position: sticky; top: 73px; height: calc(100svh - 73px); height: calc(100dvh - 73px); min-height: 520px; overflow: hidden;
+    position: sticky; top: 0; height: 100svh; height: 100dvh; min-height: 520px; overflow: hidden;
     background: linear-gradient(180deg, #fff9ec 0%, #fffcf6 100%);
   }
   .scene { background: #fffcf6; }
@@ -101,5 +101,10 @@
   .all { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; color: #6f675b; font-size: .875rem; font-weight: 700; }
 }
 @media (min-width: 768px) and (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
-  .stage { top: 81px; height: calc(100svh - 81px); height: calc(100dvh - 81px); }
+  .stage { top: 0; height: 100svh; height: 100dvh; }
 }
+
+/* service icons in front of each treatment name (Osama, 18 Nov 2026), same icons as the Services menu */
+.name { display: inline-flex; align-items: center; gap: .9rem; min-width: 0; }
+.row svg.icon { flex: none; width: 1.1em; height: 1.1em; color: #a77d2a; translate: none; }
+.row:hover svg.icon { translate: none; }

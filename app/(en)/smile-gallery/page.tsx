@@ -1,7 +1,7 @@
 import { t } from "@/lib/i18n";
 import type { Metadata } from "next";
 import { getById, seoMetadata } from "@/lib/content";
-import { smileCases } from "@/content/home";
+import { homeSmileCases as smileCases } from "@/content/home";
 import { clinic } from "@/content/site";
 import { CLINIC_ID, ldText, ldUrl } from "@/lib/schema";
 import { BreadcrumbSchema } from "@/components/page/PageParts";

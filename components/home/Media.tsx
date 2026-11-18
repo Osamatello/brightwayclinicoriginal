@@ -31,7 +31,7 @@ export function Instagram() {
     <section id="instagram" aria-labelledby="instagram-heading" className={ig.section}>
       <div className={ig.inner}>
         <header className={ig.header}>
-          <h2 id="instagram-heading" className={ig.heading}>{t("Follow on")}{" "}<span>{t("Instagram")}</span>
+          <h2 id="instagram-heading" className={ig.heading}>{t("Follow Us on")}{" "}<span>{t("Instagram")}</span>
           </h2>
           <a href={clinic.social.instagram} className={ig.handle}>
             <span className={ig.ring}><InstagramGlyph className={ig.ringIcon} /></span>{t("@dr.hasanmahdy")}{" "}<Arrow />

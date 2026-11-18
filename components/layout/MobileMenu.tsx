@@ -7,7 +7,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { clinic, nav } from "@/content/site";
 import { Arrow, GoldButton, WhatsAppIcon } from "@/components/ui";
 import { useActiveNav, type NavLists, type NavSections } from "@/components/layout/NavLinks";
-import { ICONS as SERVICE_ICONS } from "@/components/layout/ServicesMenu";
+import { ICONS as SERVICE_ICONS } from "@/components/layout/serviceIcons";
 
 const iconButton = "flex h-11 w-11 items-center justify-center rounded-full";
 
