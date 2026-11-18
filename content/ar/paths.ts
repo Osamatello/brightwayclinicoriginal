@@ -46,4 +46,11 @@ export const AR_PATHS: Record<string, string> = {
   "/veneer-en/": "/ar/veneer/",
   "/what-colour-lipstick-makes-your-teeth-look-whiter/": "/ar/what-colour-lipstick-makes-your-teeth-look-whiter/",
   "/why-pediatric-dentistry-is-not-just-regular-dentistry/": "/ar/لماذا-طب-أسنان-الأطفال-ليس-مجرد-طب-أسنا/",
+  // new blog posts (Dubai SEO, 18 Nov 2026)
+  "/dental-implants-cost-dubai/": "/ar/dental-implants-cost-dubai/",
+  "/veneers-hollywood-smile-dubai/": "/ar/veneers-hollywood-smile-dubai/",
+  "/dental-insurance-dubai/": "/ar/dental-insurance-dubai/",
+  "/emergency-dentist-dubai/": "/ar/emergency-dentist-dubai/",
+  "/teeth-whitening-dubai/": "/ar/teeth-whitening-dubai/",
+  "/dentist-al-garhoud-dubai/": "/ar/dentist-al-garhoud-dubai/",
 };

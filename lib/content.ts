@@ -4,6 +4,7 @@ import articlesJson from "@/content/ar/articles.json";
 import oldTextFixes from "@/content/ar/old-text-fixes.json";
 import oldEnglishFixes from "@/content/old-text-fixes-en.json";
 import seoTitleFixes from "@/content/seo-title-fixes.json";
+import newPostsEn from "@/content/new-posts-en.json";
 import { improveLinks } from "@/lib/article-links";
 import { AR_PATHS } from "@/content/ar/paths";
 import { arPathOf, enPathOf, isolateLtrHtml } from "@/lib/i18n-data";
@@ -34,7 +35,8 @@ const fixOldText = (text: string) => Object.entries(oldTextFixes).reduce((out, [
 // Broken sentences in the old English articles, fixed with Osama's OK (2026-11-12)
 const fixOldEnglish = (html: string) => Object.entries(oldEnglishFixes).reduce((out, [from, to]) => out.split(from).join(to), html);
 
-const allEntries = entriesJson as Entry[];
+// entries.json = the WordPress backup; new-posts-en.json = blog posts written for the new site (Dubai SEO, Osama's OK 18 Nov 2026)
+const allEntries = [...(newPostsEn as Entry[]).slice().reverse(), ...(entriesJson as Entry[])]; // newest first, like entries.json
 const englishEntries = allEntries.filter((e) => e.lang === "en").map((e) => ({ ...e, html: improveLinks(fixOldEnglish(e.html), "en", e.path) }));
 const oldArabic = new Map(
   allEntries
