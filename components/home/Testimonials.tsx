@@ -3,6 +3,7 @@ import Image from "next/image";
 import { googleReviews, testimonials } from "@/content/home";
 import { getGoogleReviews, type GoogleReview } from "@/lib/googleReviews";
 import { Arrow } from "@/components/ui";
+import ReviewVideos from "./ReviewVideos";
 import styles from "./Testimonials.module.css";
 
 type Card = GoogleReview & { source: "google" | "clinic"; photo?: string; lang?: "ar" };
@@ -11,11 +12,11 @@ export default async function Testimonials() {
   const live = await getGoogleReviews();
   const rating = live?.rating ?? googleReviews.rating;
   const count = live?.count ?? googleReviews.count;
-  // Live Google reviews first (Places API returns up to 5), then the clinic's own testimonials; 6 cards max
+  // Live Google reviews first (Places API returns up to 5), then the clinic's own testimonials; 3 cards under the videos (2 on phones)
   const cards: Card[] = [
     ...(live?.reviews ?? []).map((r): Card => ({ ...r, source: "google" })),
     ...testimonials.map((t): Card => ({ author: t.name, rating: 5, text: t.quote, source: t.source, photo: t.photo, lang: t.lang })),
-  ].slice(0, 6);
+  ].slice(0, 3);
 
   return (
     <section aria-labelledby="testimonials-heading" className={styles.section}>
@@ -35,6 +36,8 @@ export default async function Testimonials() {
             </div>
           </div>
         </header>
+
+        <ReviewVideos label={t("Patient video reviews")} playLabel={t("Play patient video")} />
 
         <div className={styles.grid}>
           {cards.map((card) => (
