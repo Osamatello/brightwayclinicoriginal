@@ -12,11 +12,11 @@ export default async function Testimonials() {
   const live = await getGoogleReviews();
   const rating = live?.rating ?? googleReviews.rating;
   const count = live?.count ?? googleReviews.count;
-  // Live Google reviews first (Places API returns up to 5), then the clinic's own testimonials; 3 cards under the videos (2 on phones)
+  // Live Google reviews first (Places API returns up to 5), then the clinic's own testimonials; 6 cards max; desktop shows 3 under the videos, phones swipe through all
   const cards: Card[] = [
     ...(live?.reviews ?? []).map((r): Card => ({ ...r, source: "google" })),
     ...testimonials.map((t): Card => ({ author: t.name, rating: 5, text: t.quote, source: t.source, photo: t.photo, lang: t.lang })),
-  ].slice(0, 3);
+  ].slice(0, 6);
 
   return (
     <section aria-labelledby="testimonials-heading" className={styles.section}>
