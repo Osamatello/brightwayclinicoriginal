@@ -39,10 +39,10 @@ export default function DoctorHero() {
 
         <figure className={styles.portrait}>
           <Image
-            src="/images/doctors/dr-hasan.webp"
+            src="/images/doctors/dr-hasan-portrait.webp"
             alt={t("Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic.")}
-            width={816}
-            height={816}
+            width={1000}
+            height={1500}
             unoptimized
             priority
           />

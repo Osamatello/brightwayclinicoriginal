@@ -39,7 +39,7 @@ export const doctors = [
     name: "Dr. Hasan A. Mahdy",
     tag: "Founder",
     role: "Specializing in cosmetic dentistry, dental implants, oral surgery, prosthetics, and general comprehensive dental care.",
-    img: "/images/doctors/dr-hasan.webp",
+    img: "/images/doctors/dr-hasan-portrait.webp",
     href: "/dr-hasan-a-mahdy/",
   },
   { name: "Dr. Raghad K. Al-Harbawee", tag: "Orthodontist", role: "Orthodontist and Dentofacial Orthopedic.", img: "/images/doctors/dr-raghad.webp" },

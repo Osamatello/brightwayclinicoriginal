@@ -46,7 +46,7 @@ export default function DoctorPage() {
     "@id": `${clinic.url}/dr-hasan-a-mahdy/#person`,
     name: ldText("Dr. Hasan Abdullah Mahdy"),
     jobTitle: ldText("Dr. Hasan A. Mahdy - Cosmetic Dentist & Oral Surgeon at Bright Way Dental Clinic.").replace(/^[^-،]*[-،]\s*/, "").replace(/\.$/, ""),
-    image: `${clinic.url}/images/doctors/dr-hasan.webp`,
+    image: `${clinic.url}/images/doctors/dr-hasan-portrait.webp`,
     url: ldUrl("/dr-hasan-a-mahdy/"),
     knowsAbout: ["Cosmetic dentistry", "Dental implants", "Oral surgery"].map(ldText),
     worksFor: { "@id": CLINIC_ID },
