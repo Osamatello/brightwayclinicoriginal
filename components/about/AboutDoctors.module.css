@@ -45,3 +45,16 @@
 @media (prefers-reduced-motion: reduce) {
   .arch, .photo, .more svg { transition: none; }
 }
+
+/* Phones: lead doctor on top (smaller), the other two side by side */
+@media (max-width: 539px) {
+  .header { margin-bottom: 2rem; }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem .75rem; }
+  .card:first-child { grid-column: 1 / -1; width: 64%; }
+  .arch { width: 100%; border-width: 2px; }
+  .info { padding-top: .9rem; }
+  .tag { font-size: .66rem; letter-spacing: .12em; }
+  .name { font-size: 1.25rem; }
+  .role { margin-top: .4rem; font-size: .8rem; line-height: 1.5; }
+  .more { margin-top: .6rem; font-size: .8rem; }
+}

@@ -35,3 +35,15 @@
   .card, .read { transition: none; }
   .card:hover { translate: none; }
 }
+
+/* Phones: two articles per row with smaller type; an odd last card sits centred */
+@media (max-width: 639px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .card { border-radius: 14px; }
+  .card:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .375rem); }
+  .text { padding: .7rem .7rem .8rem; }
+  .date { font-size: .7rem; }
+  .title { margin-top: .3rem; font-size: 1.02rem; }
+  .excerpt { margin-top: .35rem; font-size: .78rem; line-height: 1.5; -webkit-line-clamp: 2; }
+  .read { margin-top: .6rem; font-size: .76rem; }
+}

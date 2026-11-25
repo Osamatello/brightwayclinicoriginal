@@ -39,3 +39,9 @@
 @media (prefers-reduced-motion: reduce) {
   .photo, .secondary { transition: none; }
 }
+
+/* Phones: smaller photo */
+@media (max-width: 539px) {
+  .visual { width: min(100%, 240px); }
+  .frame { border-radius: 20px; }
+}

@@ -94,3 +94,15 @@
   .card:hover { translate: none; }
   .save { animation: none; background-position: 50% 0; }
 }
+
+/* Phones: cards two per row */
+@media (max-width: 539px) {
+  .two, .four { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .cards { margin-top: 1.75rem; }
+  .card { padding: 1.1rem .7rem 1.2rem; border-radius: 16px; }
+  .cardIcon { width: 46px; height: 46px; margin-bottom: .7rem; }
+  .cardIcon svg { width: 22px; height: 24px; }
+  .cardTitle { font-size: 1.15rem; }
+  .cardText { margin-top: .4rem; font-size: .8rem; line-height: 1.5; }
+  .cardPicture { margin-bottom: .7rem; }
+}

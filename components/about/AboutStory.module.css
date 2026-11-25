@@ -62,3 +62,21 @@
 @media (prefers-reduced-motion: reduce) {
   .whyItem, .whyIcon, .card, .cardPhoto { transition: none; }
 }
+
+/* Phones: why-us points and process cards two per row */
+@media (max-width: 599px) {
+  .whyList { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 2rem; }
+  .whyItem { padding: 1.1rem .7rem 1.2rem; }
+  .whyItem + .whyItem { border-top: 0; }
+  .whyItem:nth-child(even) { border-inline-start: 1px solid #efe5d2; }
+  .whyItem:nth-child(n+3) { border-top: 1px solid #efe5d2; }
+  .whyIcon { width: 44px; height: 44px; }
+  .whyIcon svg { width: 22px; height: 22px; }
+  .whyTitle { margin-top: .75rem; font-size: .95rem; }
+  .whyText { margin-top: .4rem; font-size: .8rem; line-height: 1.55; }
+  .processHeader { margin-bottom: 2rem; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .cardBody { padding: .8rem .7rem .9rem; }
+  .cardTitle { font-size: 1.12rem; }
+  .cardText { margin-top: .4rem; font-size: .78rem; line-height: 1.55; }
+}

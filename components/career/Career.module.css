@@ -65,3 +65,13 @@
   .reason { transition: none; }
   .reason:hover { translate: none; }
 }
+
+/* Phones: reasons two per row */
+@media (max-width: 539px) {
+  .reasons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: 1.75rem; }
+  .reason { padding: 1.1rem .7rem 1.2rem; border-radius: 16px; }
+  .reasonIcon { width: 48px; height: 48px; }
+  .reasonIcon svg { width: 24px; height: 24px; }
+  .reasonTitle { margin-top: .7rem; font-size: 1.15rem; }
+  .reasonText { margin-top: .4rem; font-size: .8rem; line-height: 1.5; }
+}
