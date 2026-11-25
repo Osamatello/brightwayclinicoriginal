@@ -131,12 +131,12 @@ export const offerPoints = [
   "Enjoying the benefits of restored chewing and speech.",
 ];
 
-// Google Business Profile figures. Count 160 per Osama 2026-11-04; rating and 5-star count last checked on Google Maps 2026-10-27 — update when they change.
+// Google Business Profile figures, last checked on Google Maps 2026-11-25 (166 reviews, 163 five-star, 4.9) — update when they change.
 // Live reviews are pulled from the Google Places API when GOOGLE_PLACES_API_KEY is set (lib/googleReviews.ts); these numbers are the fallback.
 export const googleReviews = {
   rating: 4.9,
-  count: 160,
-  fiveStar: 154,
+  count: 166,
+  fiveStar: 163,
   url: "https://www.google.com/maps?cid=4456386569709899538",
   topics: ["Dental implants", "Veneers", "Dr. Hasan", "Smile makeover", "Root canals"],
 };
