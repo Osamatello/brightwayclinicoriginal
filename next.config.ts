@@ -44,6 +44,16 @@ const nextConfig: NextConfig = {
     const headers = allowIndexing ? securityHeaders : [...securityHeaders, { key: "X-Robots-Tag", value: "noindex, nofollow" }];
     return [{ source: "/:path*", headers }];
   },
+  // After launch (ALLOW_INDEXING=true) the vercel.app copy sends everyone to the real domain, so Google sees one site
+  async redirects() {
+    if (!allowIndexing) return [];
+    return [{
+      source: "/:path*",
+      has: [{ type: "host", value: "brightway-clinic.vercel.app" }],
+      destination: "https://brightway.clinic/:path*",
+      permanent: true,
+    }];
+  },
 };
 
 export default nextConfig;
